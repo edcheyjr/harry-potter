@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import { Ysabeau } from 'next/font/google'
 import './globals.css'
+import { Ysabeau } from 'next/font/google'
 import NavBar from 'components/NavBar'
+import Footer from 'components/Footer'
 
 const ysabeau = Ysabeau({ subsets: ['latin'] })
 
@@ -17,11 +18,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${ysabeau.className} h-full w-full py-10 pt-32`}>
+      <body className={`${ysabeau.className} h-full w-full py-10 pt-28`}>
         <header className=''>
           <NavBar />
         </header>
         {children}
+        {/* Footer */}
+        <footer className='bg-bg-dark'>
+          <Footer />
+        </footer>
       </body>
     </html>
   )
