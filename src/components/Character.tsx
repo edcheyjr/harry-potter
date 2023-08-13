@@ -34,7 +34,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
         backgroundImage: `url(${imageSrc || DefaultImage.src})`,
       }}
     >
-      <div className='w-full flex bg-white/20 backdrop-blur-md space-x-2 px-5 py-2'>
+      <div className='w-full flex bg-bg-dark/10 backdrop-blur-md space-x-2 px-5 py-2'>
         {/* crest */}
         {house && (
           <div className='w-7 h-auto'>
