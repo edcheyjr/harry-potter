@@ -39,11 +39,11 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
       <div className='w-full flex bg-bg-dark/10 backdrop-blur-md space-x-2 px-5 py-2 justify-between items-center'>
         <div className='flex flex-col space-y-2'>
           <h6
-            className={`text-lg lg:text-xl xl:text-xl font-bold text-slate-50 capitalize text-ellipsis group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br ${'group-hover:from-red-500 group-hover:to-amber-500 group-hover:via-orange-500 '}]`}
+            className={`text-lg lg:text-xl xl:text-xl font-bold text-slate-300 capitalize text-ellipsis group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br ${'group-hover:from-red-500 group-hover:to-amber-500 group-hover:via-orange-500 '}]`}
           >
             {name || 'unknown'}
           </h6>
-          <p className='text-lg lg:text-xl xl:text-xl text-slate-500 font-medium '>
+          <p className='text-lg lg:text-xl xl:text-xl text-slate-500 font-medium text-ellipsis'>
             {DOB || YOB || 'No DoB'}
           </p>
         </div>
