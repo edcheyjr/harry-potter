@@ -17,8 +17,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${ysabeau.className} h-full w-full py-30`}>
-        <NavBar />
+      <body className={`${ysabeau.className} h-full w-full py-10 pt-32`}>
+        <header className=''>
+          <NavBar />
+        </header>
         {children}
       </body>
     </html>
