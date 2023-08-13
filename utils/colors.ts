@@ -1,6 +1,6 @@
 import { HouseColors } from '../types'
 
-const HouseColors: HouseColors = {
+export const houseColors: HouseColors = {
   Gryffindor: {
     primary: '#740001', //#b71c19
     secondary: '#e1cca6',
