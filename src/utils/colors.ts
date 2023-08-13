@@ -1,4 +1,4 @@
-import { HouseColors } from '../types'
+import { HouseColors } from '../../types'
 
 export const houseColors: HouseColors = {
   Gryffindor: {
