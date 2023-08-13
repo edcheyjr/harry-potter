@@ -23,7 +23,8 @@
       "components/*": ["./src/components/*"],
       "glowing_crests/*": ["./public/glowing_crests"],
       "crests": ["./public/crests"],
-      "@/fonts": ["./public/fonts/local"]
+      "logo.png": ["./public/hogwarts-logo.png"],
+      "public/*": ["./public"]
     }
   },
   "include": [
