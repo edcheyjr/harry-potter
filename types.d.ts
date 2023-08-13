@@ -40,3 +40,6 @@ interface WandType {
   core: string
   length: number
 }
+export type AppContextType = {
+  ref: MutableRefObject<HTMLDivElement | null>
+}
