@@ -1,20 +1,15 @@
 import React, { useState } from 'react'
-import HarryPotterText from 'harrypotter.svg'
-import Image from 'next/image'
 import localFont from 'next/font/local'
-import NavBar from './NavBar'
 import HarryPotterWorkMark from './icons/HarryPotterWordmark'
 
 const harry = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
-// const ysabeau =
-//
 
 type Props = {}
 
-const Header = (props: Props) => {
+const Hero = (props: Props) => {
   // const [color, setColor] = useState<string>(houseColors.Gryffindor.primary)
   return (
-    <header
+    <div
       className='
       min-h-screen
       w-full 
@@ -45,8 +40,8 @@ const Header = (props: Props) => {
           </p>
         </section>
       </div>
-    </header>
+    </div>
   )
 }
 
-export default Header
+export default Hero
