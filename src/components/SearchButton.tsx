@@ -5,7 +5,7 @@ type Props = {}
 
 const SearchButton = (props: Props) => {
   return (
-    <button className='px-3.5 rounded bg-white/[8%] flex space-x-2.5 text-gray-50/80 items-center border border-gray-50/20 hover:bg-white/20 transform transition-all ease-in-out duration-300'>
+    <button className='px-3.5 rounded bg-white/[8%] flex space-x-2.5 text-gray-50/80 items-center border backdrop-blur-md border-gray-50/20 hover:bg-white/20 transform transition-all ease-in-out duration-300'>
       <SearchIcon
         className='h-5 w-5 lg:h-6 lg:w-6 fill-current'
         fill='currentIcon'
