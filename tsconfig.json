@@ -20,11 +20,14 @@
       }
     ],
     "paths": {
+      "crests": ["./public/crests/*"],
       "components/*": ["./src/components/*"],
-      "glowing_crests/*": ["./public/glowing_crests"],
-      "crests": ["./public/crests"],
+      "glowing_crests/*": ["./public/glowing_crests/*"],
       "logo.png": ["./public/hogwarts-logo.png"],
-      "public/*": ["./public"]
+      "public/*": ["./public/*"],
+      "provider/*": ["./src/providers/*"],
+      "utils/*": ["./src/utils/*"],
+      "types.d": ["./types.d.ts"]
     }
   },
   "include": [
