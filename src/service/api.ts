@@ -15,8 +15,10 @@ async function fetchAllCharacters({
   const BaseUrl = `${APIUrl}/characters`
   let Url = ''
   if (filter) {
-    if (filter == 'house') {
-      Url = `${BaseUrl}/${filter}/${houseID}`
+    if (filter == 'house' && houseID) {
+      Url = `${BaseUrl}/${filter}/${houseID?.toLocaleLowerCase()}`
+    } else {
+      throw 'House id i.e gryffindor is missing'
     }
     Url = `${BaseUrl}/${filter}`
   }
