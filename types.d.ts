@@ -43,3 +43,8 @@ interface WandType {
 export type AppContextType = {
   ref: MutableRefObject<HTMLDivElement | null>
 }
+export type Spell = {
+  id: string
+  name: string
+  description: string
+}
