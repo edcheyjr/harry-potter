@@ -5,6 +5,7 @@ import Image from 'next/image'
 import DefaultImage from '/public/Harry_Potter_owl.jpg'
 import { Houses } from 'types.d'
 import { houseColors } from 'utils/colors'
+import { DEFAULT_IMAGE } from 'utils/constant'
 
 type Props = {
   id: string
@@ -21,19 +22,17 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
   const moveToCharacterPage = (e: MouseEvent<HTMLElement>) => {
     console.log('move to this character')
   }
-
+  const borderColor = house
+    ? `hover:border-[${houseColors[house].primary}]`
+    : 'hover:border-orange-500'
   return (
     <article
       id={id}
       onClick={moveToCharacterPage}
       aria-label={name || 'unknown'}
-      className={`group justify-self-stretch flex flex-col justify-end rounded h-96 transform transtion-all ease-in-out duration-300 cursor-pointer border border-transparent ${
-        house
-          ? `hover:border-[${houseColors[house].primary}]`
-          : 'hover:border-orange-500 '
-      }`}
+      className={`group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem]  lg:h-96 w-auto transform transtion-all ease-in-out duration-300 cursor-pointer border border-transparent ${borderColor}`}
       style={{
-        backgroundImage: `url(${imageSrc || DefaultImage.src})`,
+        backgroundImage: `url(${imageSrc || DEFAULT_IMAGE})`,
       }}
     >
       <div className='w-full flex bg-bg-dark/10 backdrop-blur-md space-x-2 px-5 py-2 justify-between items-center'>
@@ -53,6 +52,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
             <Image
               src={require(`/public/crests/${house}.png`)}
               className='h-auto w-10'
+              title={house && house}
               alt={house || 'no house'}
             />
           </div>

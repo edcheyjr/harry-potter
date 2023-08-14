@@ -11,8 +11,11 @@ export const Logo = (props: Props) => {
       <Image
         src={LogoImage}
         alt='Hogwarts'
-        className=''
-        style={{ width: 'auto', height: '56px' }}
+        className='
+        w-auto
+        h-10
+        lg:h-14
+        '
       />
     </Link>
   )
