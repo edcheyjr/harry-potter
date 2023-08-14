@@ -8,7 +8,7 @@ type FilterTypes = {
   houseID?: Houses
 }
 
-async function fetchAllCharacters({
+export async function fetchAllCharacters({
   filter,
   houseID,
 }: FilterTypes): Promise<Character[]> {
@@ -35,7 +35,7 @@ async function fetchAllCharacters({
   return []
 }
 
-async function fetchACharacter(id: string): Promise<Character[]> {
+export async function fetchACharacter(id: string): Promise<Character[]> {
   try {
     const response = await fetch(`${APIUrl}/character/${id}`)
     const data = await response.json()
@@ -49,7 +49,7 @@ async function fetchACharacter(id: string): Promise<Character[]> {
   return []
 }
 
-async function fetchAllSpell(): Promise<Spell[]> {
+export async function fetchAllSpell(): Promise<Spell[]> {
   try {
     const response = await fetch(`${APIUrl}/spells`)
     const data = await response.json()
