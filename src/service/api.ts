@@ -1,19 +1,13 @@
-import { Character, Houses, Spell } from 'types.d'
+import { Character, FilterTypes, Houses, Spell } from 'types.d'
 import { APIUrl } from 'utils/constant'
-
-console.log('apiURl', APIUrl)
-
-type FilterTypes = {
-  filter?: 'students' | 'staff' | 'house'
-  houseID?: Houses
-}
+import customFetch from 'utils/customFetch'
 
 export async function fetchAllCharacters({
   filter,
   houseID,
 }: FilterTypes): Promise<Character[]> {
   const BaseUrl = `${APIUrl}/characters`
-  let Url = ''
+  let Url = BaseUrl
   if (filter) {
     if (filter == 'house' && houseID) {
       Url = `${BaseUrl}/${filter}/${houseID?.toLocaleLowerCase()}`
@@ -23,8 +17,9 @@ export async function fetchAllCharacters({
     Url = `${BaseUrl}/${filter}`
   }
   try {
-    const response = await fetch(Url)
+    const response = await customFetch({ url: Url })
     const data = await response.json()
+    console.log('data', data)
     if (response.status != 200) {
       throw data
     }
@@ -37,7 +32,7 @@ export async function fetchAllCharacters({
 
 export async function fetchACharacter(id: string): Promise<Character[]> {
   try {
-    const response = await fetch(`${APIUrl}/character/${id}`)
+    const response = await customFetch({ url: `${APIUrl}/character/${id}` })
     const data = await response.json()
     if (response.status != 200) {
       throw data
@@ -51,7 +46,7 @@ export async function fetchACharacter(id: string): Promise<Character[]> {
 
 export async function fetchAllSpell(): Promise<Spell[]> {
   try {
-    const response = await fetch(`${APIUrl}/spells`)
+    const response = await customFetch({ url: `${APIUrl}/spells` })
     const data = await response.json()
     if (response.status != 200) {
       throw data
