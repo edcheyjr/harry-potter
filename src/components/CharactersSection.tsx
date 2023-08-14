@@ -4,11 +4,15 @@ import CharacterCard from './Character'
 import Title from './Title'
 import React, { useContext } from 'react'
 import { AppContext } from 'provider/app-context'
-import { Houses } from 'types.d'
+import { Character, Houses } from 'types.d'
+import { resolveHouseNames } from 'utils/resolveHouseNames'
 
-type Props = {}
+type Props = {
+  characters: Character[]
+}
 
-const CharactersSection = (props: Props) => {
+const CharactersSection = ({ characters }: Props) => {
+  console.log('characters', characters)
   const appContext = useContext(AppContext)
   const ref = appContext?.ref
   return (
@@ -21,21 +25,22 @@ const CharactersSection = (props: Props) => {
           />
         </div>
         <div className='container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10'>
-          <CharacterCard
-            id='asdas'
-            name='Harry Potter'
-            DOB='20 04 2001'
-            house={Houses.GRYFFINDOR}
-          />
-          <CharacterCard id='asdas' name='Sam Maxima' />
-          <CharacterCard id='asdas' name='Harry Potter' />
-          <CharacterCard id='asdas' name='Harry Potter' />
-          <CharacterCard id='asdas' name='Harry Potter' />
-          <CharacterCard id='asdas' name='Harry Potter' />
+          {characters.map((character) => {
+            console.log('character', character.house)
+            return (
+              <CharacterCard
+                id={character.id}
+                name={character.name}
+                DOB={character.dateOfBirth}
+                key={character.id}
+                imageSrc={character.image}
+                house={resolveHouseNames(character.house)}
+              />
+            )
+          })}
         </div>
       </div>
     </div>
   )
 }
-
 export default CharactersSection
