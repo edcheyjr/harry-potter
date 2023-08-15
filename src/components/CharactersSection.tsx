@@ -26,7 +26,6 @@ const CharactersSection = ({ characters }: Props) => {
         </div>
         <div className='container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10'>
           {characters.map((character) => {
-            console.log('character', character.house)
             return (
               <CharacterCard
                 id={character.id}
