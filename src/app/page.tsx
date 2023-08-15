@@ -6,7 +6,10 @@ import { Character } from 'types.d'
 
 export default async function Home() {
   // TODO add filter buttons
-  const characters = (await fetchAllCharacters({})) as Character[]
+  let characters: Character[] = []
+  try {
+    characters = (await fetchAllCharacters({})) as Character[]
+  } catch (error) {}
   return (
     <main className='pt-28'>
       <div
