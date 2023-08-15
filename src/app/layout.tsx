@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <AppProvider>
-        <body className={`${ysabeau.className} h-full w-full py-10 pt-28`}>
+        <body className={`${ysabeau.className} h-full w-full`}>
           <header className=''>
             <NavBar />
           </header>
