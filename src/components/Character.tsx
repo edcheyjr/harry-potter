@@ -1,11 +1,11 @@
 'use client'
 
-import React, { MouseEvent, useState } from 'react'
+import React, { MouseEvent } from 'react'
 import Image from 'next/image'
-import DefaultImage from '/public/Harry_Potter_owl.jpg'
 import { Houses } from 'types.d'
 import { houseColors } from 'utils/colors'
 import { DEFAULT_IMAGE } from 'utils/constant'
+import { useRouter } from 'next/navigation'
 
 type Props = {
   id: string
@@ -18,9 +18,12 @@ type Props = {
 
 //TODO: move to app-context which will switch depending on the current state of house this depends on hovers over character cards and also on character pages
 const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
+  // Animations on enter and on leave
+  const route = useRouter()
   //switch between colors
   const moveToCharacterPage = (e: MouseEvent<HTMLElement>) => {
-    console.log('move to this character')
+    // Move to the character page /character?id=id
+    route.push(`/character/${id}`)
   }
   const borderColor = house
     ? `hover:border-[${houseColors[house].primary}]`
@@ -31,7 +34,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
       // title={name}
       onClick={moveToCharacterPage}
       aria-label={name || 'unknown'}
-      className={`group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem]  lg:h-96 w-auto transform transtion-all ease-in-out duration-300 cursor-pointer border-[1.5px] border-gray-200/20 hover:border-orange-500`}
+      className={`group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem]  lg:h-96 w-auto transform transtion-all ease-in-out hover:scale-110 duration-300 cursor-pointer border-[1.5px] border-gray-200/20 hover:border-orange-500`}
       style={{
         backgroundImage: `url(${imageSrc || DEFAULT_IMAGE})`,
       }}
