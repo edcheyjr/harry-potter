@@ -1,7 +1,7 @@
-import CharactersSection from 'components/CharactersSection'
+import CharactersSection from '@components/CharactersSection'
 import bg from '/public/harry-potter-books.jpg'
-import Hero from 'components/Hero'
-import { fetchAllCharacters } from '../service/api'
+import Hero from '@components/Hero'
+import { fetchAllCharacters } from '@service/api'
 import { Character } from 'types.d'
 
 export default async function Home() {
@@ -9,7 +9,9 @@ export default async function Home() {
   let characters: Character[] = []
   try {
     characters = (await fetchAllCharacters({})) as Character[]
-  } catch (error) {}
+  } catch (error) {
+    console.log('error', error)
+  }
   return (
     <main className='pt-28'>
       <div
