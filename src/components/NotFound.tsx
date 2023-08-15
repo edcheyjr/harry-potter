@@ -1,16 +1,34 @@
 'use client'
-import React from 'react'
+import React, { ReactNode } from 'react'
 import PrimaryButton from './PrimaryButton'
 import { useRouter } from 'next/navigation'
 
-type Props = {}
+type Props = {
+  text?: string
+  buttonChildren?: ReactNode
+  children?: ReactNode
+}
 
-const NotFound = (props: Props) => {
+const NotFound = ({ text, buttonChildren, children }: Props) => {
   const route = useRouter()
   return (
-    <div className='w-full h-screen flex justify-center items-center text-xl font-bold tracking-wide text-white flex-col space-y-4'>
-      <p className='text-red-500'>Oops, we don&apos;t know that character</p>
-      <PrimaryButton onClick={() => route.back()}>Go Back</PrimaryButton>
+    <div
+      className='w-full h-screen 
+    text-xl font-bold tracking-wide '
+    >
+      {children || (
+          <div className='w-full h-full flex justify-center items-center flex-col space-y-4'>
+            <p className='text-red-500'>{text}</p>
+
+            <PrimaryButton onClick={() => route.back()}>
+              {buttonChildren}
+            </PrimaryButton>
+          </div>
+        ) || (
+          <div className=' text-orange-400'>
+            <p>Nothing added check props and add content</p>
+          </div>
+        )}
     </div>
   )
 }
