@@ -1,3 +1,5 @@
+import { SetStateAction } from 'react'
+
 export enum Houses {
   GRYFFINDOR = 'Gryffindor',
   HUFFLEPUFF = 'Hufflepuff',
@@ -42,6 +44,8 @@ interface WandType {
 }
 export type AppContextType = {
   ref: MutableRefObject<HTMLDivElement | null>
+  house: Houses | null
+  setHouse: Dispatch<SetStateAction<Houses | null>>
 }
 export type Spell = {
   id: string
