@@ -16,44 +16,33 @@ export async function fetchAllCharacters({
     }
     Url = `${BaseUrl}/${filter}`
   }
-  try {
-    const response = await customFetch({ url: Url })
-    const data = await response.json()
-    console.log('data', data)
-    if (response.status != 200) {
-      throw data
-    }
-    return data as Character[]
-  } catch (error) {
-    console.log(error)
+
+  const response = await customFetch({ url: Url })
+  const data = await response.json()
+  // console.log('data', data)
+  if (response.status != 200) {
+    throw data
   }
-  return []
+  return data as Character[]
 }
 
 export async function fetchACharacter(id: string): Promise<Character[]> {
-  try {
-    const response = await customFetch({ url: `${APIUrl}/character/${id}` })
-    const data = await response.json()
-    if (response.status != 200) {
-      throw data
-    }
-    return data as Character[]
-  } catch (error) {
-    console.log(error)
+  console.log('fetching character', id)
+
+  const response = await customFetch({ url: `${APIUrl}/character/${id}` })
+  const data = await response.json()
+  console.log('data', data)
+  if (response.status != 200) {
+    throw data
   }
-  return []
+  return data as Character[]
 }
 
 export async function fetchAllSpell(): Promise<Spell[]> {
-  try {
-    const response = await customFetch({ url: `${APIUrl}/spells` })
-    const data = await response.json()
-    if (response.status != 200) {
-      throw data
-    }
-    return data as Spell[]
-  } catch (error) {
-    console.log(error)
+  const response = await customFetch({ url: `${APIUrl}/spells` })
+  const data = await response.json()
+  if (response.status != 200) {
+    throw data
   }
-  return []
+  return data as Spell[]
 }
