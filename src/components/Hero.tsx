@@ -1,10 +1,10 @@
 'use client'
 import React, { MutableRefObject, useContext, useState } from 'react'
 import localFont from 'next/font/local'
-import HarryPotterWorkMark from 'components/icons/HarryPotterWordmark'
-import Button from 'components/PrimaryButton'
+import HarryPotterWorkMark from '@components/icons/HarryPotterWordmark'
+import Button from '@components/PrimaryButton'
 import DownArrowIcon from './icons/DownArrowIcon'
-import { AppContext } from 'provider/app-context'
+import { AppContext } from '@provider/app-context'
 const harry = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {}

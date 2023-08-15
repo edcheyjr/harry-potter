@@ -1,7 +1,7 @@
 'use client' // Error components must be Client Components
 
-import NotFound from 'components/NotFound'
-import PrimaryButton from 'components/PrimaryButton'
+import NotFound from '@components/NotFound'
+import PrimaryButton from '@components/PrimaryButton'
 import { useEffect } from 'react'
 
 export default function Error({

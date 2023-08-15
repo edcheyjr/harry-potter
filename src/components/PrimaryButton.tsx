@@ -1,6 +1,6 @@
 'use client'
 
-import { AppContext } from 'provider/app-context'
+import { AppContext } from '@provider/app-context'
 import React, { MouseEvent, ReactNode, useContext } from 'react'
 
 type Props = {

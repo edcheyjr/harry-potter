@@ -1,6 +1,6 @@
 import { Character, FilterTypes, Houses, Spell } from 'types.d'
-import { APIUrl } from 'utils/constant'
-import customFetch from 'utils/customFetch'
+import { APIUrl } from '@utils/constant'
+import customFetch from '@utils/customFetch'
 
 export async function fetchAllCharacters({
   filter,

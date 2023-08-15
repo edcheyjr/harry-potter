@@ -20,13 +20,14 @@
       }
     ],
     "paths": {
-      "crests": ["./public/crests/*"],
-      "components/*": ["./src/components/*"],
-      "glowing_crests/*": ["./public/glowing_crests/*"],
-      "logo.png": ["./public/hogwarts-logo.png"],
-      "public/*": ["./public/*"],
-      "provider/*": ["./src/providers/*"],
-      "utils/*": ["./src/utils/*"],
+      "@crests": ["./public/crests/*"],
+      "@components/*": ["./src/components/*"],
+      "@glowing_crests/*": ["./public/glowing_crests/*"],
+      "@logo.png": ["./public/hogwarts-logo.png"],
+      "@public/*": ["./public/*"],
+      "@provider/*": ["./src/providers/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@service/*": ["./src/service/*"],
       "types.d": ["./types.d.ts"]
     }
   },

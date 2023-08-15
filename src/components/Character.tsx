@@ -3,8 +3,8 @@
 import React, { MouseEvent } from 'react'
 import Image from 'next/image'
 import { Houses } from 'types.d'
-import { houseColors } from 'utils/colors'
-import { DEFAULT_IMAGE } from 'utils/constant'
+import { houseColors } from '@utils/colors'
+import { DEFAULT_IMAGE } from '@utils/constant'
 import { useRouter } from 'next/navigation'
 
 type Props = {

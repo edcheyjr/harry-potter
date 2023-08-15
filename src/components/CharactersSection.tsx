@@ -3,9 +3,9 @@
 import CharacterCard from './Character'
 import Title from './Title'
 import React, { useContext } from 'react'
-import { AppContext } from 'provider/app-context'
+import { AppContext } from '@provider/app-context'
 import { Character, Houses } from 'types.d'
-import { resolveHouseNames } from 'utils/resolveHouseNames'
+import { resolveHouseNames } from '@utils/resolveHouseNames'
 
 type Props = {
   characters: Character[]
