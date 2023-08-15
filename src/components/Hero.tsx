@@ -1,13 +1,24 @@
-import React, { useState } from 'react'
+'use client'
+import React, { MutableRefObject, useContext, useState } from 'react'
 import localFont from 'next/font/local'
 import HarryPotterWorkMark from 'components/icons/HarryPotterWordmark'
 import Button from 'components/PrimaryButton'
-import AnimatedSquares from './AnimatedSquares'
+import DownArrowIcon from './icons/DownArrowIcon'
+import { AppContext } from 'provider/app-context'
 const harry = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {}
 
 const Hero = (props: Props) => {
+  const scrollToSection = (ref: MutableRefObject<HTMLDivElement | null>) => {
+    window.scrollTo({
+      top: ref.current?.offsetTop,
+      behavior: 'smooth',
+    })
+  }
+
+  const appContext = useContext(AppContext)
+  const ref = appContext?.ref
   // const [color, setColor] = useState<string>(houseColors.Gryffindor.primary)
   return (
     <div className='container mx-auto max-w-7xl px-10 flex flex-col justify-end pt-8'>
@@ -31,12 +42,13 @@ const Hero = (props: Props) => {
 
         {/* Button */}
         <div className=''>
-          <Button />
+          <Button onClick={() => scrollToSection(ref)}>
+            <span className='w-full h-fit text-center align-middle'>
+              See Characters
+            </span>
+            <DownArrowIcon className='animate-bounce h-6 w-6 fill-current' />
+          </Button>
         </div>
-
-        {/* <div className='pt-8'>
-          <AnimatedSquares />
-        </div> */}
       </section>
     </div>
   )
