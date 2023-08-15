@@ -12,7 +12,6 @@ type Props = {
 }
 
 const CharactersSection = ({ characters }: Props) => {
-  console.log('characters', characters)
   const appContext = useContext(AppContext)
   const ref = appContext?.ref
   return (
