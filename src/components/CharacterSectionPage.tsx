@@ -38,13 +38,15 @@ const CharacterSectionPage = ({ data }: Props) => {
   return (
     <div className='flex justify-center pt-24'>
       <section className='w-1/2 flex flex-col justify-evenly px-2'>
-        {/* FIXME possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to use normal image */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <Image
-          src={data?.image || DEFAULT_IMAGE}
-          alt={'NO NAME'}
-          className={`h-1/2 w-auto border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border ${bgColor}`}
-        />
+        <div className='flex justify-center items-center w-1/2 h-auto'>
+          {/* FIXME possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to use normal image */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={data?.image || DEFAULT_IMAGE}
+            alt={'NO NAME'}
+            className={`h-full w-full border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border ${bgColor}`}
+          />
+        </div>
         <div className=''></div>
       </section>
       {/* Character Details */}
