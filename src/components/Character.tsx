@@ -52,7 +52,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
         </div>
         {/* crest */}
         {house && (
-          <div className='w-auto h-auto my-auto  '>
+          <div className='w-auto h-auto my-auto'>
             <Image
               src={require(`/public/crests/${house}.png`)}
               className='h-auto w-10'
