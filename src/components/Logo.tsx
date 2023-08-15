@@ -3,20 +3,27 @@ import LogoImage from 'logo.png'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type Props = {}
+type Props = {
+  innerRef?: React.RefObject<HTMLDivElement>
+}
 
-export const Logo = (props: Props) => {
+export const Logo = ({ innerRef }: Props) => {
   return (
-    <Link href={'/'}>
-      <Image
-        src={LogoImage}
-        alt='Hogwarts'
-        className='
+    <div ref={innerRef}>
+      <Link href={'/'}>
+        <Image
+          priority
+          src={LogoImage}
+          alt='Hogwarts'
+          height={56}
+          width={56}
+          className='
         w-auto
         h-10
         lg:h-14
         '
-      />
-    </Link>
+        />
+      </Link>
+    </div>
   )
 }
