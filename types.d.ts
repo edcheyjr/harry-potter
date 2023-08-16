@@ -1,6 +1,10 @@
 import { HouseColors } from './types.d'
 import { SetStateAction } from 'react'
 
+interface AnyObject {
+  [key: string]: any
+}
+
 export enum Houses {
   GRYFFINDOR = 'Gryffindor',
   HUFFLEPUFF = 'Hufflepuff',
@@ -55,17 +59,22 @@ type WandKeys = 'wood' | 'core' | 'length'
 type WandValues = string | number
 
 type WandType = Record<WandKeys | WandValues>
+
 export type AppContextType = {
   ref: MutableRefObject<HTMLDivElement | null>
   house: Houses | null
   setHouse: Dispatch<SetStateAction<Houses | null>>
+  activeFilter: Record<Filters, boolean>
+  setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
+  filtering: ({ name, value }: { name: string; value: boolean }) => void
 }
 export type Spell = {
   id: string
   name: string
   description: string
 }
+export type Filters = 'staff' | 'students' | 'house'
 export type FilterTypes = {
-  filter?: 'students' | 'staff' | 'house'
+  filter?: Filters
   houseID?: Houses
 }
