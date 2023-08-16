@@ -12,12 +12,21 @@ type Props = {
   name: string
   DOB?: string
   YOB?: string
-  house?: Houses
+  house: Houses
   imageSrc?: string
+  hasHouse?: string
 }
 
 //TODO: move to app-context which will switch depending on the current state of house this depends on hovers over character cards and also on character pages
-const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
+const CharacterCard = ({
+  DOB,
+  house,
+  hasHouse,
+  imageSrc,
+  id,
+  name,
+  YOB,
+}: Props) => {
   // Animations on enter and on leave
   const route = useRouter()
   //switch between colors
@@ -25,7 +34,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
     // Move to the character page /character?id=id
     route.push(`/character/${id}`)
   }
-  const borderColor = house
+  const borderColor = hasHouse
     ? `hover:${handleColor(house, 'primary', 'border')}`
     : 'hover:border-orange-500'
   return (
@@ -51,7 +60,7 @@ const CharacterCard = ({ DOB, house, imageSrc, id, name, YOB }: Props) => {
           </p>
         </div>
         {/* crest */}
-        {house && (
+        {hasHouse && (
           <div className='w-auto h-auto my-auto'>
             <Image
               src={require(`/public/crests/${house}.png`)}

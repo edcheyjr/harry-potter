@@ -32,6 +32,7 @@ const CharactersSection = ({ characters }: Props) => {
                 DOB={character.dateOfBirth}
                 key={character.id}
                 imageSrc={character.image}
+                hasHouse={character.house}
                 house={resolveHouseNames(character.house)}
               />
             )

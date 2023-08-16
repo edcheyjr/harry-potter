@@ -4,10 +4,15 @@ import ChveronDown from './icons/ChveronDown'
 type Props = {
   title: string
   children: ReactNode
+  initialAccordionState?: boolean
 }
 
-const Accordion = ({ title, children }: Props) => {
-  const [isOpened, setIsOpened] = useState<boolean>(true)
+const Accordion = ({
+  title,
+  children,
+  initialAccordionState = false,
+}: Props) => {
+  const [isOpened, setIsOpened] = useState<boolean>(initialAccordionState)
   const renderTitle = (title: string) => {
     return <h3 className='uppercase font-medium'>{title}</h3>
   }
