@@ -9,6 +9,7 @@ import { resolveHouseNames } from '@utils/resolveHouseNames'
 import { FILTERS, intialFilterState } from '@utils/constant'
 import Filter from './Filter'
 import { getStorageItem } from '@utils/localstorageAccess'
+import Modal from './Modal'
 
 type Props = {
   characters: Character[]
@@ -19,11 +20,15 @@ const CharactersSection = ({ characters }: Props) => {
   const activeFilter =
     appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
   const setCharacters = appContext?.setCharacters
-  setCharacters(characters) //move characters values to context for global access
   const charactersValue = appContext?.characters ?? characters //that character state or default to the ssr one
+  useEffect(() => {
+    setCharacters(characters) //move characters values to context for global access
+  }, [characters, setCharacters])
 
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
+
+  const isOpen = appContext?.isModalOpen ?? false
   return (
     <div className='pt-32 container mx-auto max-w-7xl px-10'>
       <div ref={ref} className=' flex flex-col pt-28'>
@@ -62,6 +67,10 @@ const CharactersSection = ({ characters }: Props) => {
             )
           })}
         </div>
+        <Modal
+          isOpen={isOpen}
+          onClose={appContext?.handleCloseModal || function () {}}
+        />
       </div>
     </div>
   )

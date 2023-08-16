@@ -1,14 +1,20 @@
-import React from 'react'
+'use client'
+
+import React, { useContext } from 'react'
 import SearchIcon from './icons/SearchIcon'
+import { AppContext } from '@provider/app-context'
 
 type Props = {
   innerRef?: React.RefObject<HTMLButtonElement>
 }
 
 const SearchButton = ({ innerRef }: Props) => {
+  const appContext = useContext(AppContext)
+  const handleOpenModal = appContext?.handleOpenModal
   return (
     <button
       ref={innerRef}
+      onClick={handleOpenModal}
       className='px-1.5 md:px-3.5 py-1 rounded bg-white/[8%] flex space-x-2.5 text-gray-50/80 items-center border border-gray-50/20 hover:bg-white/20  transition-all ease-in-out duration-300'
     >
       <SearchIcon

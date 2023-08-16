@@ -16,11 +16,34 @@ type Props = {
 const AppContext = createContext<AppContextType | null>(null)
 
 const AppProvider = ({ children }: Props) => {
+  // house
+  const [house, setHouse] = useState<Houses | null>(null)
+  //TODO setcolorsthemes
+  // sharing characterSection
+  const characterSectionRef = useRef<HTMLDivElement | null>(null)
   const [characters, setCharacters] = useState<Character[]>([])
   const route = useRouter()
   // Filters
   const [activeFilter, setFilters] =
     useState<Record<Filters, boolean>>(intialFilterState)
+
+  // Search modal
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  // open modal
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+
+  // close fmodal
+  const handleClose = () => {
+    setIsOpen(false)
+  }
+
+  // KeyBoard keys listening
+  useEffect(() => {
+    // handle waiting ctrlk press  to open modal
+    // also waiting on esc to close modal
+  }, [])
 
   useEffect(() => {
     const stored = getStorageItem(FILTERS)
@@ -28,12 +51,6 @@ const AppProvider = ({ children }: Props) => {
       setFilters(stored)
     }
   }, [])
-
-  // house
-  const [house, setHouse] = useState<Houses | null>(null)
-  //TODO setcolorsthemes
-  // sharing characterSection
-  const characterSectionRef = useRef<HTMLDivElement | null>(null)
 
   //Handle filters
   const filtering = ({ name, value }: { name: string; value: boolean }) => {
@@ -59,6 +76,9 @@ const AppProvider = ({ children }: Props) => {
     setFilters,
     characters,
     setCharacters,
+    isModalOpen: isOpen,
+    handleOpenModal: handleOpen,
+    handleCloseModal: handleClose,
     filtering,
   }
   return (
