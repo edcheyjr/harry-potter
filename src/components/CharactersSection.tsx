@@ -15,18 +15,11 @@ type Props = {
 }
 
 const CharactersSection = ({ characters }: Props) => {
-  const [activeFilter, setFilters] =
-    useState<Record<Filters, boolean>>(intialFilterState)
-
-  // TODO: Move both filters and character array to app state for better management accross the application esp in search card
-  useEffect(() => {
-    const stored = getStorageItem(FILTERS)
-    if (stored) {
-      setFilters(stored)
-    }
-  }, [])
-  const filtersKeys = Object.keys(activeFilter) as Filters[]
   const appContext = useContext(AppContext)
+  const activeFilter =
+    appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
+
+  const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
   return (
     <div className='pt-32 container mx-auto max-w-7xl px-10'>
@@ -46,12 +39,7 @@ const CharactersSection = ({ characters }: Props) => {
               {filtersKeys
                 .filter((key) => key !== 'house')
                 .map((key, index) => (
-                  <Filter
-                    key={key}
-                    name={key}
-                    value={activeFilter[key]}
-                    setFilters={setFilters}
-                  />
+                  <Filter key={key} name={key} value={activeFilter[key]} />
                 ))}
             </div>
           </div>

@@ -1,3 +1,4 @@
+import { AppContext } from '@provider/app-context'
 import { FILTERS, intialFilterState } from '@utils/constant'
 import {
   removeItemFromStorage,
@@ -10,31 +11,20 @@ import React, {
   MouseEvent,
   useEffect,
   useState,
+  useContext,
 } from 'react'
 import { Filters } from 'types.d'
 
 type Props = {
   value: boolean
   name: Filters
-  setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
 }
 
-const Filter = ({ value, name, setFilters }: Props) => {
-  console.log(name, value)
+const Filter = ({ value, name }: Props) => {
+  const appContext = useContext(AppContext)
   const route = useRouter()
   const handleFiltering = (e: MouseEvent<HTMLDivElement>) => {
-    // Set value to true if false and reset all the other also if true set to false
-    if (value) {
-      const filterObj = { ...intialFilterState, [name]: false }
-      setFilters(filterObj) //deactivate
-      removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
-      route.push('/') //back to unfilter search
-    } else {
-      const filterObj = { ...intialFilterState, [name]: true }
-      setFilters(filterObj) //set active
-      setStorageItem(FILTERS, filterObj)
-      route.push(`?${name}=${name}`)
-    }
+    appContext?.filtering({ name, value })
   }
   useEffect(() => {
     if (value) {
