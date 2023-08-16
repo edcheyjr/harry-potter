@@ -2,6 +2,7 @@
 
 import React, { ReactNode } from 'react'
 import Chip from './Chip'
+import { resolveHairAndEyeColors } from '@utils/resolveHairColors'
 
 type Props = {
   head?: Record<string, string>
@@ -9,14 +10,13 @@ type Props = {
 }
 
 const renderChipBoolean = (value: boolean) => {
-  value ? 'true' : 'false'
   return (
     <td
       className={`${
         value ? 'text-green-400' : 'text-red-400'
-      } lowercase px-6 font-bold`}
+      } lowercase px-6 font-semibold`}
     >
-      {value}
+      {value ? 'true' : 'false'}
     </td>
   )
 }
@@ -43,7 +43,6 @@ const renderTableHeadRow = (key: string, value: string) => {
   )
 }
 const renderTableBodyRow = (key: string, value: ReactNode) => {
-  console.log('value', value)
   const keyColors = key.toLocaleLowerCase().includes('colour')
   return (
     <tr className='w-full border border-zinc-400/60 border-dotted' key={key}>
@@ -59,10 +58,7 @@ const renderTableBodyRow = (key: string, value: ReactNode) => {
           {keyColors && typeof value == 'string' ? (
             <Chip
               style={{
-                backgroundColor:
-                  value.toLocaleLowerCase().trim() == 'blonde'
-                    ? '#FBF6D9'
-                    : value.toLocaleLowerCase().trim(),
+                backgroundColor: resolveHairAndEyeColors(value),
               }}
               text={value}
             />
