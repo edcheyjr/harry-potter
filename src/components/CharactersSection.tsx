@@ -18,6 +18,9 @@ const CharactersSection = ({ characters }: Props) => {
   const appContext = useContext(AppContext)
   const activeFilter =
     appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
+  const setCharacters = appContext?.setCharacters
+  setCharacters(characters) //move characters values to context for global access
+  const charactersValue = appContext?.characters ?? characters //that character state or default to the ssr one
 
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
@@ -45,7 +48,7 @@ const CharactersSection = ({ characters }: Props) => {
           </div>
         </div>
         <div className='container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10'>
-          {characters.map((character) => {
+          {charactersValue.map((character) => {
             return (
               <CharacterCard
                 id={character.id}

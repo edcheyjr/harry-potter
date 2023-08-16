@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { createContext } from 'react'
-import { AppContextType, Filters, Houses } from 'types.d'
+import { AppContextType, Character, Filters, Houses } from 'types.d'
 
 type Props = {
   children: ReactNode
@@ -16,6 +16,7 @@ type Props = {
 const AppContext = createContext<AppContextType | null>(null)
 
 const AppProvider = ({ children }: Props) => {
+  const [characters, setCharacters] = useState<Character[]>([])
   const route = useRouter()
   // Filters
   const [activeFilter, setFilters] =
@@ -56,6 +57,8 @@ const AppProvider = ({ children }: Props) => {
     setHouse,
     activeFilter,
     setFilters,
+    characters,
+    setCharacters,
     filtering,
   }
   return (
