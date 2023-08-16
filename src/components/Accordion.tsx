@@ -15,12 +15,12 @@ const Accordion = ({ title, children }: Props) => {
   return (
     <div className='w-full h-auto space-y-2 '>
       <div
-        className='flex justify-between px-2 items-center text-slate-300 cursor-pointer'
+        className='transform transition duration-300 flex justify-between px-2 items-center text-slate-300 cursor-pointer py-2 hover:bg-slate-600/20 rounded'
         onClick={() => setIsOpened(!isOpened)}
       >
         {renderTitle(title)}
         <ChveronDown
-          className={`opacity-60 h-6 w-6 fill-current transform transition duration-300 ${
+          className={`transform transition duration-300 opacity-60 h-6 w-6 fill-current  ${
             isOpened && 'rotate-180'
           }`}
         />

@@ -220,19 +220,11 @@ const CharacterSectionPage = ({ data }: Props) => {
             />
           </tbody>
         </table>
-        {/* {House */}
-        {/* {data.house && (
-          <div className='flex text-sm md:text-base  '>
-            <Label text='House' />
-
-            <Chip className={textColor + `  ${bgColor}`} text={data.house} />
-          </div>
-        )} */}
         <div className='mt-8'>
           <PrimaryButton onClick={() => route.back()}>Go Back</PrimaryButton>
         </div>
         {/* Divider */}
-        <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
+        <div className='w-full h-0 border-2 border-dotted border-white/40 mt-5 mb-2'></div>
         {/* Tables 1*/}
         <Accordion title='More Details'>
           {
@@ -245,7 +237,7 @@ const CharacterSectionPage = ({ data }: Props) => {
           }
         </Accordion>
         {/* Divider */}
-        <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
+        <div className='w-full h-0 border-2 border-dotted border-white/40 my-2'></div>
       </section>
     </div>
   )
