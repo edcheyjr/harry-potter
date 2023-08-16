@@ -1,6 +1,6 @@
 import { Houses } from 'types.d'
 
-export function resolveHouseNames(house?: string): Houses | undefined {
+export function resolveHouseNames(house?: string): Houses {
   if (house) {
     const normalizedHouse = house.trim().toLowerCase()
 
@@ -15,4 +15,5 @@ export function resolveHouseNames(house?: string): Houses | undefined {
         return Houses.SLYTHERIN
     }
   }
+  return Houses.GRYFFINDOR
 }
