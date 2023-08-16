@@ -1,4 +1,4 @@
-import { HouseColors, Houses } from 'types.d'
+import { HouseColors } from 'types.d'
 import { resolveHouseNames } from './resolveHouseNames'
 export function handleColor(
   house: string,
@@ -66,7 +66,5 @@ export function handleColor(
     },
   }
 
-  return houseColors[colorFormat][colorType][
-    resolveHouseNames(house) || Houses.SLYTHERIN
-  ]
+  return houseColors[colorFormat][colorType][resolveHouseNames(house)]
 }
