@@ -16,7 +16,7 @@ const Title = ({ title, desc }: Props) => {
       <h3
         aria-label={title}
         title={title}
-        className={`${harry.className} uppercase font-bold tracking-[5px] text-lg lg:text-xl xl:text-2xl bg-clip-text bg-gradient-to-br from-red-500 from-20% via-orange-500 to-amber-500 text-transparent `}
+        className={`${harry.className} uppercase font-bold tracking-[5px] text-lg  xl:text-xl bg-clip-text bg-gradient-to-br from-red-500 from-20% via-orange-500 to-amber-500 text-transparent `}
       >
         {title}
       </h3>
