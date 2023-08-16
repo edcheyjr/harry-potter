@@ -10,7 +10,7 @@ export default async function Home() {
   try {
     characters = (await fetchAllCharacters({})) as Character[]
   } catch (error) {
-    console.log('error', error)
+    console.error('error', error)
   }
   return (
     <main className='pt-28'>
