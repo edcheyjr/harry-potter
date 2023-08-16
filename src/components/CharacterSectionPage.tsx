@@ -1,13 +1,17 @@
 'use client' //use client directive
-import React, { useContext, useEffect, useState } from 'react'
+import React, { ReactNode, useContext, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { DEFAULT_IMAGE } from '@utils/constant'
 import NotFound from '@components/NotFound'
-import { houseColors } from '@utils/colors'
-import { resolveHouseNames } from '@utils/resolveHouseNames'
-import { Houses, Character } from 'types.d'
+import { handleColor } from '@utils/handleColor'
+import { Character, Houses, WandType } from 'types.d'
 import localFont from 'next/font/local'
-import { AppContext } from '@provider/app-context'
+import { changeDateFormat } from '@utils/changeDateFormat'
+import Label from './Label'
+import Chip from './Chip'
+import { RenderDetailsRow } from './DetailsRow'
+import PrimaryButton from './PrimaryButton'
+import { useRouter } from 'next/navigation'
 const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
@@ -15,24 +19,49 @@ type Props = {
 }
 
 const CharacterSectionPage = ({ data }: Props) => {
-  const [bgColor, setBGColor] = useState<string>('bg-orange-500')
+  const route = useRouter()
+  const [wand, setWand] = useState<WandType>({})
+  const [personality, setPersonality] = useState<string[]>([])
+  const [restOfData, setRestOfData] = useState<Character>()
+  const [textColor, setTextColor] = useState<string>('text-red-400')
+  const [bgColor, setBGColor] = useState<string>('bg-amber-300')
+  const [borderColor, setBorderColor] = useState<string>('border-orange-500')
+  // console.log('bgColor', bgColor)
 
-  const wizardNameGender =
-    data?.gender?.toLocaleLowerCase().trim() == 'female' ? 'witch' : 'wizard'
-
+  // if (data?.wand) {
+  // }
   useEffect(() => {
+    // Personality
+    if (data?.gender || data?.species || data?.wizard) {
+      let newArr = []
+      const wizardNameGender =
+        data?.gender?.toLocaleLowerCase().trim() == 'female'
+          ? 'witch'
+          : 'wizard'
+      const genderSign =
+        data?.gender?.toLocaleLowerCase().trim() == 'female' ? ' ⚢' : ' ⚣'
+
+      data?.species && newArr.push(data.species)
+      data?.gender && newArr.push(`${data.gender}${genderSign}`)
+      data.wizard && newArr.push(`${wizardNameGender} 🧙‍♂️`)
+      setPersonality(newArr)
+    }
+
+    // Wand
+    setWand(data?.wand)
+
+    //TOFIX Color are assigned but dont render as expected
     if (data && data?.house) {
       let house = data.house
-      setBGColor(
-        `bg-[${houseColors[
-          (resolveHouseNames(house) as Houses) ?? Houses.GRYFFINDOR
-        ].primary
-          .trim()
-          .toLocaleLowerCase()}]`
-      )
+      setTextColor(handleColor(house, 'primary', 'text'))
+      setBGColor(handleColor(house, 'secondary', 'bg'))
+      setBorderColor(handleColor(house, 'primary', 'border'))
     }
   }, [])
 
+  console.log('bgColor', bgColor)
+  console.log('textColor', textColor)
+  console.log('borderColor', borderColor)
   if (!data)
     return (
       <NotFound
@@ -40,8 +69,9 @@ const CharacterSectionPage = ({ data }: Props) => {
         buttonChildren='Go Back'
       />
     )
+
   return (
-    <div className='w-full lg:flex justify-center pt-24'>
+    <div className='w-full lg:flex justify-center pt-12 lg:pt-28'>
       <section className='lg:w-2/5 flex flex-col justify-evenly px-8'>
         <div className='flex justify-center items-center h-full w-auto'>
           {/* FIXME possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to use normal image */}
@@ -54,38 +84,126 @@ const CharacterSectionPage = ({ data }: Props) => {
         </div>
       </section>
       {/* Character Details */}
-      <section className='lg:w-3/5'>
+      <section className='lg:w-3/5 px-6'>
         {/* Descriptions */}
-        <div className='flex space-x-2 justify-between'>
-          <div className='flex space-y-2'>
+        <div className='flex space-y-2 justify-between'>
+          <div className='flex space-y-2 flex-col pt-3'>
             {/* Name */}
             <h2
-              className={`${
-                harryFont.className
-              } text-lg lg:text-xl xl:text-2xl font-bold text-slate-300 capitalize text-ellipsis group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br ${'group-hover:from-red-500 group-hover:to-amber-500 group-hover:via-orange-500 '}]`}
+              className={`${harryFont.className} 
+              capitalize text-lg lg:text-2xl xl:text-4xl font-medium text-ellipsis text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-amber-500 via-orange-500 tracking-wider lg:tracking-widest`}
             >
-              ${}
+              {data.name}
             </h2>
-            {/* Akas */}
-            {/* House */}
-            {/* Wand Name */}
-            {/* Species*/}
-            {/* is Wizard*/}
+            <table className='w-full table-auto '>
+              <tbody>
+                {/* Akas */}
+                {data.alternate_names.length > 0 && (
+                  <RenderDetailsRow
+                    label={<Label text='A.k.a' />}
+                    value={data.alternate_names.map((item, key) => (
+                      <div key={key} className='text-slate-400'>
+                        <span className='font-medium capitalize '>
+                          {item.trim()}
+                        </span>
+                        <span className='mx-2 font-semibold'>
+                          {key !== data.alternate_names.length - 1 && '|'}
+                        </span>
+                      </div>
+                    ))}
+                  />
+                )}
+                {/* Date Of Birth */}
+                {data?.dateOfBirth && (
+                  <RenderDetailsRow
+                    label={<Label text='D.O.B' />}
+                    value={
+                      <span className='font-medium capitalize text-slate-400'>
+                        {changeDateFormat(data?.dateOfBirth) || 'No DoB'}
+                      </span>
+                    }
+                  />
+                )}
 
-            {data.wizard && <div className=''>${wizardNameGender} 🧙‍♂️</div>}
+                {/*Main Actor */}
+                {data?.actor && (
+                  <RenderDetailsRow
+                    label={<Label text='Actor' />}
+                    value={
+                      <span className='font-medium capitalize text-slate-400'>
+                        {changeDateFormat(data?.actor) || 'No Actor'}
+                      </span>
+                    }
+                  />
+                )}
+              </tbody>
+            </table>
           </div>
           <div className='w-auto h-auto my-auto'>
             {data.house && (
               <Image
                 src={require(`/public/crests/${data.house}.png`)}
-                className='h-auto w-10'
+                className='h-auto w-20 rounded-md'
                 title={data.house && data.house}
                 alt={data.house || 'no house'}
               />
             )}
           </div>
         </div>
+        {/* Divider */}
+        <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
+        <table className='table-auto '>
+          <tbody className=''>
+            {/* Wand Name */}
+            {wand && (
+              <RenderDetailsRow
+                className='text-sm md:text-base '
+                label={<Label text='Wand 🪄' />}
+                value={Object.keys(wand).map((key, index) => (
+                  <div key={index + key} className='text-slate-400'>
+                    <span className='font-medium text-red-400 capitalize '>
+                      {key.trim()}:{' '}
+                    </span>
+                    <span className='font-medium text-orange-300  capitalize '>
+                      {wand[key]}
+                    </span>
+                    <span className='mx-2 font-semibold'>
+                      {index !== Object.keys(wand).length - 1 && ' '}
+                    </span>
+                  </div>
+                ))}
+              />
+            )}
+            {/* Gender  Species  is Wizard*/}
+            <RenderDetailsRow
+              className='text-sm md:text-base '
+              label={<Label text='Personality' />}
+              value={personality.map((item, key) => (
+                <div key={key} className='text-slate-400'>
+                  <span className='font-medium capitalize '>{item.trim()}</span>
+                  <span className='mx-2 font-semibold'>
+                    {key !== personality.length - 1 && '|'}
+                  </span>
+                </div>
+              ))}
+            />
+          </tbody>
+        </table>
+        {/* {House */}
+        {/* {data.house && (
+          <div className='flex text-sm md:text-base  '>
+            <Label text='House' />
+
+            <Chip className={textColor + `  ${bgColor}`} text={data.house} />
+          </div>
+        )} */}
         {/* Tables 1*/}
+
+        <div className='mt-8'>
+          <PrimaryButton onClick={() => route.back()}>Go Back</PrimaryButton>
+        </div>
+        {/* Divider */}
+        <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
       </section>
     </div>
   )
