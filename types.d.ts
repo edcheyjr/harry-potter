@@ -1,3 +1,4 @@
+import { HouseColors } from './types.d'
 import { SetStateAction } from 'react'
 
 export enum Houses {
@@ -12,7 +13,20 @@ export interface ColorPair {
   secondary: string
 }
 
-export type HouseColors = Record<Houses, ColorPair>
+export interface HouseColors {
+  text: {
+    primary: Record<Houses, string>
+    secondary: Record<Houses, string>
+  }
+  bg: {
+    primary: Record<sHouse, string>
+    secondary: Record<House, string>
+  }
+  border: {
+    primary: Record<House, string>
+    secondary: Record<House, string>
+  }
+}
 
 export interface Character {
   id: string
@@ -37,11 +51,10 @@ export interface Character {
   image?: string
 }
 
-interface WandType {
-  wood: string
-  core: string
-  length: number
-}
+type WandKeys = 'wood' | 'core' | 'length'
+type WandValues = string | number
+
+type WandType = Record<WandKeys | WandValues>
 export type AppContextType = {
   ref: MutableRefObject<HTMLDivElement | null>
   house: Houses | null

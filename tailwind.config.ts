@@ -18,16 +18,16 @@ const config: Config = {
           dark: 'rgb(14, 22, 34)',
         },
         primary: {
-          gryffindor: '#740001',
-          hufflepuff: '#dfb80b',
-          ravenclaw: '#0496bd',
-          slytherin: '#237c23',
+          gryffindor: '#740001', //'Scarlet '
+          hufflepuff: '#dfb80b', //'Yellow '
+          ravenclaw: '#0496bd', //Blue
+          slytherin: '#237c23', //Green
         },
         secondary: {
-          gryffindor: '#e1cca6',
-          hufflepuff: '#000000',
-          ravenclaw: '#6A4F3C',
-          slytherin: '#C0C0C0',
+          gryffindor: '#e1cca6', //Gold
+          hufflepuff: '#000000', //Black
+          ravenclaw: '#6A4F3C', //Bronze
+          slytherin: '#C0C0C0', //Silver
         },
       },
     },
