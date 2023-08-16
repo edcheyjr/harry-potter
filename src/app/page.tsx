@@ -46,7 +46,7 @@ export default async function Home({ params, searchParams }: Props) {
           <Hero />
         </section>
         {/* Scroll up gris sytem for the cards */}
-        <section className=' w-full bg-gradient-to-t from-bg-dark from-[98%] via-bg-dark/80  to-bg-dark/50 space-y-5'>
+        <section className=' w-full bg-gradient-to-t from-bg-dark from-[85%] via-bg-dark/80  to-bg-dark/50 space-y-5'>
           <CharactersSection characters={characters} />
         </section>
       </div>
