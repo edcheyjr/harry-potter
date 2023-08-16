@@ -16,8 +16,6 @@ type Props = {
   imageSrc?: string
   hasHouse?: string
 }
-
-//TODO: move to app-context which will switch depending on the current state of house this depends on hovers over character cards and also on character pages
 const CharacterCard = ({
   DOB,
   house,

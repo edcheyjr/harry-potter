@@ -4,6 +4,7 @@ type FetchParam = {
   revalidationTime?: number
 }
 /**
+ * If force-cache is not preferably can be removed
  * Custom Fetch wrapper
  * @param url Request info from fetch
  * @param init  Request Init from fetch

@@ -10,7 +10,6 @@ type Props = {
   searchParams: Record<Filters, Filters | Houses> //example chracter/1?house=asdasd
 }
 export default async function Home({ params, searchParams }: Props) {
-  // TODO add filter buttons
   console.log('searchParams', searchParams)
   // two filter that can be there at any given time
   let firstFilterKey: Filters | undefined = undefined

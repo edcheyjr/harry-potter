@@ -1,4 +1,3 @@
-//FIXME: gets storageItem from localStorage if their is any item
 export const getStorageItem = (item: string) => {
   const storageItem = localStorage.getItem(item)
   console.log('storageItem', storageItem)
