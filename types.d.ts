@@ -66,6 +66,8 @@ export type AppContextType = {
   setHouse: Dispatch<SetStateAction<Houses | null>>
   activeFilter: Record<Filters, boolean>
   setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
+  characters: Character[]
+  setCharacters: Dispatch<SetStateAction<Character[]>>
   filtering: ({ name, value }: { name: string; value: boolean }) => void
 }
 export type Spell = {
