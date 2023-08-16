@@ -19,32 +19,12 @@ export default async function CharacterPage({ params, searchParams }: Props) {
   try {
     characters = (await fetchACharacter(id)) as Character[]
   } catch (error) {
-    console.log('error', error)
+    console.error('error', error)
   }
-  //fetch data
-  // const handleFetchCharacter = async (id: string) => {
-  //   // get id from url
-  //   try {
-  //     const result = await fetchACharacter(id)
-  //     console.log('result', result)
-  //     setData(result[0])
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  //   setLoading(false)
-  // }
-  // useEffect(() => {
-  //   // const  = setTimeout(() => {
-  //   handleFetchCharacter(characterID)
-  //   // }, 100000)
-  //   // return clearTimeout(id)
-  // }, [])
 
   return (
     <main className='w-full h-full container mx-auto max-w-7xl px-10 '>
-      <CharacterSectionPage
-        data={characters.length > 0 ? characters[0] : undefined}
-      />
+      <CharacterSectionPage data={characters[0]} />
     </main>
   )
 }
