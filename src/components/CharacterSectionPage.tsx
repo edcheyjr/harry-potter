@@ -12,6 +12,8 @@ import Chip from './Chip'
 import { RenderDetailsRow } from './DetailsRow'
 import PrimaryButton from './PrimaryButton'
 import { useRouter } from 'next/navigation'
+import Accordion from './Accordion'
+import { Table } from './Table'
 const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
@@ -22,7 +24,7 @@ const CharacterSectionPage = ({ data }: Props) => {
   const route = useRouter()
   const [wand, setWand] = useState<WandType>({})
   const [personality, setPersonality] = useState<string[]>([])
-  const [restOfData, setRestOfData] = useState<Character>()
+  const [restOfData, setRestOfData] = useState<Record<string, ReactNode>>({})
   const [textColor, setTextColor] = useState<string>('text-red-400')
   const [bgColor, setBGColor] = useState<string>('bg-amber-300')
   const [borderColor, setBorderColor] = useState<string>('border-orange-500')
@@ -30,7 +32,33 @@ const CharacterSectionPage = ({ data }: Props) => {
 
   // if (data?.wand) {
   // }
+  // Object.keys(wand)
   useEffect(() => {
+    // rest of the data goes to table
+    const restObj = {
+      id: data?.id,
+      yearOfBirth: data?.yearOfBirth,
+      ancestry: data?.ancestry,
+      eyeColour: data?.eyeColour,
+      hairColour: data?.hairColour,
+      patronus: data?.patronus,
+      hogwartsStudent: data?.hogwartsStudent,
+      hogwartsStaff: data?.hogwartsStaff,
+      alternate_actors: data?.alternate_actors,
+      alive: data?.alive,
+    }
+    const houseChip = data?.house
+      ? {
+          house: (
+            <Chip
+              className={textColor + `${' '} ${bgColor}`}
+              text={data?.house}
+            />
+          ),
+        }
+      : {}
+    setRestOfData({ ...houseChip, ...restObj })
+
     // Personality
     if (data?.gender || data?.species || data?.wizard) {
       let newArr = []
@@ -73,13 +101,16 @@ const CharacterSectionPage = ({ data }: Props) => {
   return (
     <div className='w-full lg:flex justify-center pt-12 lg:pt-28'>
       <section className='lg:w-2/5 flex flex-col justify-evenly px-8'>
-        <div className='flex justify-center items-center h-full w-auto'>
-          {/* FIXME possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to use normal image */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={data.image || DEFAULT_IMAGE}
-            alt={data.name || 'NO NAME'}
-            className={`h-full w-full border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border ${bgColor}`}
+        <div className='h-full w-full'>
+          {/* FIXME when using src with next/Image possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to bg style*/}
+
+          <article
+            style={{
+              backgroundImage: `url(${data?.image || DEFAULT_IMAGE})`,
+            }}
+            title={data.name || 'NO NAME'}
+            // xl 463px lg 400px sm: 350px
+            className={`min-w-full h-[38rem] border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border bg-cover ${bgColor}`}
           />
         </div>
       </section>
@@ -91,7 +122,7 @@ const CharacterSectionPage = ({ data }: Props) => {
             {/* Name */}
             <h2
               className={`${harryFont.className} 
-              capitalize text-lg lg:text-2xl xl:text-4xl font-medium text-ellipsis text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-amber-500 via-orange-500 tracking-wider lg:tracking-widest`}
+              capitalize text-lg lg:text-2xl xl:text-4xl font-medium text-ellipsis overflow-hidden text-transparent bg-clip-text bg-gradient-to-br from-red-500 to-amber-500 via-orange-500 tracking-wider lg:tracking-widest`}
             >
               {data.name}
             </h2>
@@ -131,7 +162,7 @@ const CharacterSectionPage = ({ data }: Props) => {
                     label={<Label text='Actor' />}
                     value={
                       <span className='font-medium capitalize text-slate-400'>
-                        {changeDateFormat(data?.actor) || 'No Actor'}
+                        {data?.actor || 'No Actor'}
                       </span>
                     }
                   />
@@ -197,11 +228,22 @@ const CharacterSectionPage = ({ data }: Props) => {
             <Chip className={textColor + `  ${bgColor}`} text={data.house} />
           </div>
         )} */}
-        {/* Tables 1*/}
-
         <div className='mt-8'>
           <PrimaryButton onClick={() => route.back()}>Go Back</PrimaryButton>
         </div>
+        {/* Divider */}
+        <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
+        {/* Tables 1*/}
+        <Accordion title='More Details'>
+          {
+            <Table
+              head={{
+                Attributes: data.name,
+              }}
+              body={restOfData}
+            />
+          }
+        </Accordion>
         {/* Divider */}
         <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
       </section>

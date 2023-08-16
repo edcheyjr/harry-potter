@@ -1,49 +1,42 @@
 'use client'
 
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 type Props = {
-  title?: string
   head?: Record<string, string>
-  body?: Record<string, number | string | boolean>
+  body?: Record<string, ReactNode>
 }
 
-const renderTitle = (title: string) => {
-  return (
-    <h3 className='uppercase tracking-tight text-white font-light'>{title}</h3>
-  )
-}
 const renderTableHeadRow = (key: string, value: string) => {
   return (
-    <th>
-      <td>{key}</td>
-      <td>{value}</td>
-    </th>
+    <tr className='' key={key}>
+      <th className='capitalize bg-slate-300/5 text-slate-300'>{key}</th>
+      <th className='text-ellipsis overflow-hidden text-slate-400'>{value}</th>
+    </tr>
   )
 }
-const renderTableBodyRow = (key: string, value: string | number | boolean) => {
+const renderTableBodyRow = (key: string, value: ReactNode) => {
   return (
-    <tr>
-      <td>{key}</td>
-      <td>{value}</td>
+    <tr className='w-full' key={key}>
+      <td className='capitalize text-slate-300'>{key}</td>
+      <td className='text-slate-400 lowercase'>{value}</td>
     </tr>
   )
 }
 
-const Table = ({ title, head, body }: Props) => {
+export const Table = ({ head, body }: Props) => {
   return (
-    <div>
-      {title && renderTitle(title)}
-      <table>
+    <div className='w-full h-auto'>
+      <table className='table table-auto'>
         {head && (
-          <thead>
+          <thead className='w-full'>
             {Object.keys(head).map((key: string, index) =>
               renderTableHeadRow(key, head[key])
             )}
           </thead>
         )}
         {body && (
-          <tbody>
+          <tbody className='w-full'>
             {Object.keys(body).map((key: string, index) =>
               renderTableBodyRow(key, body[key])
             )}
