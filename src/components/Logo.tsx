@@ -20,12 +20,12 @@ export const Logo = ({ innerRef }: Props) => {
           priority
           src={house ? require(`/public/crests/${house}.png`) : LogoImage}
           alt='Hogwarts'
-          height={56}
-          width={56}
+          height={100}
+          width={100}
           className='
         w-auto
         h-10
-        lg:h-14
+        lg:h-12
         '
         />
       </Link>
