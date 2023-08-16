@@ -16,7 +16,7 @@ export function changeDateFormat(date: string): string {
   try {
     const dateArray = date.split('-')
     if (dateArray.length != 3) {
-      throw "Failed to split correctly string not in the right format  '31-07-1980'"
+      throw "Failed to split correctly string not in the right format '31-07-1980'"
     }
     const day = dateArray[0]
     const month = dateArray[1]

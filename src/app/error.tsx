@@ -26,7 +26,9 @@ export default function Error({
         <div className='text-red-500 font-medium italic '>
           {process.env.NODE_ENV !== 'production' && error.message}
         </div>
-        <PrimaryButton onClick={() => reset()}>Try again</PrimaryButton>
+        <div className=''>
+          <PrimaryButton onClick={() => reset()}>Try again</PrimaryButton>
+        </div>
       </div>
     </NotFound>
   )
