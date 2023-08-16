@@ -14,6 +14,8 @@ import PrimaryButton from './PrimaryButton'
 import { useRouter } from 'next/navigation'
 import Accordion from './Accordion'
 import { Table } from './Table'
+import { AppContext } from '@provider/app-context'
+import { resolveHouseNames } from '@utils/resolveHouseNames'
 const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
@@ -21,6 +23,7 @@ type Props = {
 }
 
 const CharacterSectionPage = ({ data }: Props) => {
+  const appContext = useContext(AppContext)
   const route = useRouter()
   const [wand, setWand] = useState<WandType>({})
   const [personality, setPersonality] = useState<string[]>([])
@@ -28,12 +31,16 @@ const CharacterSectionPage = ({ data }: Props) => {
   const [textColor, setTextColor] = useState<string>('text-red-400')
   const [bgColor, setBGColor] = useState<string>('bg-amber-300')
   const [borderColor, setBorderColor] = useState<string>('border-orange-500')
+
   // console.log('bgColor', bgColor)
 
   // if (data?.wand) {
   // }
   // Object.keys(wand)
   useEffect(() => {
+    // data?.house
+    //   ? appContext?.setHouse(resolveHouseNames(data.house))
+    //   : appContext?.setHouse(null)
     // rest of the data goes to table
     const restObj = {
       id: data?.id,
@@ -85,7 +92,7 @@ const CharacterSectionPage = ({ data }: Props) => {
       setBGColor(handleColor(house, 'secondary', 'bg'))
       setBorderColor(handleColor(house, 'primary', 'border'))
     }
-  }, [])
+  }, [appContext, bgColor, data, textColor])
 
   console.log('bgColor', bgColor)
   console.log('textColor', textColor)
