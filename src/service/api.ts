@@ -9,9 +9,9 @@ export async function fetchAllCharacters({
   const BaseUrl = `${APIUrl}/characters`
   let Url = BaseUrl
   if (filter) {
-    if (filter == 'house' && houseID) {
+    if (filter.toLocaleLowerCase() == 'house' && houseID) {
       Url = `${BaseUrl}/${filter}/${houseID?.toLocaleLowerCase()}`
-    } else {
+    } else if (filter.toLocaleLowerCase() == 'house' && !houseID) {
       throw 'House id i.e gryffindor is missing'
     }
     Url = `${BaseUrl}/${filter}`

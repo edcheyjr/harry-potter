@@ -2,13 +2,37 @@ import CharactersSection from '@components/CharactersSection'
 import bg from '/public/harry-potter-books.jpg'
 import Hero from '@components/Hero'
 import { fetchAllCharacters } from '@service/api'
-import { Character } from 'types.d'
+import { Character, Filters, Houses } from 'types.d'
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 
-export default async function Home() {
+type Props = {
+  params: Params //example  character/1
+  searchParams: Record<Filters, Filters | Houses> //example chracter/1?house=asdasd
+}
+export default async function Home({ params, searchParams }: Props) {
   // TODO add filter buttons
+  console.log('searchParams', searchParams)
+  // two filter that can be there at any given time
+  let firstFilterKey: Filters | undefined = undefined
+  let secondFilterKey: Houses | undefined = firstFilterKey
+  const objectKeys = Object.keys(searchParams) as Filters[]
+  objectKeys.forEach((key, index) => {
+    // get the first and second index respectively
+    if (index == 0) {
+      firstFilterKey = searchParams[key] as Filters
+    }
+    if (index == 1) {
+      secondFilterKey = searchParams[key] as Houses
+    }
+  })
+  console.log('firstFilter', firstFilterKey)
+
   let characters: Character[] = []
   try {
-    characters = (await fetchAllCharacters({})) as Character[]
+    characters = (await fetchAllCharacters({
+      filter: firstFilterKey,
+      houseID: secondFilterKey,
+    })) as Character[]
   } catch (error) {
     console.error('error', error)
   }
