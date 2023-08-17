@@ -52,8 +52,6 @@ const SearchResult = (props: Props) => {
     }
     setLoading(true)
     const filterCharacters = () => {
-      console.log('characters', charactersArray)
-
       let houseFilterArr = charactersArray?.filter(
         (character, index) =>
           character?.house &&
@@ -65,12 +63,10 @@ const SearchResult = (props: Props) => {
         houseFilterArr = charactersArray
       }
 
-      console.log('houseFilterArr ', houseFilterArr)
-
       const filteredArray = houseFilterArr?.filter((character: Character) =>
         compareStrings(character.name, input)
       )
-      console.log('filteredArray', filteredArray)
+
       // only show filter values if there is any value input or house filter
       if (input !== '') {
         setFilterArray(filteredArray || [])
