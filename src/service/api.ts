@@ -13,13 +13,15 @@ export async function fetchAllCharacters({
       Url = `${BaseUrl}/${filter}/${houseID?.toLocaleLowerCase()}`
     } else if (filter.toLocaleLowerCase() == 'house' && !houseID) {
       throw 'House id i.e gryffindor is missing'
+    } else {
+      Url = `${BaseUrl}/${filter}`
     }
-    Url = `${BaseUrl}/${filter}`
   }
+  // console.warn('URl', Url)
 
   const response = await customFetch({ url: Url })
   const data = await response.json()
-  // console.log('data', data)
+  console.log('data', data)
   if (response.status != 200) {
     throw data
   }
