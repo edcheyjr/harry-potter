@@ -8,7 +8,7 @@ import Input from './Input'
 import { Character, Houses } from 'types.d'
 import Image from 'next/image'
 import SearchCard from './SearchCard'
-import { compareStrings } from '@utils/compareStrings'
+import { compareStrings } from '@utils/searchStrings'
 import {
   getStorageItem,
   removeItemFromStorage,
@@ -29,7 +29,7 @@ const SearchResult = (props: Props) => {
 
   const HOUSEFILTER = 'houseFilters'
 
-  console.log('houseFilter', houseFilter)
+  // console.log('houseFilter', houseFilter)
   const handleHouseFilterSelected = (val: Houses) => {
     if (compareStrings(val, houseFilter)) {
       removeItemFromStorage(HOUSEFILTER)

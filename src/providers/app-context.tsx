@@ -1,4 +1,5 @@
 'use client'
+import { compareString } from '@utils/compareString'
 import { FILTERS, intialFilterState } from '@utils/constant'
 import {
   getStorageItem,
@@ -79,22 +80,43 @@ const AppProvider = ({ children }: Props) => {
     name: string
     value: boolean | Houses
   }) => {
-    console.log('name', name)
-    console.log('value', value)
-    // Set value to true if false or house and reset all the other also if true set to false
-    if (value) {
-      const filterObj = { ...intialFilterState, [name]: false }
-      setFilters(filterObj) //deactivate
-      removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
-      route.push('/') //back to unfilter search
-    } else {
-      console.log('name', name)
-      if (name.trim().toLocaleLowerCase() == 'house') {
-        // house logic
-        const filterObj = { ...intialFilterState, [name]: value } //change state of house from false to House i.e Slytherin
+    // console.log('name', name)
+    // console.log('value', value)
+    // House Logic here
+    if (name.trim().toLocaleLowerCase() == 'house') {
+      if (typeof value == 'boolean') {
+        console.error('Wrong type passed, shoudl be Houses type')
+        return
+      }
+      // compare previous value and current assuming previous is not false[could be null] just used false for convinience
+      if (activeFilter.house && typeof value != 'boolean') {
+        if (compareString(activeFilter.house, value)) {
+          // Not working
+          const filterObj = { ...intialFilterState, [name]: false }
+          setFilters(filterObj) //deactivate
+          removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
+          route.push('/') //back to unfilter search return to unfilted
+        } else {
+          // if it passes all that test it mean it either false or the user is click on another filter house set to that
+          const filterObj = { ...intialFilterState, [name]: value }
+          setFilters(filterObj) //set active
+          setStorageItem(FILTERS, filterObj)
+          route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
+        }
+      } else {
+        // if it passes all that test it mean it either false or the user is click on another filter house set to that
+        const filterObj = { ...intialFilterState, [name]: value }
         setFilters(filterObj) //set active
         setStorageItem(FILTERS, filterObj)
         route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
+      }
+    } else {
+      // Student and Staff Here
+      if (value) {
+        const filterObj = { ...intialFilterState, [name]: false }
+        setFilters(filterObj) //deactivate
+        removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
+        route.push('/') //back to unfilter search
       } else {
         // student and staff logic
         const filterObj = { ...intialFilterState, [name]: true }
