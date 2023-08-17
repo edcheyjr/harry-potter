@@ -25,6 +25,7 @@ export default async function Home({ params, searchParams }: Props) {
     }
   })
   console.log('firstFilter', firstFilterKey)
+  console.log('secondeFilter', secondFilterKey)
 
   let characters: Character[] = []
   try {

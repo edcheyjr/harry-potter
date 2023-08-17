@@ -1,13 +1,9 @@
+'use client'
+
 import { AppContext } from '@provider/app-context'
 import { createPopper } from '@popperjs/core'
 import { useRouter } from 'next/navigation'
-import React, {
-  MouseEvent,
-  useEffect,
-  useContext,
-  useRef,
-  useState,
-} from 'react'
+import React, { useEffect, useContext, useRef, useState } from 'react'
 import { Filters, Houses } from 'types.d'
 import Dropdown from './HouseDropDown'
 import { FILTERS } from '@utils/constant'
@@ -37,12 +33,17 @@ const Filter = ({ value, name }: Props) => {
     setDropdownPopoverShow(false)
   }
   const route = useRouter()
-  const handleFiltering = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleFiltering = () => {
     appContext?.filtering({ name, value })
   }
   useEffect(() => {
+    // TODO move this and some other shared logic in app context to a hoook
     if (value) {
-      route.push(`?${FILTERS}=${name}`)
+      if (name.trim().toLocaleLowerCase() == 'house') {
+        route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
+      } else {
+        route.push(`?${FILTERS}=${name}`)
+      }
     }
   }, [name, route, value])
   return name.toLocaleLowerCase() != 'house' ? (
@@ -58,7 +59,6 @@ const Filter = ({ value, name }: Props) => {
     </button>
   ) : (
     <div
-      className=''
       onMouseOver={() => openDropdownPopover()}
       onMouseLeave={() => closeDropdownPopover()}
     >
@@ -70,7 +70,7 @@ const Filter = ({ value, name }: Props) => {
             : ' border-slate-400/90 text-slate-200 bg-slate-300/40'
         }`}
       >
-        <h4>{name}</h4>
+        <h4>{value || name}</h4>
       </button>
       <Dropdown
         isOpen={dropdownPopoverShow}

@@ -79,7 +79,9 @@ const AppProvider = ({ children }: Props) => {
     name: string
     value: boolean | Houses
   }) => {
-    // Set value to true if false and reset all the other also if true set to false
+    console.log('name', name)
+    console.log('value', value)
+    // Set value to true if false or house and reset all the other also if true set to false
     if (value) {
       const filterObj = { ...intialFilterState, [name]: false }
       setFilters(filterObj) //deactivate
@@ -93,8 +95,6 @@ const AppProvider = ({ children }: Props) => {
         setFilters(filterObj) //set active
         setStorageItem(FILTERS, filterObj)
         route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
-
-        route.push(`?${FILTERS}=${name}`)
       } else {
         // student and staff logic
         const filterObj = { ...intialFilterState, [name]: true }
