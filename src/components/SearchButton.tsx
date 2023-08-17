@@ -22,8 +22,10 @@ const SearchButton = ({ innerRef }: Props) => {
         fill='currentIcon'
       />
       <span className='text-sm font-regular uppercase'>search...</span>
+
       <span
-        title='shortcut'
+        title='escape'
+        aria-label='to open search press Ctrl+K'
         className='ml-4 py-1 rounded px-2 text-center border-r border-l border-t border-b-2 bg-bg-dark border-gray-50/[25%] text-sm lg:text-base font-semibold tracking-tight'
       >
         Ctrl K

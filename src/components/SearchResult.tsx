@@ -1,22 +1,24 @@
+'use client'
+
 // Result of the search and the search input itself
 import { AppContext } from '@provider/app-context'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Modal from './Modal'
+import Input from './Input'
 
 type Props = {}
 
 const SearchResult = (props: Props) => {
+  const [input, setInput] = useState('')
   const appContext = useContext(AppContext)
   const isOpen = appContext?.isModalOpen ?? false
   const handleCloseModal = appContext?.handleCloseModal
-  handleCloseModal
+  const charactersArray = appContext?.characters[0]
   return (
     <Modal isOpen={isOpen} onClose={handleCloseModal}>
-      <div>
+      <div className='w-full'>
         {' '}
-        <h1 className='text-cyan-400 text-3xl font-bold mb-4 text-center'>
-          Hello!
-        </h1>
+        <Input setInput={setInput} input={input} />
         <p className='text-center text-neutral-500/80 mb-4'>
           I am a modal open and close animation made with GSAP and tailwindcss.
         </p>
@@ -28,6 +30,8 @@ const SearchResult = (props: Props) => {
             Close
           </button>
         </div>
+        {/* House filter */}
+        <div></div>
       </div>
     </Modal>
   )
