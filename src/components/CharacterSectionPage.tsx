@@ -243,8 +243,6 @@ const CharacterSectionPage = ({ data }: Props) => {
             />
           }
         </Accordion>
-        {/* Divider */}
-        <div className='w-full h-0 border-2 border-dotted border-white/40 my-2'></div>
       </section>
       {/* Search */}
       <SearchResultModal />

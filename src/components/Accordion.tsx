@@ -31,6 +31,10 @@ const Accordion = ({
         />
       </div>
       {isOpened && children}
+      {/* Divider */}
+      {!isOpened && (
+        <div className='w-full h-0 border-2 border-dotted border-white/40 my-2'></div>
+      )}
     </div>
   )
 }
