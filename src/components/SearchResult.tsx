@@ -2,37 +2,69 @@
 
 // Result of the search and the search input itself
 import { AppContext } from '@provider/app-context'
-import React, { useContext, useState } from 'react'
+import React, { ChangeEvent, useContext, useState } from 'react'
 import Modal from './Modal'
 import Input from './Input'
-import { Houses } from 'types.d'
+import { Character, Houses } from 'types.d'
 import Image from 'next/image'
+import SearchCard from './SearchCard'
 
 type Props = {}
 
 const SearchResult = (props: Props) => {
   const [isLoading, setLoading] = useState(false)
   const [houseFilter, setHouseFilter] = useState<Houses | null>(null)
+  const [filterArray, setFilterArray] = useState<Character[]>([])
   const [input, setInput] = useState('Harry Potter')
   const appContext = useContext(AppContext)
   const isOpen = appContext?.isModalOpen ?? false
   const handleCloseModal = appContext?.handleCloseModal
-  const charactersArray = appContext?.characters[0]
+  const charactersArray = appContext?.characters
   const houseObj = Object.values(Houses)
 
   console.log('houseFilter', houseFilter)
   const handleHouseFilterSelected = (val: Houses) => {
     setHouseFilter(val)
   }
+
+  const handleFilteringCharacters = (e: ChangeEvent<HTMLInputElement>) => {
+    //
+    setInput(e.target.value)
+
+    // filter characters based on houseFilter and and input
+    filterCharacters()
+  }
+
+  const filterCharacters = () => {
+    const filteredArray = charactersArray?.filter((character) => {
+      // filter params
+      return (
+        character.house?.toLocaleLowerCase() ==
+          houseFilter?.toLocaleLowerCase() ||
+        character.name
+          .toLowerCase()
+          .trim()
+          .includes(input.toLocaleLowerCase().trim())
+      )
+    })
+    setFilterArray(filteredArray || [])
+  }
   return (
     <Modal isOpen={isOpen} onClose={handleCloseModal}>
-      <div className='w-full'>
+      <div className='w-full '>
         {' '}
-        <Input setInput={setInput} input={input} isLoading />
-        <p className='text-center text-neutral-500/80 mb-4'>
-          I am a modal open and close animation made with GSAP and tailwindcss.
-        </p>
-        <div className='flex justify-between items-center'>
+        <div className='p-3'>
+          <Input
+            handleChange={handleFilteringCharacters}
+            input={input}
+            isLoading
+          />
+          {/* ListCard */}
+          {filterArray.map((character, key) => (
+            <SearchCard character={character} key={character.id} />
+          ))}
+        </div>
+        <div className='flex justify-between items-center px-3'>
           {/* House filter */}
           <div className='flex w-full space-x-2'>
             {houseObj.map((val, index) => {
@@ -46,7 +78,7 @@ const SearchResult = (props: Props) => {
                 >
                   <Image
                     src={require(`/public/crests/${val}.png`)}
-                    className='h-auto w-9'
+                    className='h-auto w-8'
                     title={val}
                     alt={val}
                   />
@@ -56,7 +88,7 @@ const SearchResult = (props: Props) => {
           </div>
           <button
             onClick={appContext?.handleCloseModal}
-            className=' text-neutral-400 font-semibold text-xl rounded-md border-b-[3px] px-3 py-1'
+            className=' text-slate-400 font-semibold text-base lg:text-xl  border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 transition ease-in-out duration-300'
           >
             Close
           </button>

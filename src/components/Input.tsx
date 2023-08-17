@@ -6,7 +6,7 @@ import LoadingIcon from './icons/LoadingIcon'
 
 type Props = {
   input: string
-  setInput: Dispatch<SetStateAction<string>>
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   isLoading: boolean
 }
 
@@ -17,9 +17,6 @@ const renderSimpleLoadingIcon = () => {
 }
 
 const Input = (props: Props) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    props.setInput(e.target.value)
-  }
   return (
     <div className='w-full text-slate-400 relative flex'>
       {/* Search Icon */}
@@ -36,7 +33,7 @@ const Input = (props: Props) => {
       <input
         type='text'
         value={props.input}
-        onChange={handleChange}
+        onChange={props.handleChange}
         className='w-full px-10 py-2.5 bg-white/[15%] font-medium focus:bg-orange-300/20 rounded-md'
         placeholder='Search a character'
       />
