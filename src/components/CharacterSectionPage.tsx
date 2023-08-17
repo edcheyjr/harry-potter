@@ -106,9 +106,9 @@ const CharacterSectionPage = ({ data }: Props) => {
     )
 
   return (
-    <div className='w-full lg:flex justify-center pt-24 lg:pt-28'>
-      <section className='lg:w-2/5 flex flex-col justify-evenly px-1 lg:px-8'>
-        <div className='h-full w-full'>
+    <div className='w-full lg:flex justify-center pt-24 xl:pt-28'>
+      <section className='lg:w-[45%] xl:w-2/5 flex flex-col justify-evenly px-1 xl:px-8'>
+        <div className='h-full w-full justify-center flex'>
           {/* FIXME when using src with next/Image possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to bg style*/}
 
           <article
@@ -117,12 +117,14 @@ const CharacterSectionPage = ({ data }: Props) => {
             }}
             title={data.name || 'NO NAME'}
             // xl 463px lg 400px sm: 350px
-            className={`min-w-full h-96 lg:h-[38rem] border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border bg-cover ${bgColor}`}
+            className={`
+            
+            w-full min-[500px]:w-2/3  lg:w-full h-96 sm:h-[38rem] border-t-2 border-b-[5px] border-r-2 border-l-2 bg-clip-border bg-cover ${bgColor}`}
           />
         </div>
       </section>
       {/* Character Details */}
-      <section className='relative lg:w-3/5 px-3 lg:px-6'>
+      <section className='relative lg:w-[55%] xl:w-3/5 px-3 xl:px-6'>
         {/* Crest */}
         <div className='absolute top-[2%] right-[2%] w-auto h-auto my-auto'>
           {data.house && (

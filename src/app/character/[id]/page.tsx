@@ -23,7 +23,7 @@ export default async function CharacterPage({ params, searchParams }: Props) {
   }
 
   return (
-    <main className='w-full h-full container mx-auto max-w-7xl px-4 md:px-10'>
+    <main className='w-full h-full container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
       <CharacterSectionPage data={characters[0]} />
     </main>
   )
