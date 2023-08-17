@@ -4,7 +4,10 @@ export const getStorageItem = (item: string) => {
   if (storageItem) {
     return JSON.parse(storageItem)
   } else {
-    console.error('failed to parse object is either null or undefined')
+    process.env.NODE_ENV !== 'production'
+      ? console.error('failed to parse object is either null or undefined')
+      : console.warn(`no item in ${item}`)
+
     return storageItem
   }
 }
