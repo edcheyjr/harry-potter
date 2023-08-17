@@ -29,9 +29,9 @@ export const Logo = ({ innerRef }: Props) => {
         lg:h-12
         '
         />
-        <h1 className='font-bold uppercase tracking-widest text-base lg:text-lg bg-clip-text bg-gradient-to-br from-red-500 from-20% via-orange-500 to-amber-500 text-transparent'>
+        <h2 className='font-bold uppercase tracking-widest text-base lg:text-lg bg-clip-text bg-gradient-to-br from-red-500 from-20% via-orange-500 to-amber-500 text-transparent'>
           {APP_NAME}
-        </h1>
+        </h2>
       </div>
     </Link>
   )
