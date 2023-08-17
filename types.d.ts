@@ -68,6 +68,9 @@ export type AppContextType = {
   setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
   characters: Character[]
   setCharacters: Dispatch<SetStateAction<Character[]>>
+  isModalOpen: boolean
+  handleOpenModal: () => void
+  handleCloseModal: () => void
   filtering: ({ name, value }: { name: string; value: boolean }) => void
 }
 export type Spell = {

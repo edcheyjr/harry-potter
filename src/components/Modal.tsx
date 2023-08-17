@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, ReactNode } from 'react'
 import { gsap } from 'gsap'
 
-interface ModalProps {
-  isOpen: boolean
-  onClose: () => void
+interface Props {
+  isOpen?: boolean
+  onClose?: () => void
+  children: ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
   const authOverlayRef = useRef<HTMLDivElement>(null)
   const secondRef = useRef<HTMLDivElement>(null)
   const thirdRef = useRef<HTMLDivElement>(null)
@@ -77,15 +78,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       ref={authOverlayRef}
       onClick={onClose}
       id='authOverlay'
-      className={`fixed z-10 left-0 top-0 h-full w-full flex items-center justify-center py-3 px-2 overflow-y-auto bg-white/80 backdrop-blur-sm ${
-        isOpen ? 'scale-y-100' : 'scale-y-0 -translate-x-full'
+      className={`fixed z-10 left-0 top-0 h-full w-full flex items-center justify-center py-3 px-2 overflow-y-auto bg-slate-300/80 backdrop-blur-md ${
+        isOpen ? 'scale-y-100' : '-translate-x-full' //-translae-x-full or scale-y-0
       }`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
         ref={fourthRef}
         id='fourth'
-        className='bg-white/0 max-w-sm m-auto mb-0 sm:mb-auto p-3 border border-white/0 rounded-2xl shadow-sm'
+        className='bg-white/20 max-w-lg m-auto mb-0 sm:mb-auto p-3 border border-white/0 rounded-2xl shadow-sm'
       >
         <div
           ref={secondRef}
@@ -101,21 +102,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
               isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
             }`}
           >
-            <h1 className='text-cyan-400 text-3xl font-bold mb-4 text-center'>
-              Hello!
-            </h1>
-            <p className='text-center text-neutral-500/80 mb-4'>
-              I am a modal open and close animation made with GSAP and
-              tailwindcss.
-            </p>
-            <div className='text-center'>
-              <button
-                onClick={onClose}
-                className='bg-neutral-100 text-neutral-400 font-semibold text-xl rounded-md border-b-[3px] px-3 py-1'
-              >
-                Close
-              </button>
-            </div>
+            {children}
           </div>
         </div>
       </div>
