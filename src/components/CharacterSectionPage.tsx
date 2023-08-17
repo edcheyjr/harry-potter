@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation'
 import Accordion from './Accordion'
 import { Table } from './Table'
 import { AppContext } from '@provider/app-context'
-import { resolveHouseNames } from '@utils/resolveHouseNames'
+import SearchResultModal from '@components/SearchResult'
 const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
@@ -246,6 +246,8 @@ const CharacterSectionPage = ({ data }: Props) => {
         {/* Divider */}
         <div className='w-full h-0 border-2 border-dotted border-white/40 my-2'></div>
       </section>
+      {/* Search */}
+      <SearchResultModal />
     </div>
   )
 }
