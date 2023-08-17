@@ -63,8 +63,8 @@ const CharacterCard = ({
             <Image
               src={require(`/public/crests/${house}.png`)}
               className='h-auto w-9'
-              title={house && house}
-              alt={house || 'no house'}
+              title={house}
+              alt={hasHouse ? house : 'no house'}
             />
           </div>
         )}
