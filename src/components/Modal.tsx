@@ -73,12 +73,11 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
   }, [isOpen])
 
   return (
-    // <div className='w-full h-screen bg-gradient-to-tr from-cyan-400 to-cyan-700'>
     <div
       ref={authOverlayRef}
       onClick={onClose}
       id='authOverlay'
-      className={`fixed z-10 left-0 top-0 h-full w-full flex items-center justify-center py-3 px-2 overflow-y-auto bg-slate-300/80 backdrop-blur-md ${
+      className={`fixed z-10 left-0 top-0 h-full w-full flex items-center justify-end py-3 px-2 overflow-y-auto bg-slate-300/80 backdrop-blur-md ${
         isOpen ? 'scale-y-100' : '-translate-x-full' //-translae-x-full or scale-y-0
       }`}
     >
@@ -86,12 +85,12 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
         onClick={(e) => e.stopPropagation()}
         ref={fourthRef}
         id='fourth'
-        className='bg-white/20 max-w-lg m-auto mb-0 sm:mb-auto p-3 border border-white/0 rounded-2xl shadow-sm'
+        className='bg-white/0 max-w-4xl m-auto mb-0 sm:mb-auto p-3 border border-white/0 rounded-2xl shadow-sm absolute w-3/4 left-1/2 top-[10%] -translate-x-1/2'
       >
         <div
           ref={secondRef}
           id='second'
-          className={`bg-white p-4 sm:p-8 w-full rounded-xl shadow-sm ${
+          className={`bg-bg-dark p-4 sm:p-8 w-full rounded-xl shadow-sm ${
             isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'
           }`}
         >
@@ -107,7 +106,6 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
         </div>
       </div>
     </div>
-    // </div>
   )
 }
 
