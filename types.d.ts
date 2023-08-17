@@ -64,14 +64,20 @@ export type AppContextType = {
   ref: MutableRefObject<HTMLDivElement | null>
   house: Houses | null
   setHouse: Dispatch<SetStateAction<Houses | null>>
-  activeFilter: Record<Filters, boolean>
+  activeFilter: FilterTypes
   setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
   characters: Character[]
   setCharacters: Dispatch<SetStateAction<Character[]>>
   isModalOpen: boolean
   handleOpenModal: () => void
   handleCloseModal: () => void
-  filtering: ({ name, value }: { name: string; value: boolean }) => void
+  filtering: ({
+    name,
+    value,
+  }: {
+    name: string
+    value: boolean | Houses
+  }) => void
 }
 export type Spell = {
   id: string
@@ -79,7 +85,13 @@ export type Spell = {
   description: string
 }
 export type Filters = 'staff' | 'students' | 'house'
-export type FilterTypes = {
+export type SearchParams = {
   filter?: Filters
   houseID?: Houses
+}
+
+export interface FilterTypes extends Record<Filters, House | boolean> {
+  staff: boolean
+  students: boolean
+  house: false | Houses
 }
