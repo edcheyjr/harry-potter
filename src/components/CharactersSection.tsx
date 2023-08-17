@@ -2,14 +2,12 @@
 
 import CharacterCard from './Character'
 import Title from './Title'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '@provider/app-context'
-import { Character, Filters, Houses } from 'types.d'
+import { Character, Filters } from 'types.d'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
-import { FILTERS, intialFilterState } from '@utils/constant'
 import Filter from './Filter'
-import { getStorageItem } from '@utils/localstorageAccess'
-import Modal from './Modal'
+import SearchResultModal from '@components/SearchResult'
 
 type Props = {
   characters: Character[]
@@ -27,8 +25,6 @@ const CharactersSection = ({ characters }: Props) => {
 
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
-
-  const isOpen = appContext?.isModalOpen ?? false
   return (
     <div className='pt-32 container mx-auto max-w-7xl px-10'>
       <div ref={ref} className=' flex flex-col pt-28'>
@@ -67,10 +63,8 @@ const CharactersSection = ({ characters }: Props) => {
             )
           })}
         </div>
-        <Modal
-          isOpen={isOpen}
-          onClose={appContext?.handleCloseModal || function () {}}
-        />
+        {/* Search */}
+        <SearchResultModal />
       </div>
     </div>
   )
