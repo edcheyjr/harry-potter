@@ -41,8 +41,28 @@ const AppProvider = ({ children }: Props) => {
 
   // KeyBoard keys listening
   useEffect(() => {
-    // handle waiting ctrlk press  to open modal
-    // also waiting on esc to close modal
+    const callback = (event: KeyboardEvent) => {
+      // handle waiting ctrlk press  to open modal
+      // event.metaKey - pressed Command key on Macs
+      // event.ctrlKey - pressed Control key on Linux or Windows
+      if ((event.metaKey || event.ctrlKey) && event.code === 'KeyK') {
+        event.preventDefault()
+        setIsOpen(true) // open search modal
+        console.log('Pressed Command/Control + K')
+      }
+      //listen for ESC key inorder to close modal
+      if (event.code == 'Escape') {
+        event.preventDefault()
+        setIsOpen(false)
+        console.log('pressed escape')
+      }
+      event.stopPropagation()
+    }
+    document.addEventListener('keydown', callback)
+
+    return () => {
+      document.removeEventListener('keydown', callback)
+    }
   }, [])
 
   useEffect(() => {
