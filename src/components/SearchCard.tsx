@@ -1,6 +1,7 @@
 'use client'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Character } from 'types.d'
 
@@ -10,9 +11,14 @@ type Props = {
 }
 
 const SearchCard = ({ character }: Props) => {
+  const route = useRouter()
+  const moveToCharacterPage = (e: React.MouseEvent<HTMLElement>) => {
+    // Move to the character page /character?id=id
+    route.push(`/character/${character.id}`)
+  }
   return (
     <tr
-      onClick={() => console.log(character)}
+      onClick={moveToCharacterPage}
       className='cursor-pointer text-slate-400  bg-slate-300/5 hover:bg-slate-300/20 
     border-b border-slate-600 hover:border-red-500 transition duration-300 ease-in-out group'
     >

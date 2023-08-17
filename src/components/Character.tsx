@@ -25,11 +25,8 @@ const CharacterCard = ({
   name,
   YOB,
 }: Props) => {
-  // Animations on enter and on leave
   const route = useRouter()
-  //switch between colors
   const moveToCharacterPage = (e: MouseEvent<HTMLElement>) => {
-    // Move to the character page /character?id=id
     route.push(`/character/${id}`)
   }
   const borderColor = hasHouse
