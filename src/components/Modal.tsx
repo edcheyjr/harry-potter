@@ -24,12 +24,12 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
           x: 1,
           opacity: 1,
           display: 'flex',
-          duration: 0.4,
+          duration: 0.2,
         })
         .to(authOverlayRef.current, {
           scaleY: 1,
           background: 'rgba(255,255,255,0.16)',
-          duration: 0.6,
+          duration: 0.4,
         })
         .to(
           secondRef.current,
@@ -42,7 +42,7 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
           {
             background: 'rgba(255,255,255,0.3)',
             border: '1px solid rgba(255,255,255,0.3)',
-            duration: 0.8,
+            duration: 0.6,
           },
           '-=0.4'
         )
@@ -52,17 +52,17 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
         .to(fourthRef.current, {
           background: 'transparent',
           border: 'none',
-          duration: 0.4,
+          duration: 0.2,
         })
-        .to(thirdRef.current, { scaleY: 0, opacity: 0, duration: 0.4 }, '-=0.2')
+        .to(thirdRef.current, { scaleY: 0, opacity: 0, duration: 0.2 }, '-=0.2')
         .to(
           secondRef.current,
-          { scaleY: 0, opacity: 0, duration: 0.6 },
+          { scaleY: 0, opacity: 0, duration: 0.4 },
           '-=0.2'
         )
         .to(
           authOverlayRef.current,
-          { scaleY: 0, opacity: 0, display: 'none', duration: 0.4 },
+          { scaleY: 0, opacity: 0, display: 'none', duration: 0.2 },
           '-=0.2'
         )
     }
