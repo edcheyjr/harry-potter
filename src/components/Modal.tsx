@@ -85,7 +85,7 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
         onClick={(e) => e.stopPropagation()}
         ref={fourthRef}
         id='fourth'
-        className='bg-white/0 max-w-4xl  h-auto m-auto mb-0 sm:mb-auto p-2  border border-white/0 rounded-2xl shadow-sm absolute w-3/4 left-1/2 top-[10%] -translate-x-1/2'
+        className='bg-white/0 max-w-full lg:max-w-4xl h-auto m-auto mb-0 sm:mb-auto p-2  border border-white/0 rounded-2xl shadow-sm absolute w-full left-1/2 top-[10%] -translate-x-1/2'
       >
         <div
           ref={secondRef}
