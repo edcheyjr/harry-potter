@@ -83,7 +83,7 @@ const AppProvider = ({ children }: Props) => {
     // console.log('name', name)
     // console.log('value', value)
     // House Logic here
-    if (name.trim().toLocaleLowerCase() == 'house') {
+    if (compareString(name, 'house')) {
       if (typeof value == 'boolean') {
         console.error('Wrong type passed, shoudl be Houses type')
         return

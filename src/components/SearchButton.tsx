@@ -15,7 +15,7 @@ const SearchButton = ({ innerRef }: Props) => {
     <button
       ref={innerRef}
       onClick={handleOpenModal}
-      className='px-1.5 md:px-3.5 py-1 rounded bg-white/[8%] flex space-x-2.5 text-gray-50/80 items-center border border-gray-50/20 hover:bg-white/20  transition-all ease-in-out duration-300'
+      className='px-1.5 md:px-3.5 py-1 rounded bg-slate-200/10 flex space-x-2.5 text-gray-50/80 items-center border border-gray-50/20 hover:bg-slate-400/30  transition-all ease-in-out duration-300'
     >
       <SearchIcon
         className='h-5 w-5 lg:h-6 lg:w-6 fill-current'

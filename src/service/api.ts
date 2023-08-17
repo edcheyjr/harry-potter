@@ -1,6 +1,7 @@
 import { Character, SearchParams, Houses, Spell } from 'types.d'
 import { APIUrl } from '@utils/constant'
 import customFetch from '@utils/customFetch'
+import { compareString } from '@utils/compareString'
 
 export async function fetchAllCharacters({
   filter,
@@ -9,9 +10,9 @@ export async function fetchAllCharacters({
   const BaseUrl = `${APIUrl}/characters`
   let Url = BaseUrl
   if (filter) {
-    if (filter.toLocaleLowerCase() == 'house' && houseID) {
+    if (compareString(filter, 'house') && houseID) {
       Url = `${BaseUrl}/${filter}/${houseID?.toLocaleLowerCase()}`
-    } else if (filter.toLocaleLowerCase() == 'house' && !houseID) {
+    } else if (compareString(filter, 'house') && !houseID) {
       throw 'House id i.e gryffindor is missing'
     } else {
       Url = `${BaseUrl}/${filter}`

@@ -8,12 +8,13 @@ import Input from './Input'
 import { Character, Houses } from 'types.d'
 import Image from 'next/image'
 import SearchCard from './SearchCard'
-import { compareStrings } from '@utils/searchStrings'
+import { compareString } from '@utils/compareString'
 import {
   getStorageItem,
   removeItemFromStorage,
   setStorageItem,
 } from '@utils/localstorageAccess'
+import { searchStrings } from '@utils/searchStrings'
 type Props = {}
 
 const SearchResult = (props: Props) => {
@@ -31,7 +32,7 @@ const SearchResult = (props: Props) => {
 
   // console.log('houseFilter', houseFilter)
   const handleHouseFilterSelected = (val: Houses) => {
-    if (compareStrings(val, houseFilter)) {
+    if (compareString(val, houseFilter)) {
       removeItemFromStorage(HOUSEFILTER)
       setHouseFilter(null)
     } else {
@@ -56,7 +57,7 @@ const SearchResult = (props: Props) => {
         (character, index) =>
           character?.house &&
           houseFilter &&
-          compareStrings(character.house, houseFilter)
+          searchStrings(character.house, houseFilter)
       )
       if (houseFilterArr === undefined || houseFilterArr.length === 0) {
         // If houseFilterArr is undefined or empty, return the original charactersArray
@@ -64,7 +65,7 @@ const SearchResult = (props: Props) => {
       }
 
       const filteredArray = houseFilterArr?.filter((character: Character) =>
-        compareStrings(character.name, input)
+        searchStrings(character.name, input)
       )
 
       // only show filter values if there is any value input or house filter
@@ -139,9 +140,7 @@ const SearchResult = (props: Props) => {
               return (
                 <div
                   className={`p-1 flex justify-center items-center transition duration-300 ease-in-out rounded-lg border-2 border-dotted  cursor-pointer ${
-                    houseFilter &&
-                    houseFilter.trim().toLocaleLowerCase() ==
-                      val.trim().toLocaleLowerCase()
+                    houseFilter && compareString(houseFilter, val)
                       ? 'border-red-500'
                       : 'border-slate-400 hover:border-orange-300'
                   }`}

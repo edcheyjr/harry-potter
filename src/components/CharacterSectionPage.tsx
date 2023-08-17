@@ -16,6 +16,7 @@ import Accordion from './Accordion'
 import { Table } from './Table'
 import { AppContext } from '@provider/app-context'
 import SearchResultModal from '@components/SearchResult'
+import { compareString } from '@utils/compareString'
 const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
@@ -69,12 +70,10 @@ const CharacterSectionPage = ({ data }: Props) => {
     // Personality
     if (data?.gender || data?.species || data?.wizard) {
       let newArr = []
-      const wizardNameGender =
-        data?.gender?.toLocaleLowerCase().trim() == 'female'
-          ? 'witch'
-          : 'wizard'
-      const genderSign =
-        data?.gender?.toLocaleLowerCase().trim() == 'female' ? ' ⚢' : ' ⚣'
+      const wizardNameGender = compareString(data?.gender, 'female')
+        ? 'witch'
+        : 'wizard'
+      const genderSign = compareString(data.gender, 'female') ? ' ⚢' : ' ⚣'
 
       data?.species && newArr.push(data.species)
       data?.gender && newArr.push(`${data.gender}${genderSign}`)

@@ -7,6 +7,7 @@ import React, { useEffect, useContext, useRef, useState } from 'react'
 import { Filters, Houses } from 'types.d'
 import Dropdown from './HouseDropDown'
 import { FILTERS } from '@utils/constant'
+import { compareString } from '@utils/compareString'
 
 type Props = {
   value: boolean | Houses
@@ -39,14 +40,14 @@ const Filter = ({ value, name }: Props) => {
   useEffect(() => {
     // TODO move this and some other shared logic in app context to a hoook
     if (value) {
-      if (name.trim().toLocaleLowerCase() == 'house') {
+      if (compareString(name, 'house')) {
         route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
       } else {
         route.push(`?${FILTERS}=${name}`)
       }
     }
   }, [name, route, value])
-  return name.toLocaleLowerCase() != 'house' ? (
+  return !compareString(name, 'house') ? (
     <button
       className={`text-sm lg:text-base flex justify-center items-center cursor-pointer  transition duration-300 ease-in-out hover:text-white hover:bg-red-500 hover:border-red-400 rounded-2xl px-2.5 py-2 border-2 font-bold ${
         value

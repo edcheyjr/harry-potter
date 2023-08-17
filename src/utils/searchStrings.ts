@@ -1,4 +1,4 @@
-export const compareStrings = (
+export const searchStrings = (
   a: string | null | undefined,
   b: string | null | undefined
 ): boolean => {
