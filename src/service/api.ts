@@ -1,11 +1,11 @@
-import { Character, FilterTypes, Houses, Spell } from 'types.d'
+import { Character, SearchParams, Houses, Spell } from 'types.d'
 import { APIUrl } from '@utils/constant'
 import customFetch from '@utils/customFetch'
 
 export async function fetchAllCharacters({
   filter,
   houseID,
-}: FilterTypes): Promise<Character[]> {
+}: SearchParams): Promise<Character[]> {
   const BaseUrl = `${APIUrl}/characters`
   let Url = BaseUrl
   if (filter) {

@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { createContext } from 'react'
-import { AppContextType, Character, Filters, Houses } from 'types.d'
+import { AppContextType, Character, FilterTypes, Houses } from 'types.d'
 
 type Props = {
   children: ReactNode
@@ -24,8 +24,7 @@ const AppProvider = ({ children }: Props) => {
   const [characters, setCharacters] = useState<Character[]>([])
   const route = useRouter()
   // Filters
-  const [activeFilter, setFilters] =
-    useState<Record<Filters, boolean>>(intialFilterState)
+  const [activeFilter, setFilters] = useState<FilterTypes>(intialFilterState)
 
   // Search modal
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -73,7 +72,13 @@ const AppProvider = ({ children }: Props) => {
   }, [])
 
   //Handle filters
-  const filtering = ({ name, value }: { name: string; value: boolean }) => {
+  const filtering = ({
+    name,
+    value,
+  }: {
+    name: string
+    value: boolean | Houses
+  }) => {
     // Set value to true if false and reset all the other also if true set to false
     if (value) {
       const filterObj = { ...intialFilterState, [name]: false }
@@ -81,10 +86,22 @@ const AppProvider = ({ children }: Props) => {
       removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
       route.push('/') //back to unfilter search
     } else {
-      const filterObj = { ...intialFilterState, [name]: true }
-      setFilters(filterObj) //set active
-      setStorageItem(FILTERS, filterObj)
-      route.push(`?${name}=${name}`)
+      console.log('name', name)
+      if (name.trim().toLocaleLowerCase() == 'house') {
+        // house logic
+        const filterObj = { ...intialFilterState, [name]: value } //change state of house from false to House i.e Slytherin
+        setFilters(filterObj) //set active
+        setStorageItem(FILTERS, filterObj)
+        route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
+
+        route.push(`?${FILTERS}=${name}`)
+      } else {
+        // student and staff logic
+        const filterObj = { ...intialFilterState, [name]: true }
+        setFilters(filterObj) //set active
+        setStorageItem(FILTERS, filterObj)
+        route.push(`?${FILTERS}=${name}`)
+      }
     }
   }
 

@@ -7,7 +7,7 @@ import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 
 type Props = {
   params: Params //example  character/1
-  searchParams: Record<Filters, Filters | Houses> //example chracter/1?house=asdasd
+  searchParams: Record<string, Filters | Houses> //example chracter/1?house=asdasd
 }
 export default async function Home({ params, searchParams }: Props) {
   console.log('searchParams', searchParams)

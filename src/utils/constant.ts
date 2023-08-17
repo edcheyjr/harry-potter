@@ -1,4 +1,4 @@
-import { Filters } from 'types.d'
+import { FilterTypes, Filters, Houses } from 'types.d'
 
 export const COURTESY = 'HP-API.onrender.com'
 
@@ -8,7 +8,7 @@ export const APIUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`
 
 export const FILTERS = 'filters'
 
-export const intialFilterState: Record<Filters, boolean> = {
+export const intialFilterState: FilterTypes = {
   staff: false,
   students: false,
   house: false,

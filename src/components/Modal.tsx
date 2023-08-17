@@ -77,7 +77,7 @@ const Modal: React.FC<Props> = ({ isOpen, onClose, children }) => {
       ref={authOverlayRef}
       onClick={onClose}
       id='authOverlay'
-      className={`fixed z-10 left-0 top-0 h-full w-full flex items-center justify-end py-3 px-2 overflow-y-hidden bg-bg-dark/80 backdrop-blur-md ${
+      className={`fixed z-[1000] left-0 top-0 h-full w-full flex items-center justify-end py-3 px-2 overflow-y-hidden bg-bg-dark/80 backdrop-blur-md ${
         isOpen ? 'scale-y-100' : '-translate-x-full' //-translae-x-full or scale-y-0
       }`}
     >

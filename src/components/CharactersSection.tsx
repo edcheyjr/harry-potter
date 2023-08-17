@@ -40,11 +40,9 @@ const CharactersSection = ({ characters }: Props) => {
             </span>
             <div className='flex space-x-3'>
               {/* TODO:remove house for now to return later as a filter with dropdown of the house list */}
-              {filtersKeys
-                .filter((key) => key !== 'house')
-                .map((key, index) => (
-                  <Filter key={key} name={key} value={activeFilter[key]} />
-                ))}
+              {filtersKeys.map((key, index) => (
+                <Filter key={key} name={key} value={activeFilter[key]} />
+              ))}
             </div>
           </div>
         </div>
