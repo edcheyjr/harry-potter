@@ -31,8 +31,13 @@ const SearchResult = (props: Props) => {
 
   console.log('houseFilter', houseFilter)
   const handleHouseFilterSelected = (val: Houses) => {
-    setStorageItem(HOUSEFILTER, val)
-    setHouseFilter(val)
+    if (compareStrings(val, houseFilter)) {
+      removeItemFromStorage(HOUSEFILTER)
+      setHouseFilter(null)
+    } else {
+      setStorageItem(HOUSEFILTER, val)
+      setHouseFilter(val)
+    }
   }
 
   const handleFilteringCharacters = (e: ChangeEvent<HTMLInputElement>) => {
@@ -85,9 +90,9 @@ const SearchResult = (props: Props) => {
 
   return (
     <Modal isOpen={isOpen} onClose={handleCloseModal}>
-      <div className='w-full py-4 sm:py-6'>
+      <div className='w-full py-4 '>
         {' '}
-        <div className='px-2 sm:px-4 md:px-8'>
+        <div className='px-2 sm:px-4'>
           <Input
             handleChange={handleFilteringCharacters}
             input={input}
@@ -95,14 +100,43 @@ const SearchResult = (props: Props) => {
           />
         </div>
         {/* ListCard */}
-        <div className='overflow-y-auto overflow-auto xl:max-h-[28em] h-[29em]'>
-          <div className='h-full px-2 sm:px-4 md:px-8 w-full'>
-            {filterArray.map((character, key) => (
-              <SearchCard character={character} key={character.id} />
-            ))}
-          </div>
+        <div className='overflow-y-auto overflow-auto xl:max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
+          <table className='h-full px-2 sm:px-4 md:px-8 w-full table-fixed border-collapse'>
+            <thead className='w-full'>
+              <tr className='text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600 col-span-4'>
+                <th className='px-3 lg:px-6 py-3.5 text-left'>
+                  Search Results
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr className='text-left text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600'>
+                <th className=' px-3 lg:px-6 py-3.5'>name</th>
+                <th className=' px-3 lg:px-6'>age</th>
+                <th className=' px-3 lg:px-6'>actor</th>
+                <th className=' px-3 lg:px-6'>house</th>
+              </tr>
+            </thead>
+            <tbody className='w-full'>
+              {filterArray.length > 0 ? (
+                filterArray.map((character, key) => (
+                  <SearchCard character={character} key={character.id} />
+                ))
+              ) : (
+                <tr className='text-center col-span-1 text-orange-400 text-lg lg:text-xl font-bold tracking-wide border-t border-b border-slate-600 '>
+                  <td className='px-3 lg:px-6 py-3.5'>
+                    Start typing to search
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
-        <div className='flex justify-between items-center px-2 sm:px-4 md:px-8'>
+        <div className='flex justify-between items-center px-2 sm:px-4 md:px-6 pt-4'>
           {/* House filter */}
           <div className='flex w-full space-x-2'>
             {houseObj.map((val, index) => {

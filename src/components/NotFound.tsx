@@ -14,7 +14,7 @@ const NotFound = ({ text, buttonChildren, children }: Props) => {
   return (
     <div
       className='w-full h-screen 
-   text-lg lg"text-xl font-bold tracking-wide '
+   text-lg lg:text-xl font-bold tracking-wide'
     >
       {children || (
           <div className='w-full h-full flex justify-center items-center flex-col space-y-4'>

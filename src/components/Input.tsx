@@ -18,23 +18,20 @@ const renderSimpleLoadingIcon = () => {
 
 const Input = (props: Props) => {
   return (
-    <div className='w-full text-slate-400 relative flex'>
+    <div className='w-full text-slate-400 group relative flex'>
       {/* Search Icon */}
       <div className='absolute -translate-y-1/2 top-1/2 left-2'>
         {props.isLoading ? (
           renderSimpleLoadingIcon()
         ) : (
-          <SearchIcon
-            className='h-5 w-5 lg:h-6 lg:w-6 fill-current'
-            fill='currentIcon'
-          />
+          <SearchIcon className='h-5 w-5 lg:h-6 lg:w-6 fill-current' />
         )}
       </div>
       <input
         type='text'
         value={props.input}
         onChange={props.handleChange}
-        className='w-full px-10 py-2.5 bg-white/[15%] font-medium focus:bg-orange-300/20 rounded-md'
+        className='w-full px-10 py-2.5 bg-white/[5%] font-medium focus:bg-slate-300/20 rounded-md outline-0 focus:text-slate-300'
         placeholder='Search a character'
       />
       {/* Eec */}
