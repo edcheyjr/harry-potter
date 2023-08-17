@@ -21,7 +21,7 @@ cd harry-potter
 npm install
 ```
 
-- follow the instructions below to by nextjs <a href="Getting Started"> Getting Started</a>
+- follow the instructions below to by nextjs **Getting Started**
 
 ## What is Nextjs powering this site
 
