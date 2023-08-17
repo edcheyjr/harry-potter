@@ -1,6 +1,27 @@
-# Harry potter cast website
+# [Harry potter cast website](https://vercel) T
 
-<!-- TODO added description and instruction of cloning and using -->
+Fandom website listing all the characters in the [Harry Potter Franchise](https://www.imdb.com/title/tt0241527/) and there characteristics. This is courtesy to the [HP-API](https://hp-api.onrender.com/).
+
+<!-- todo add screenshots and also link to the website -->
+
+<!-- steps to run application locally -->
+
+## steps to run application locally
+
+- clone the repository
+
+```
+git clone https://github.com/edcheyjr/harry-potter
+```
+
+- cd to the repo run npm install on the repository directory
+
+```
+cd harry-potter
+npm install
+```
+
+- follow the instructions below to by nextjs <a href="Getting Started"> Getting Started</a>
 
 ## What is Nextjs powering this site
 
