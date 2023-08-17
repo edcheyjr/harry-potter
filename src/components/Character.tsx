@@ -38,7 +38,7 @@ const CharacterCard = ({
       // title={name}
       onClick={moveToCharacterPage}
       aria-label={name || 'unknown'}
-      className={`group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem]  lg:h-96 w-auto transform transtion-all ease-in-out hover:scale-110 duration-300 cursor-pointer border-[1.5px] border-gray-200/20 hover:border-orange-500`}
+      className={`group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem]  lg:h-96 w-auto transform transtion-all ease-in-out lg:hover:scale-110 duration-300 cursor-pointer border-[1.5px] border-gray-200/20 hover:border-orange-500`}
       style={{
         backgroundImage: `url(${imageSrc || DEFAULT_IMAGE})`,
       }}

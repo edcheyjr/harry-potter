@@ -26,15 +26,15 @@ const CharactersSection = ({ characters }: Props) => {
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
   return (
-    <div className='pt-32 container mx-auto max-w-7xl px-10'>
-      <div ref={ref} className=' flex flex-col pt-28'>
-        <div className='pb-10 w-full flex justify-between items-center'>
+    <div className='pt-20 lg:pt-32 container mx-auto max-w-7xl px-10'>
+      <div ref={ref} className='flex flex-col pt-28'>
+        <div className='pb-10 w-auto flex flex-wrap justify-between items-center gap-4'>
           <Title
             title='All characters'
             // desc='Hogwarts teachers and students'
           />
           {/* filters */}
-          <div className='flex w-1/4 items-center space-x-4'>
+          <div className='flex items-center space-x-4'>
             <span className='text-slate-300 font-semibold text-sm uppercase bg-black rounded p-1'>
               Filter By
             </span>

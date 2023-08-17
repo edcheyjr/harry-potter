@@ -33,10 +33,10 @@ const Filter = ({ value, name }: Props) => {
   }, [name, route, value])
   return (
     <div
-      className={`text-sm lg:text-base flex justify-center items-center cursor-pointer transition duration-300 ease-in-out hover:text-white hover:bg-red-500 hover:border-red-400 rounded-2xl px-2.5 py-2 border-2 font-bold ${
+      className={`text-sm lg:text-base flex justify-center items-center cursor-pointer  transition duration-300 ease-in-out hover:text-white hover:bg-red-500 hover:border-red-400 rounded-2xl px-2.5 py-2 border-2 font-bold ${
         value
           ? 'bg-red-500 border-red-400 text-white'
-          : 'bg-transparent border-slate-400/90 text-slate-400'
+          : ' border-slate-400/90 text-slate-200 bg-slate-300/40'
       }`}
       onClick={handleFiltering}
     >

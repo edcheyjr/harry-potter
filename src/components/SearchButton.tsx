@@ -21,7 +21,9 @@ const SearchButton = ({ innerRef }: Props) => {
         className='h-5 w-5 lg:h-6 lg:w-6 fill-current'
         fill='currentIcon'
       />
-      <span className='text-sm font-regular uppercase'>search...</span>
+      <span className='hidden sm:block text-sm font-regular uppercase'>
+        search...
+      </span>
 
       <span
         title='escape'

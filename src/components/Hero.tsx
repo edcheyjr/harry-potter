@@ -21,17 +21,17 @@ const Hero = (props: Props) => {
   const ref = appContext?.ref
   // const [color, setColor] = useState<string>(houseColors.Gryffindor.primary)
   return (
-    <div className='container mx-auto max-w-7xl px-10 flex flex-col justify-end pt-8'>
+    <div className='container mx-auto max-w-7xl px-8 md:px-10 flex flex-col justify-end pt-8'>
       {/* Nav */}
       <section className='space-y-5 flex flex-col items-center justify-center'>
         {/* Heading Text */}
         <h1
-          className={`${harry.className} text-4xl md:text-7xl xl:text-9xl capitalize text-white`}
+          className={`${harry.className} text-5xl md:text-7xl xl:text-9xl capitalize text-white`}
         >
           <HarryPotterWorkMark
             title='harry potter'
             titleId='harry potter'
-            className='fill-current w-[32rem]'
+            className='fill-current w-96 sm:w-[32rem]'
           />
         </h1>
 
