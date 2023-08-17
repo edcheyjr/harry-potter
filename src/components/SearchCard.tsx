@@ -1,4 +1,6 @@
 'use client'
+import { calculateAge } from '@utils/calculateAge'
+import { changeDateFormat } from '@utils/changeDateFormat'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -26,19 +28,25 @@ const SearchCard = ({ character }: Props) => {
       <td className='px-3 lg:px-6 py-3.5 font-medium'>{character.name}</td>
 
       {/* age */}
-      <td className='px-3 lg:px-6'>{character.dateOfBirth}</td>
-      {/* actor */}
-      <td className='px-3 lg:px-6'>{character.actor}</td>
       <td className='px-3 lg:px-6'>
-        {character.house && (
+        {character.yearOfBirth
+          ? calculateAge(new Date().getFullYear(), character.yearOfBirth)
+          : changeDateFormat(character.dateOfBirth || 'No DoB')}
+      </td>
+      {/* actor */}
+      <td className='px-3 lg:px-6'>{character.actor || ''}</td>
+      <td className='px-3 lg:px-6'>
+        {character.house ? (
           <Image
             src={require(`/public/crests/${resolveHouseNames(
               character.house
             )}.png`)}
             className='h-auto w-8'
-            title={character.name}
-            alt={character.name}
+            title={character.house}
+            alt={character.house}
           />
+        ) : (
+          'No House'
         )}
       </td>
     </tr>

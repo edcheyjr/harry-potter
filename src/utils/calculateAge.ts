@@ -1,17 +1,11 @@
-function calculateAge(birthYear: string, currentYear: string): number | null {
-  const birthYearNumber = parseInt(birthYear)
-  const currentYearNumber = parseInt(currentYear)
+export const calculateAge = (year1: number, year2: number): number => {
+  const currentYear = new Date().getFullYear()
+  const birthYear = Math.min(year1, year2)
+  const futureYear = Math.max(year1, year2)
 
-  if (isNaN(birthYearNumber) || isNaN(currentYearNumber)) {
-    // If either year is not a valid number, return null
-    return null
+  if (birthYear > currentYear) {
+    throw new Error('Birth year cannot be in the future.')
   }
 
-  if (birthYearNumber > currentYearNumber) {
-    // If birth year is in the future, return null
-    return null
-  }
-
-  const age = currentYearNumber - birthYearNumber
-  return age
+  return currentYear - birthYear
 }
