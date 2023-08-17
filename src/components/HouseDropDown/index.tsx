@@ -1,10 +1,12 @@
 'use client'
 
 import { AppContext } from '@provider/app-context'
-import React, { useContext } from 'react'
+import React, { useContext, MouseEvent } from 'react'
+import { Houses } from 'types.d'
+import DropItem from './DropItem'
 
 interface DropdownProps {
-  items: any[]
+  items: string[]
   bgColor?: string
   isOpen: boolean
   name: string
@@ -22,6 +24,11 @@ const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   const appContext = useContext(AppContext)
 
+  const handleFiltering = (house: Houses) => {
+    console.log('clicked dropdownItem')
+    appContext?.filtering({ name: name, value: house })
+    onClosePopover()
+  }
   return (
     <div
       ref={popoverRef}
@@ -31,16 +38,13 @@ const Dropdown: React.FC<DropdownProps> = ({
       style={{ minWidth: '12rem' }}
     >
       {items.map((house, index) => (
-        <button
-          key={index}
-          className='text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent hover:bg-red-500/50'
-          onClick={(e) => {
-            appContext?.filtering({ name, value: house })
-            onClosePopover()
-          }}
-        >
-          {house}
-        </button>
+        <DropItem
+          key={house}
+          house={house as Houses}
+          handleClick={(e: MouseEvent<HTMLDivElement>) =>
+            handleFiltering(house as Houses)
+          }
+        />
       ))}
     </div>
   )
