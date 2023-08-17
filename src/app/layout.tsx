@@ -20,13 +20,13 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <AppProvider>
-        <body className={`${ysabeau.className} h-full w-full`}>
+        <body className={`${ysabeau.className} h-full w-full `}>
           <header className=''>
             <NavBar />
           </header>
-          {children}
+          <div className='h-full w-full'>{children}</div>
           {/* Footer */}
-          <footer className='bg-bg-dark'>
+          <footer className='bg-bg-dark pt-10'>
             <Footer />
           </footer>
         </body>

@@ -28,7 +28,8 @@
       "@provider/*": ["./src/providers/*"],
       "@utils/*": ["./src/utils/*"],
       "@service/*": ["./src/service/*"],
-      "types.d": ["./types.d.ts"]
+      "types.d": ["./types.d.ts"],
+      "package.json": ["./package.json"]
     }
   },
   "include": [

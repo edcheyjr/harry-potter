@@ -1,4 +1,4 @@
-# Harry potter characters website
+# Harry potter cast website
 
 <!-- TODO added description and instruction of cloning and using -->
 

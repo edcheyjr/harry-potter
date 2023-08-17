@@ -1,5 +1,5 @@
 'use client'
-
+import packageJson from 'package.json'
 import React, { useContext } from 'react'
 import LogoImage from '@logo.png'
 import Image from 'next/image'
@@ -10,12 +10,13 @@ type Props = {
   innerRef?: React.RefObject<HTMLDivElement>
 }
 
+const APP_NAME = packageJson.name
 export const Logo = ({ innerRef }: Props) => {
   const appContext = useContext(AppContext)
   const house = appContext?.house
   return (
-    <div ref={innerRef}>
-      <Link href={'/'}>
+    <Link href={'/'}>
+      <div ref={innerRef} className='flex space-x-1 items-center'>
         <Image
           priority
           src={house ? require(`/public/crests/${house}.png`) : LogoImage}
@@ -28,7 +29,10 @@ export const Logo = ({ innerRef }: Props) => {
         lg:h-12
         '
         />
-      </Link>
-    </div>
+        <h1 className='font-bold uppercase tracking-widest text-base lg:text-lg bg-clip-text bg-gradient-to-br from-red-500 from-20% via-orange-500 to-amber-500 text-transparent'>
+          {APP_NAME}
+        </h1>
+      </div>
+    </Link>
   )
 }
