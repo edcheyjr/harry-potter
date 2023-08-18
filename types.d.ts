@@ -1,5 +1,5 @@
 import { HouseColors } from './types.d'
-import { SetStateAction } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 interface AnyObject {
   [key: string]: any
@@ -65,10 +65,12 @@ export type AppContextType = {
   house: Houses | null
   setHouse: Dispatch<SetStateAction<Houses | null>>
   activeFilter: FilterTypes
-  setFilters: Dispatch<SetStateAction<Record<Filters, boolean>>>
+  setFilters: Dispatch<SetStateAction<FilterTypes>>
   characters: Character[]
   setCharacters: Dispatch<SetStateAction<Character[]>>
   isModalOpen: boolean
+  isLoadingCharacters: boolean
+  setIsLoadingCharacters: Dispatch<SetStateAction<boolean>>
   handleOpenModal: () => void
   handleCloseModal: () => void
   filtering: ({

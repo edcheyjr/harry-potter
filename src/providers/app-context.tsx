@@ -17,6 +17,7 @@ type Props = {
 const AppContext = createContext<AppContextType | null>(null)
 
 const AppProvider = ({ children }: Props) => {
+  const [isLoadingCharacters, setIsLoadingCharacters] = useState<boolean>(true)
   // house
   const [house, setHouse] = useState<Houses | null>(null)
   //TODO setcolorsthemes
@@ -70,6 +71,7 @@ const AppProvider = ({ children }: Props) => {
     if (stored) {
       setFilters(stored)
     }
+    setIsLoadingCharacters(false)
   }, [])
 
   //Handle filters
@@ -136,6 +138,8 @@ const AppProvider = ({ children }: Props) => {
     characters,
     setCharacters,
     isModalOpen: isOpen,
+    isLoadingCharacters,
+    setIsLoadingCharacters,
     handleOpenModal: handleOpen,
     handleCloseModal: handleClose,
     filtering,
