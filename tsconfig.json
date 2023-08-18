@@ -1,5 +1,5 @@
 {
-  // Temporarily work around for cypress
+  //TODO Temporarily work around for cypress
   "ts-node": {
     "compilerOptions": {
       "module": "es2015",
@@ -36,7 +36,8 @@
       "@utils/*": ["./src/utils/*"],
       "@service/*": ["./src/service/*"],
       "types.d": ["./types.d.ts"],
-      "package.json": ["./package.json"]
+      "package.json": ["./package.json"],
+      "bg.jpg": ["./public/hogwarts_train.jpg"]
     }
   },
   "include": [
