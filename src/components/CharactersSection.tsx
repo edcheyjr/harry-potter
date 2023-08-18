@@ -8,6 +8,7 @@ import { Character, Filters } from 'types.d'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Filter from './Filter'
 import SearchResultModal from '@components/SearchResult'
+import Loading from './Loading'
 
 type Props = {
   characters: Character[]
@@ -17,16 +18,31 @@ const CharactersSection = ({ characters }: Props) => {
   const appContext = useContext(AppContext)
   const activeFilter =
     appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
+  const isLoading = appContext?.isLoadingCharacters
   const setCharacters = appContext?.setCharacters
   const charactersValue = appContext?.characters ?? characters //that character state or default to the ssr one
   useEffect(() => {
-    setCharacters(characters) //move characters values to context for global access
+    if (setCharacters) {
+      setCharacters(characters) //move characters values to context for global access
+    }
   }, [characters, setCharacters])
 
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
+
+  // Load if not ready
+  if (isLoading) {
+    return (
+      <div className='h-screen container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10 pt-20 xl:py-32'>
+        <div>
+          <Loading />
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div className='pt-20 lg:pt-32 container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
+    <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
       <div ref={ref} className='flex flex-col pt-28'>
         <div className='pb-10 w-auto flex flex-wrap justify-between items-center gap-4'>
           <Title
