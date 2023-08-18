@@ -43,11 +43,11 @@ export default async function Home({ params, searchParams }: Props) {
         className='h-full w-full flex flex-col bg-fixed'
       >
         {/* hero */}
-        <section className=' w-full mx-auto bg-gradient-to-b max-lg:via-bg-dark/90 max-lg:from-10% from-bg-dark from-5% via-bg-dark/80 via-60% to-bg-dark/50 '>
+        <section className=' w-full mx-auto bg-gradient-to-b max-lg:via-bg-dark/90 max-lg:from-10% max-lg:via-30%  from-bg-dark from-5% via-bg-dark/80 via-50% to-bg-dark/50  to-95%'>
           <Hero />
         </section>
         {/* Scroll up gris sytem for the cards */}
-        <section className=' w-full bg-gradient-to-t max-lg:via-bg-dark/90 max-lg:from-[99%] from-bg-dark from-[85%] via-bg-dark/80  to-bg-dark/50 space-y-5 h-full'>
+        <section className=' w-full bg-gradient-to-t max-lg:via-bg-dark/90 max-lg:from-90%  max-lg:to-[99%] from-bg-dark from-[85%] to-99%  via-bg-dark/80  to-bg-dark/50 space-y-5 h-full'>
           <CharactersSection characters={characters} />
         </section>
       </div>
