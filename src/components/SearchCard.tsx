@@ -6,6 +6,8 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { Character } from 'types.d'
+import { useContext } from 'react'
+import { AppContext } from '@provider/app-context'
 
 // TODO
 type Props = {
@@ -13,8 +15,11 @@ type Props = {
 }
 
 const SearchCard = ({ character }: Props) => {
+  const appContext = useContext(AppContext)
   const route = useRouter()
   const moveToCharacterPage = (e: React.MouseEvent<HTMLElement>) => {
+    // close modal
+    appContext?.handleCloseModal()
     // Move to the character page /character?id=id
     route.push(`/character/${character.id}`)
   }

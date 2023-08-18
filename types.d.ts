@@ -73,6 +73,7 @@ export type AppContextType = {
   setIsLoadingCharacters: Dispatch<SetStateAction<boolean>>
   handleOpenModal: () => void
   handleCloseModal: () => void
+  cleanFilters: () => void
   filtering: ({
     name,
     value,

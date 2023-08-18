@@ -30,12 +30,13 @@ const AppProvider = ({ children }: Props) => {
 
   // Search modal
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  // open modal
+  // open search modal
   const handleOpen = () => {
     setIsOpen(true)
+    // route.push('/') //TODO:Might be needed due to a bug but ruins user experience fix the bug of searching and filtering to behaviour
   }
 
-  // close fmodal
+  // close search modal
   const handleClose = () => {
     setIsOpen(false)
   }
@@ -74,6 +75,12 @@ const AppProvider = ({ children }: Props) => {
     setIsLoadingCharacters(false)
   }, [])
 
+  const cleanFilters = () => {
+    setFilters(intialFilterState) //deactivate
+    removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
+    route.push('/') //back to unfilter search
+  }
+
   //Handle filters
   const filtering = ({
     name,
@@ -93,11 +100,7 @@ const AppProvider = ({ children }: Props) => {
       // compare previous value and current assuming previous is not false[could be null] just used false for convinience
       if (activeFilter.house && typeof value != 'boolean') {
         if (compareString(activeFilter.house, value)) {
-          // Not working
-          const filterObj = { ...intialFilterState, [name]: false }
-          setFilters(filterObj) //deactivate
-          removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
-          route.push('/') //back to unfilter search return to unfilted
+          cleanFilters()
         } else {
           // if it passes all that test it mean it either false or the user is click on another filter house set to that
           const filterObj = { ...intialFilterState, [name]: value }
@@ -115,10 +118,7 @@ const AppProvider = ({ children }: Props) => {
     } else {
       // Student and Staff Here
       if (value) {
-        const filterObj = { ...intialFilterState, [name]: false }
-        setFilters(filterObj) //deactivate
-        removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
-        route.push('/') //back to unfilter search
+        cleanFilters()
       } else {
         // student and staff logic
         const filterObj = { ...intialFilterState, [name]: true }
@@ -142,6 +142,7 @@ const AppProvider = ({ children }: Props) => {
     setIsLoadingCharacters,
     handleOpenModal: handleOpen,
     handleCloseModal: handleClose,
+    cleanFilters,
     filtering,
   }
   return (
