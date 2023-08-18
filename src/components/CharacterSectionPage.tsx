@@ -99,7 +99,7 @@ const CharacterSectionPage = ({ data }: Props) => {
   if (!data)
     return (
       <NotFound
-        text="😱Oops, we don't know that character 🪄"
+        text="😱Oops, we don't know that character"
         buttonChildren='Go Back'
       />
     )
@@ -153,7 +153,10 @@ const CharacterSectionPage = ({ data }: Props) => {
                 <RenderDetailsRow
                   label={<Label text='A.k.a' />}
                   value={data.alternate_names.map((item, key) => (
-                    <div key={key} className='text-slate-400 text-sm'>
+                    <div
+                      key={key}
+                      className='text-slate-400 text-sm min-[500px]:text-lg'
+                    >
                       <span className='font-medium capitalize'>
                         {item.trim()}
                       </span>

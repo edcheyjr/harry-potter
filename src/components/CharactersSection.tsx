@@ -42,7 +42,7 @@ const CharactersSection = ({ characters }: Props) => {
   }
 
   return (
-    <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
+    <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 min-[495px]:max-md:px-12 md:px-4 2xl:px-10'>
       <div ref={ref} className='flex flex-col pt-28'>
         <div className='pb-10 w-auto flex flex-wrap justify-between items-center gap-4'>
           <Title
