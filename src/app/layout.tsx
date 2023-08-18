@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <AppProvider>
-        <body className={`${ysabeau.className} h-full w-full `}>
+        <body className={`${ysabeau.className} h-full min-h-screen w-full `}>
           <header className=''>
             <NavBar />
           </header>

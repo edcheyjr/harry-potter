@@ -15,18 +15,21 @@ import {
   setStorageItem,
 } from '@utils/localstorageAccess'
 import { searchStrings } from '@utils/searchStrings'
+import { FILTERS } from '@utils/constant'
 type Props = {}
 
 const SearchResult = (props: Props) => {
+  const appContext = useContext(AppContext)
   const [isLoading, setLoading] = useState(false)
   const [houseFilter, setHouseFilter] = useState<Houses | null>(null)
   const [filterArray, setFilterArray] = useState<Character[]>([])
   const [input, setInput] = useState('Harry Potter')
-  const appContext = useContext(AppContext)
   const isOpen = appContext?.isModalOpen ?? false
   const handleCloseModal = appContext?.handleCloseModal
   const charactersArray = appContext?.characters
   const houseObj = Object.values(Houses)
+  const activeFilters = appContext?.activeFilter //active filters
+  const cleanFilters = appContext?.cleanFilters
 
   const HOUSEFILTER = 'houseFilters'
 
@@ -80,7 +83,11 @@ const SearchResult = (props: Props) => {
     setLoading(false)
   }, [charactersArray, houseFilter, input])
 
+  //TODO House filters might be a repeat on filter remove in favour of house filter under filter
   const handleCleanFilter = () => {
+    if (cleanFilters) {
+      cleanFilters() // clean any filters
+    }
     removeItemFromStorage(HOUSEFILTER)
     setHouseFilter(null)
   }
@@ -97,9 +104,10 @@ const SearchResult = (props: Props) => {
           />
         </div>
         {/* ListCard */}
-        <div className='overflow-y-auto overflow-auto xl:max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
+        <div className='overflow-y-auto overflow-auto max-h-96 lg:max-h-80 xl:max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
           <table className='h-full px-2 sm:px-4 md:px-8 w-full table-fixed border-collapse'>
             <thead className='w-full'>
+              {/* FIXME Colspan not working */}
               <tr className='text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600 col-span-4'>
                 <th className='px-3 lg:px-6 py-3.5 text-left'>
                   Search Results
@@ -122,6 +130,7 @@ const SearchResult = (props: Props) => {
                 ))
               ) : (
                 <tr className='text-center col-span-1 text-orange-400 text-lg lg:text-xl font-bold tracking-wide border-t border-b border-slate-600 '>
+                  {/* FIXME Colspan not working */}
                   <td className='px-3 lg:px-6 py-3.5'>
                     Start typing to search
                   </td>
@@ -157,14 +166,17 @@ const SearchResult = (props: Props) => {
               )
             })}
             {/* Cleanup Button */}
-            {houseFilter && (
+            {houseFilter ||
+            activeFilters?.house ||
+            activeFilters?.staff ||
+            activeFilters?.students ? (
               <button
                 onClick={handleCleanFilter}
                 className='flex text-center items-center justify-center space-x-1 text-slate-400 font-semibold text-base lg:text-xl border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 transition ease-in-out duration-300 hover:border-0 hover:bg-white/20'
               >
                 clear filter
               </button>
-            )}
+            ) : null}
           </div>
           <button
             onClick={appContext?.handleCloseModal}
