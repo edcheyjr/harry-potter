@@ -28,7 +28,7 @@ const SearchButton = ({ innerRef }: Props) => {
       <span
         title='escape'
         aria-label='to open search press Ctrl+K'
-        className='ml-4 py-1 rounded px-2 text-center border-r border-l border-t border-b-2 bg-bg-dark border-gray-50/[25%] text-sm lg:text-base font-semibold tracking-tight'
+        className='hidden lg:block ml-4 py-1 rounded px-2 text-center border-r border-l border-t border-b-2 bg-bg-dark border-gray-50/[25%] text-sm lg:text-base font-semibold tracking-tight'
       >
         Ctrl K
       </span>
