@@ -33,14 +33,16 @@ const CharactersSection = ({ characters }: Props) => {
   // Load if not ready
   if (isLoading) {
     return (
-      <div className='h-3/4 w-full p-6 lg:p-20 flex items-center justify-center'>
-        <Loading />
+      <div className='h-screen container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10 pt-20 xl:py-32'>
+        <div>
+          <Loading />
+        </div>
       </div>
     )
   }
 
   return (
-    <div className='pt-20 lg:pt-32 container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
+    <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10'>
       <div ref={ref} className='flex flex-col pt-28'>
         <div className='pb-10 w-auto flex flex-wrap justify-between items-center gap-4'>
           <Title

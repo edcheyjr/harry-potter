@@ -104,7 +104,7 @@ const SearchResult = (props: Props) => {
           />
         </div>
         {/* ListCard */}
-        <div className='overflow-y-auto overflow-auto max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
+        <div className='overflow-y-auto overflow-auto max-h-96 lg:max-h-80 xl:max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
           <table className='h-full px-2 sm:px-4 md:px-8 w-full table-fixed border-collapse'>
             <thead className='w-full'>
               {/* FIXME Colspan not working */}

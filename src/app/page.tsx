@@ -37,7 +37,7 @@ export default async function Home({ params, searchParams }: Props) {
     console.error('error', error)
   }
   return (
-    <main className='pt-28'>
+    <main className='pt-28 w-full h-full'>
       <div
         style={{ backgroundImage: `url(${bg.src})` }}
         className='h-full w-full flex flex-col bg-fixed'
@@ -47,7 +47,7 @@ export default async function Home({ params, searchParams }: Props) {
           <Hero />
         </section>
         {/* Scroll up gris sytem for the cards */}
-        <section className=' w-full bg-gradient-to-t from-bg-dark from-[85%] via-bg-dark/80  to-bg-dark/50 space-y-5'>
+        <section className=' w-full bg-gradient-to-t from-bg-dark from-[85%] via-bg-dark/80  to-bg-dark/50 space-y-5 h-full'>
           <CharactersSection characters={characters} />
         </section>
       </div>
