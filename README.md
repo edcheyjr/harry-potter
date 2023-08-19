@@ -2,7 +2,61 @@
 
 Fandom website listing all the characters in the [Harry Potter Franchise](https://www.imdb.com/title/tt0241527/) and there characteristics. This is courtesy to the [HP-API](https://hp-api.onrender.com/).
 
+<!-- prettier-ignore-start -->
+[![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
+<!-- [![version][version-badge]][package] -->
+[![downloads][downloads-badge]][npmtrends]
+[![Apache License][license-badge]][license]
+<!-- [![All Contributors][all-contributors-badge]](#contributors) -->
+[![PRs Welcome][prs-badge]][prs]
+[![Code of Conduct][coc-badge]][coc]
+<!-- [![Discord][discord-badge]][discord] -->
+
+[![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star]
+<!-- [![Tweet][twitter-badge]][twitter] -->
+<!-- prettier-ignore-end -->
+
 <!-- todo add screenshots and also link to the website -->
+
+# Project Name
+
+Welcome to the Project Name repository! This repository contains information about the home, character, and search functionalities of the project.
+
+## Home Page
+
+The home page shows all the character with option to filter them based on houses , student or staff. It provides an overview of the project's features and options.
+
+![Home Page](images/home.png)
+![Home Page](images/home1.png)
+
+## Character
+
+The character section showcases different characters of harry potter movie. Each character has a unique role and more interesting facts 🤓
+
+### Character Pages
+
+![Character 1](images/character.png)
+
+![Character 2](images/character1.png)
+
+![Character 3](images/character2.png)
+
+## Search
+
+The search functionality allows users to quickly find what they are looking for within the page also with some filters.
+
+![Search](images/search.png)
+![Search](images/search1.png)
+
+## Usage
+
+To use the project, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/yourusername/project-name.git`
+2. Navigate to the project directory: `cd project-name`
+3. Open the necessary files for each functionality.
 
 <!-- steps to run application locally -->
 
@@ -41,21 +95,16 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Credits
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Special thanks to [edcheyjr](https://github.com/edcheyjr) for their contributions to the project.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the [Apache License](LICENSE).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+## Deployed on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check out [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
