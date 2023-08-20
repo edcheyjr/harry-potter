@@ -96,7 +96,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Credits
 
-Special thanks to [edcheyjr](https://github.com/edcheyjr) for their contributions to the project.
+Special thanks to [edcheyjr](https://github.com/edcheyjr) the owner to the project.
 
 ## License
 
