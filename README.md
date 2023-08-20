@@ -3,18 +3,17 @@
 Fandom website listing all the characters in the [Harry Potter Franchise](https://www.imdb.com/title/tt0241527/) and there characteristics. This is courtesy to the [HP-API](https://hp-api.onrender.com/).
 
 <!-- prettier-ignore-start -->
-[![Build Status][build-badge]][build]
-[![Code Coverage][coverage-badge]][coverage]
+<!-- [![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage] -->
 <!-- [![version][version-badge]][package] -->
-[![downloads][downloads-badge]][npmtrends]
-[![Apache License][license-badge]][license]
+<!-- [![downloads][downloads-badge]][npmtrends]
+[![Apache License][license-badge]][license] -->
 <!-- [![All Contributors][all-contributors-badge]](#contributors) -->
-[![PRs Welcome][prs-badge]][prs]
-[![Code of Conduct][coc-badge]][coc]
+<!-- [![PRs Welcome][prs-badge]][prs]
+[![Code of Conduct][coc-badge]][coc] -->
 <!-- [![Discord][discord-badge]][discord] -->
-
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
+<!-- [![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star] -->
 <!-- [![Tweet][twitter-badge]][twitter] -->
 <!-- prettier-ignore-end -->
 
