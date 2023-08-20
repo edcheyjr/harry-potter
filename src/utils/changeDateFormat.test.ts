@@ -18,10 +18,7 @@ describe('Test for date formatting function', () => {
     //Other edge case
     wrongDates.map((date) => {
       const wrongDate = changeDateFormat(date)
-      expect(changeDateFormat(date)).toThrow(
-        'Failed to split correctly string not in the right format 31-07-1980' ||
-          'Months can only be between 01 and 12'
-      ) //Errors to be thrown
+      // console.log('wrondDGate', wrongDate, 'date', date)
       expect(wrongDate).toStrictEqual(date) //return the same garbage i.e garbage in garbage out 🫣🤣
     })
   })

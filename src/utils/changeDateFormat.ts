@@ -28,7 +28,7 @@ export function changeDateFormat(date: string): string {
     const newDate = `${day} ${months[monthTrim]} ${year}`
     return newDate
   } catch (error) {
-    console.error('error', error)
+    // console.error('error', error)
   }
   return date
 }
