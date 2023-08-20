@@ -1,6 +1,7 @@
 import customFetch from './customFetch'
 import { setupServer } from 'msw/node'
 import { handlers } from '@mock/mockHandlers'
+import { DefaultBodyType, MockedRequest, RestHandler } from 'msw'
 
 const server = setupServer(...handlers)
 
@@ -26,7 +27,7 @@ describe('customFetch', () => {
 
     // Fetch with revalidationTime set to 10 seconds
     const data = await customFetch({
-      url: '/api/data',
+      url: '/characters',
       init: { method: 'GET' },
       revalidationTime: 10,
     })
