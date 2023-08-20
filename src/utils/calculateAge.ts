@@ -3,7 +3,7 @@ export const calculateAge = (birthYear: number): number => {
 
   if (birthYear > currentYear) {
     throw new Error('birth year cannot be in the future')
+  } else {
+    return currentYear - birthYear
   }
-
-  return currentYear - birthYear
 }
