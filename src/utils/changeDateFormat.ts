@@ -16,16 +16,19 @@ export function changeDateFormat(date: string): string {
   try {
     const dateArray = date.split('-')
     if (dateArray.length != 3) {
-      throw "Failed to split correctly string not in the right format '31-07-1980'"
+      throw 'Failed to split correctly string not in the right format 31-07-1980' //TODO might include other formats in future
     }
     const day = dateArray[0]
     const month = dateArray[1]
     const monthTrim = parseInt(month.trim())
+    if (monthTrim > 12) {
+      throw 'Months can only be between 01 and 12'
+    }
     const year = dateArray[2]
     const newDate = `${day} ${months[monthTrim]} ${year}`
     return newDate
   } catch (error) {
-    console.error('error', error)
+    // console.error('error', error)
   }
   return date
 }

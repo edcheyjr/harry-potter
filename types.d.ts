@@ -1,4 +1,3 @@
-import { HouseColors } from './types.d'
 import { Dispatch, SetStateAction } from 'react'
 
 interface AnyObject {

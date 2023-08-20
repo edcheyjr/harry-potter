@@ -30,6 +30,19 @@ const config: Config = {
           slytherin: '#C0C0C0', //Silver
         },
       },
+      animation: {
+        shining: '1s shine ease-out infinite', //based on this blog https://harshilmoradia.medium.com/how-to-create-css-animated-loading-card-skeleton-ab0827795ae8
+      },
+      keyframes: {
+        shine: {
+          to: {
+            'background-position': 'right bottom',
+          },
+        },
+      },
+      backgroundSize: {
+        'two-one': '200% 100%',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar')({ nocompatible: true })], // be warying!!! as they are only supported in Webkit-based browsers

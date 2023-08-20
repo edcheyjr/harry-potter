@@ -35,7 +35,7 @@ const SearchCard = ({ character }: Props) => {
       {/* age */}
       <td className='px-3 lg:px-6'>
         {character.yearOfBirth
-          ? calculateAge(new Date().getFullYear(), character.yearOfBirth)
+          ? calculateAge(character.yearOfBirth)
           : changeDateFormat(character.dateOfBirth || 'No DoB')}
       </td>
       {/* actor */}
