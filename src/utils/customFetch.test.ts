@@ -1,7 +1,6 @@
 import customFetch from './customFetch'
 import { setupServer } from 'msw/node'
-import { handlers } from '@mock/mockHandlers'
-import { DefaultBodyType, MockedRequest, RestHandler } from 'msw'
+import { handlers } from '../__mocks__/mockHandlers'
 
 const server = setupServer(...handlers)
 
