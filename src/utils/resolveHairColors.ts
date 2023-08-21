@@ -8,6 +8,8 @@ export function resolveHairAndEyeColors(value: string): string {
       return '#000000' // Dark color code
     case 'brown':
       return '#654321' // Brown color code
+    case 'hazel':
+      return '#C8B575' // Hazel color code
     // Add more cases for other human hair/eye colors
     default:
       return lowerCaseValue // Return the lowercased value if no match found
