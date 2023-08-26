@@ -49,6 +49,12 @@ The search functionality allows users to quickly find what they are looking for 
 ![Search](images/search.png)
 ![Search](images/search1.png)
 
+## Spells
+
+Spells from harry potter. i.e _Wingardium Leviosa 🪶_
+
+![Spells Modal](images/spells.png)
+
 ## Usage
 
 To use the project, follow these steps:
