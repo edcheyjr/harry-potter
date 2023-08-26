@@ -22,7 +22,7 @@ export async function fetchAllCharacters({
 
   const response = await customFetch({ url: Url })
   const data = await response.json()
-  console.log('data', data)
+  // console.log('data', data)
   if (response.status != 200) {
     throw data
   }
@@ -34,7 +34,7 @@ export async function fetchACharacter(id: string): Promise<Character[]> {
 
   const response = await customFetch({ url: `${APIUrl}/character/${id}` })
   const data = await response.json()
-  console.log('data', data)
+  // console.log('data', data)
   if (response.status != 200) {
     throw data
   }
