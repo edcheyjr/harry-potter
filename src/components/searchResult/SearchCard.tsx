@@ -19,7 +19,7 @@ const SearchCard = ({ character }: Props) => {
   const route = useRouter()
   const moveToCharacterPage = (e: React.MouseEvent<HTMLElement>) => {
     // close modal
-    appContext?.handleCloseModal()
+    appContext?.handleCloseSearch()
     // Move to the character page /character?id=id
     route.push(`/character/${character.id}`)
   }

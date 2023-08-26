@@ -3,8 +3,8 @@
 // Result of the search and the search input itself
 import { AppContext } from '@provider/app-context'
 import React, { ChangeEvent, useContext, useEffect, useState } from 'react'
-import Modal from './Modal'
-import Input from './Input'
+import Modal from '@components/Modal'
+import Input from '@components/Input'
 import { Character, Houses } from 'types.d'
 import Image from 'next/image'
 import SearchCard from './SearchCard'
@@ -15,7 +15,6 @@ import {
   setStorageItem,
 } from '@utils/localstorageAccess'
 import { searchStrings } from '@utils/searchStrings'
-import { FILTERS } from '@utils/constant'
 type Props = {}
 
 const SearchResult = (props: Props) => {
@@ -24,8 +23,8 @@ const SearchResult = (props: Props) => {
   const [houseFilter, setHouseFilter] = useState<Houses | null>(null)
   const [filterArray, setFilterArray] = useState<Character[]>([])
   const [input, setInput] = useState('Harry Potter')
-  const isOpen = appContext?.isModalOpen ?? false
-  const handleCloseModal = appContext?.handleCloseModal
+  const isOpen = appContext?.isSearchModalOpen ?? false
+  const handleCloseModal = appContext?.handleCloseSearch
   const charactersArray = appContext?.characters
   const houseObj = Object.values(Houses)
   const activeFilters = appContext?.activeFilter //active filters
@@ -101,6 +100,7 @@ const SearchResult = (props: Props) => {
             handleChange={handleFilteringCharacters}
             input={input}
             isLoading={isLoading}
+            isKeyEnabled
           />
         </div>
         {/* ListCard */}
@@ -108,13 +108,10 @@ const SearchResult = (props: Props) => {
           <table className='h-full px-2 sm:px-4 md:px-8 w-full table-fixed border-collapse'>
             <thead className='w-full'>
               {/* FIXME Colspan not working */}
-              <tr className='text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600 col-span-4'>
-                <th className='px-3 lg:px-6 py-3.5 text-left'>
+              <tr className='text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600 '>
+                <th className='px-3 lg:px-6 py-3.5 text-left' colSpan={4}>
                   Search Results
                 </th>
-                <th></th>
-                <th></th>
-                <th></th>
               </tr>
               <tr className='text-left text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600'>
                 <th className=' px-3 lg:px-6 py-3.5'>name</th>
@@ -129,14 +126,11 @@ const SearchResult = (props: Props) => {
                   <SearchCard character={character} key={character.id} />
                 ))
               ) : (
-                <tr className='text-center col-span-1 text-orange-400 text-lg lg:text-xl font-bold tracking-wide border-t border-b border-slate-600 '>
+                <tr className='text-center text-orange-400 text-lg lg:text-xl font-bold tracking-wide border-t border-b border-slate-600 '>
                   {/* FIXME Colspan not working */}
-                  <td className='px-3 lg:px-6 py-3.5'>
+                  <td className='px-3 lg:px-6 py-3.5' colSpan={4}>
                     Start typing to search
                   </td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                 </tr>
               )}
             </tbody>
@@ -179,7 +173,7 @@ const SearchResult = (props: Props) => {
             ) : null}
           </div>
           <button
-            onClick={appContext?.handleCloseModal}
+            onClick={appContext?.handleCloseSearch}
             className=' text-slate-400 font-semibold text-base lg:text-xl  border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 hover:border-b transition ease-in-out duration-300'
           >
             Close
