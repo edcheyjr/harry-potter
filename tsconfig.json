@@ -35,6 +35,7 @@
       "@utils/*": ["./src/utils/*"],
       "@service/*": ["./src/service/*"],
       "types.d": ["./types.d.ts"],
+      "@mock/*": ["./src/mocks/*"],
       "package.json": ["./package.json"],
       "@logo.png": ["./public/hogwarts-logo.png"],
       "bg.jpg": ["./public/hogwarts_train.jpg"]
