@@ -44,6 +44,7 @@ export async function fetchACharacter(id: string): Promise<Character[]> {
 export async function fetchAllSpell(): Promise<Spell[]> {
   const response = await customFetch({ url: `${APIUrl}/spells` })
   const data = await response.json()
+  // console.log('data', data)
   if (response.status != 200) {
     throw data
   }
