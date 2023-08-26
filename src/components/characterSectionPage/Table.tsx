@@ -1,7 +1,7 @@
 'use client'
 
 import React, { ReactNode } from 'react'
-import Chip from './Chip'
+import Chip from '../Chip'
 import { resolveHairAndEyeColors } from '@utils/resolveHairColors'
 
 type Props = {

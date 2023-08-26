@@ -29,16 +29,28 @@ const AppProvider = ({ children }: Props) => {
   const [activeFilter, setFilters] = useState<FilterTypes>(intialFilterState)
 
   // Search modal
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false)
+  const [isOpenSpell, setIsOpenSpell] = useState<boolean>(false)
   // open search modal
-  const handleOpen = () => {
-    setIsOpen(true)
+  const handleOpenSearch = () => {
+    setIsOpenSearch(true)
     // route.push('/') //TODO:Might be needed due to a bug but ruins user experience fix the bug of searching and filtering to behaviour
   }
 
   // close search modal
-  const handleClose = () => {
-    setIsOpen(false)
+  const handleCloseSearch = () => {
+    setIsOpenSearch(false)
+  }
+  // open search modal
+  const handleOpenSpell = () => {
+    setIsOpenSpell(true)
+    console.log('isOpenSpell', isOpenSpell)
+    // route.push('/')
+  }
+
+  // close search modal
+  const handleCloseSpell = () => {
+    setIsOpenSpell(false)
   }
 
   // KeyBoard keys listening
@@ -49,13 +61,13 @@ const AppProvider = ({ children }: Props) => {
       // event.ctrlKey - pressed Control key on Linux or Windows
       if ((event.metaKey || event.ctrlKey) && event.code === 'KeyK') {
         event.preventDefault()
-        setIsOpen(true) // open search modal
+        setIsOpenSearch(true) // open search modal
         console.log('Pressed Command/Control + K')
       }
       //listen for ESC key inorder to close modal
       if (event.code == 'Escape') {
         event.preventDefault()
-        setIsOpen(false)
+        setIsOpenSearch(false)
         console.log('pressed escape')
       }
       event.stopPropagation()
@@ -137,11 +149,14 @@ const AppProvider = ({ children }: Props) => {
     setFilters,
     characters,
     setCharacters,
-    isModalOpen: isOpen,
+    isSearchModalOpen: isOpenSearch,
+    isSpellModalOpen: isOpenSpell,
     isLoadingCharacters,
     setIsLoadingCharacters,
-    handleOpenModal: handleOpen,
-    handleCloseModal: handleClose,
+    handleOpenSearch,
+    handleCloseSearch,
+    handleOpenSpell,
+    handleCloseSpell,
     cleanFilters,
     filtering,
   }

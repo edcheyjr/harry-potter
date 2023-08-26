@@ -7,7 +7,8 @@ import { AppContext } from '@provider/app-context'
 import { Character, Filters } from 'types.d'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Filter from './Filter'
-import SearchResultModal from '@components/SearchResult'
+import SearchResultModal from '@components/searchResult'
+import SpellsResultModal from '@components/spellResult'
 import Loading from './Loading'
 
 type Props = {
@@ -77,8 +78,10 @@ const CharactersSection = ({ characters }: Props) => {
             )
           })}
         </div>
-        {/* Search */}
+        {/* Search modal */}
         <SearchResultModal />
+        {/* Spell modal */}
+        <SpellsResultModal />
       </div>
     </div>
   )

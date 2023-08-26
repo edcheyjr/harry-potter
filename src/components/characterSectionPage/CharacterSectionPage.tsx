@@ -4,20 +4,21 @@ import Image from 'next/image'
 import { DEFAULT_IMAGE } from '@utils/constant'
 import NotFound from '@components/NotFound'
 import { handleColor } from '@utils/handleColor'
-import { Character, Houses, WandType } from 'types.d'
+import { Character, WandType } from 'types.d'
 import localFont from 'next/font/local'
 import { changeDateFormat } from '@utils/changeDateFormat'
-import Label from './Label'
-import Chip from './Chip'
+import Label from '../Label'
+import Chip from '../Chip'
 import { RenderDetailsRow } from './DetailsRow'
-import PrimaryButton from './PrimaryButton'
+import PrimaryButton from '../PrimaryButton'
 import { useRouter } from 'next/navigation'
-import Accordion from './Accordion'
+import Accordion from '../Accordion'
 import { Table } from './Table'
 import { AppContext } from '@provider/app-context'
-import SearchResultModal from '@components/SearchResult'
+import SearchResultModal from '@components/searchResult'
+import SpellsResultModal from '@components/spellResult'
 import { compareString } from '@utils/compareString'
-const harryFont = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
+const harryFont = localFont({ src: '../../../public/fonts/local/HarryP.ttf' })
 
 type Props = {
   data?: Character
@@ -249,8 +250,10 @@ const CharacterSectionPage = ({ data }: Props) => {
           }
         </Accordion>
       </section>
-      {/* Search */}
+      {/* Search modal */}
       <SearchResultModal />
+      {/* Spells modal */}
+      <SpellsResultModal />
     </div>
   )
 }

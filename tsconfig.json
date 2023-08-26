@@ -29,7 +29,6 @@
     "paths": {
       "@crests": ["./public/crests/*"],
       "@components/*": ["./src/components/*"],
-      "@glowing_crests/*": ["./public/glowing_crests/*"],
       "@public/*": ["./public/*"],
       "@provider/*": ["./src/providers/*"],
       "@utils/*": ["./src/utils/*"],
