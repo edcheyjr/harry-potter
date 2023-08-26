@@ -8,6 +8,7 @@ type Props = {
   input: string
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   isLoading: boolean
+  isKeyEnabled?: boolean
 }
 
 const renderSimpleLoadingIcon = () => {
@@ -34,16 +35,18 @@ const Input = (props: Props) => {
         className='w-full px-10 py-2.5 bg-white/[5%] font-medium focus:bg-slate-300/20 rounded-md outline-0 focus:text-slate-300'
         placeholder='Search a character'
       />
-      {/* Eec */}
-      <div className='absolute -translate-y-1/2 top-1/2 right-2'>
-        <span
-          title='escape'
-          aria-label='to open search press Ctrl+K'
-          className='hidden lg:block ml-4 py-1 rounded px-2 text-center border-r border-l border-t border-b-2 bg-bg-dark border-gray-50/[25%] text-sm lg:text-base font-semibold tracking-tight'
-        >
-          Ctrl K
-        </span>
-      </div>
+      {/* Esc */}
+      {props.isKeyEnabled && (
+        <div className='hidden lg:block absolute -translate-y-1/2 top-1/2 right-2'>
+          <span
+            title='escape'
+            aria-label='to open search press Ctrl+K'
+            className='hidden lg:block ml-4 py-1 rounded px-2 text-center border-r border-l border-t border-b-2 bg-bg-dark border-gray-50/[25%] text-sm lg:text-base font-semibold tracking-tight'
+          >
+            Esc
+          </span>
+        </div>
+      )}
     </div>
   )
 }

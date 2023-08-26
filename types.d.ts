@@ -67,11 +67,14 @@ export type AppContextType = {
   setFilters: Dispatch<SetStateAction<FilterTypes>>
   characters: Character[]
   setCharacters: Dispatch<SetStateAction<Character[]>>
-  isModalOpen: boolean
+  isSearchModalOpen: boolean
+  isSpellModalOpen: boolean
   isLoadingCharacters: boolean
   setIsLoadingCharacters: Dispatch<SetStateAction<boolean>>
-  handleOpenModal: () => void
-  handleCloseModal: () => void
+  handleOpenSearch: () => void
+  handleCloseSearch: () => void
+  handleOpenSpell: () => void
+  handleCloseSpell: () => void
   cleanFilters: () => void
   filtering: ({
     name,

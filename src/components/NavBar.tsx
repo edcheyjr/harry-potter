@@ -1,6 +1,7 @@
 import React from 'react'
 import { Logo } from './Logo'
-import SearchButton from './SearchButton'
+import { SearchButton } from '@components/searchResult'
+import { SpellButton } from '@components/spellResult'
 
 type Props = {}
 
@@ -11,7 +12,10 @@ const NavBar = (props: Props) => {
     >
       <div className='flex justify-between container mx-auto max-w-7xl px-4 md:px-10 lg:px-4  min-[495px]:max-md:px-12 2xl:px-10 py-4'>
         <Logo />
-        <SearchButton />
+        <div className='flex items-center space-x-1'>
+          <SearchButton />
+          <SpellButton />
+        </div>
       </div>
     </nav>
   )

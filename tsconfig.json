@@ -29,7 +29,6 @@
     "paths": {
       "@crests": ["./public/crests/*"],
       "@components/*": ["./src/components/*"],
-      "@glowing_crests/*": ["./public/glowing_crests/*"],
       "@public/*": ["./public/*"],
       "@provider/*": ["./src/providers/*"],
       "@utils/*": ["./src/utils/*"],
@@ -45,7 +44,8 @@
     "types.d.ts",
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
