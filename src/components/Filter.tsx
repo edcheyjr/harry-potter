@@ -5,7 +5,7 @@ import { createPopper } from '@popperjs/core'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useContext, useRef, useState } from 'react'
 import { Filters, Houses } from 'types.d'
-import Dropdown from './HouseDropDown'
+import Dropdown from './houseDropDown'
 import { FILTERS } from '@utils/constant'
 import { compareString } from '@utils/compareString'
 
