@@ -44,7 +44,6 @@ const SearchResult = (props: Props) => {
   }
 
   const handleFilteringCharacters = (e: ChangeEvent<HTMLInputElement>) => {
-    //
     setInput(e.target.value)
   }
 

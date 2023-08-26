@@ -9,6 +9,7 @@ type Props = {
   handleChange: (e: ChangeEvent<HTMLInputElement>) => void
   isLoading: boolean
   isKeyEnabled?: boolean
+  placeholder?: string
 }
 
 const renderSimpleLoadingIcon = () => {
@@ -32,8 +33,8 @@ const Input = (props: Props) => {
         type='text'
         value={props.input}
         onChange={props.handleChange}
-        className='w-full px-10 py-2.5 bg-white/[5%] font-medium focus:bg-slate-300/20 rounded-md outline-0 focus:text-slate-300'
-        placeholder='Search a character'
+        className='w-full px-10 pr-2 py-2.5 bg-white/[5%] font-medium focus:bg-slate-300/20 rounded-md outline-0 focus:text-slate-300 placeholder-slate-300/50'
+        placeholder={props.placeholder}
       />
       {/* Esc */}
       {props.isKeyEnabled && (
