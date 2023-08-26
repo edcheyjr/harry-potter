@@ -101,13 +101,13 @@ const SearchResult = (props: Props) => {
             input={input}
             isLoading={isLoading}
             isKeyEnabled
+            placeholder='Search a character'
           />
         </div>
         {/* ListCard */}
         <div className='overflow-y-auto overflow-auto max-h-96 lg:max-h-80 xl:max-h-[28em] mt-2 scrollbar scrollbar-thumb-white/[45%]  scrollbar-track-bg-dark'>
           <table className='h-full px-2 sm:px-4 md:px-8 w-full table-fixed border-collapse'>
             <thead className='w-full'>
-              {/* FIXME Colspan not working */}
               <tr className='text-slate-400 font-semibold text-lg xl:text-xl w-full border-t border-b border-slate-600 '>
                 <th className='px-3 lg:px-6 py-3.5 text-left' colSpan={4}>
                   Search Results
@@ -127,7 +127,6 @@ const SearchResult = (props: Props) => {
                 ))
               ) : (
                 <tr className='text-center text-orange-400 text-lg lg:text-xl font-bold tracking-wide border-t border-b border-slate-600 '>
-                  {/* FIXME Colspan not working */}
                   <td className='px-3 lg:px-6 py-3.5' colSpan={4}>
                     Start typing to search
                   </td>
