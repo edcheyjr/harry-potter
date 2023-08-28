@@ -19,6 +19,7 @@ type Props = {
 
 const CharactersSection = ({ characters }: Props) => {
   //start the current page as 1
+  const [isPageLoading, setPageIsLoading] = useState<boolean>(true)
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [siblingCount, setSiblingCount] = useState<number>(1)
   // setting siblings count based on screen size
@@ -51,7 +52,9 @@ const CharactersSection = ({ characters }: Props) => {
   const currentPageData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PAGE_SIZE
     const lastPageIndex = firstPageIndex + PAGE_SIZE
-    return charactersValue.slice(firstPageIndex, lastPageIndex)
+    const slicedArray = charactersValue.slice(firstPageIndex, lastPageIndex)
+    setPageIsLoading(false)
+    return slicedArray
   }, [charactersValue, currentPage])
 
   // Load if not ready
@@ -89,7 +92,7 @@ const CharactersSection = ({ characters }: Props) => {
           {currentPageData.map((character) => {
             return (
               <CharacterCard
-                isPageLoading={false}
+                isPageLoading={isPageLoading}
                 id={character.id}
                 name={character.name}
                 DOB={character.dateOfBirth}
