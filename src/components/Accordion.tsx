@@ -1,24 +1,20 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, SetStateAction } from 'react'
 import ChveronDown from './icons/ChveronDown'
 
 type Props = {
   title: string
   children: ReactNode
-  initialAccordionState?: boolean
+  isOpened: boolean
+  setIsOpened: React.Dispatch<SetStateAction<boolean>>
 }
 
-const Accordion = ({
-  title,
-  children,
-  initialAccordionState = false,
-}: Props) => {
-  const [isOpened, setIsOpened] = useState<boolean>(initialAccordionState)
+const Accordion = ({ title, children, isOpened, setIsOpened }: Props) => {
   const renderTitle = (title: string) => {
     return <h3 className='uppercase font-medium'>{title}</h3>
   }
 
   return (
-    <div className='w-full h-auto space-y-2'>
+    <div className={`w-full h-auto space-y-2 `}>
       <div
         className='transform transition duration-500 ease-in-out flex justify-between px-2 items-center text-slate-300 cursor-pointer py-2 hover:bg-slate-600/20 rounded'
         onClick={() => setIsOpened(!isOpened)}
