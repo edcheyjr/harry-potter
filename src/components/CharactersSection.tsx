@@ -20,7 +20,6 @@ type Props = {
 const CharactersSection = ({ characters }: Props) => {
   //start the current page as 1
   const [isPageLoading, setPageIsLoading] = useState<boolean>(true)
-  const [currentPage, setCurrentPage] = useState<number>(1)
   const [siblingCount, setSiblingCount] = useState<number>(1)
   // setting siblings count based on screen size
   useEffect(() => {
@@ -32,6 +31,8 @@ const CharactersSection = ({ characters }: Props) => {
   }, [])
 
   const appContext = useContext(AppContext)
+  const currentPage = appContext?.currentPage || 1
+  const setCurrentPage = appContext?.setCurrentPage
   const activeFilter =
     appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
   const isLoading = appContext?.isLoadingCharacters
@@ -114,7 +115,7 @@ const CharactersSection = ({ characters }: Props) => {
           currentPage={currentPage}
           totalCount={charactersValue.length}
           pageSize={PAGE_SIZE}
-          onPageChange={(page) => setCurrentPage(page)}
+          onPageChange={(page) => setCurrentPage && setCurrentPage(page)}
         />
       </div>
     </div>

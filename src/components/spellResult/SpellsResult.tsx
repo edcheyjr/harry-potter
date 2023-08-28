@@ -95,7 +95,7 @@ const SpellsResult = (props: Props) => {
           <div></div>
           <button
             onClick={appContext?.handleCloseSpell}
-            className=' text-slate-400 font-semibold text-base lg:text-xl  border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 hover:border-b transition ease-in-out duration-300'
+            className=' text-slate-400 font-semibold text-sm sm:text-base lg:text-xl border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-2 sm:px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 hover:border-b transition ease-in-out duration-300'
           >
             Close
           </button>

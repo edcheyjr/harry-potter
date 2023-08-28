@@ -64,8 +64,10 @@ export type AppContextType = {
   house: Houses | null
   setHouse: Dispatch<SetStateAction<Houses | null>>
   activeFilter: FilterTypes
+  currentPage: number
   setFilters: Dispatch<SetStateAction<FilterTypes>>
   characters: Character[]
+  setCurrentPage: Dispatch<SetStateAction<number>>
   setCharacters: Dispatch<SetStateAction<Character[]>>
   isSearchModalOpen: boolean
   isSpellModalOpen: boolean

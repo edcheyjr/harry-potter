@@ -140,7 +140,7 @@ const SearchResult = (props: Props) => {
             {houseObj.map((val, index) => {
               return (
                 <div
-                  className={`p-1 flex justify-center items-center transition duration-300 ease-in-out rounded-lg border-2 border-dotted  cursor-pointer ${
+                  className={`p-1 flex justify-center items-center transition duration-300 ease-in-out rounded-lg border sm:border-2 border-dotted  cursor-pointer ${
                     houseFilter && compareString(houseFilter, val)
                       ? 'border-red-500'
                       : 'border-slate-400 hover:border-orange-300'
@@ -150,7 +150,7 @@ const SearchResult = (props: Props) => {
                 >
                   <Image
                     src={require(`/public/crests/${val}.png`)}
-                    className='h-auto w-8'
+                    className='h-auto w-6 sm:w-8'
                     title={val}
                     alt={val}
                   />
@@ -164,15 +164,15 @@ const SearchResult = (props: Props) => {
             activeFilters?.students ? (
               <button
                 onClick={handleCleanFilter}
-                className='flex text-center items-center justify-center space-x-1 text-slate-400 font-semibold text-base lg:text-xl border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 transition ease-in-out duration-300 hover:border-0 hover:bg-white/20'
+                className='flex items-center justify-center text-slate-400 font-semibold text-sm sm:text-base lg:text-xl border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-2 sm:px-3  py-2 transition ease-in-out duration-300 hover:border-0 hover:bg-white/20 '
               >
-                clear filter
+                clear filters
               </button>
             ) : null}
           </div>
           <button
             onClick={appContext?.handleCloseSearch}
-            className=' text-slate-400 font-semibold text-base lg:text-xl  border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 hover:border-b transition ease-in-out duration-300'
+            className=' text-slate-400 font-semibold text-sm sm:text-base lg:text-xl border-slate-400 rounded-md border-b-[3px] border-t border-r border-l px-2 sm:px-3 py-2 hover:bg-red-500 hover:text-white hover:border-red-300 hover:border-b transition ease-in-out duration-300'
           >
             Close
           </button>

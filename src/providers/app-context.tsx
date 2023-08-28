@@ -28,6 +28,9 @@ const AppProvider = ({ children }: Props) => {
   // Filters
   const [activeFilter, setFilters] = useState<FilterTypes>(intialFilterState)
 
+  // paginationCurrentPage
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
   // Search modal
   const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false)
   const [isOpenSpell, setIsOpenSpell] = useState<boolean>(false)
@@ -88,6 +91,7 @@ const AppProvider = ({ children }: Props) => {
   }, [])
 
   const cleanFilters = () => {
+    setCurrentPage(1)
     setFilters(intialFilterState) //deactivate
     removeItemFromStorage(FILTERS) //REMOVE any filter that was persisted
     route.push('/') //back to unfilter search
@@ -115,12 +119,14 @@ const AppProvider = ({ children }: Props) => {
           cleanFilters()
         } else {
           // if it passes all that test it mean it either false or the user is click on another filter house set to that
+          setCurrentPage(1)
           const filterObj = { ...intialFilterState, [name]: value }
           setFilters(filterObj) //set active
           setStorageItem(FILTERS, filterObj)
           route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
         }
       } else {
+        setCurrentPage(1)
         // if it passes all that test it mean it either false or the user is click on another filter house set to that
         const filterObj = { ...intialFilterState, [name]: value }
         setFilters(filterObj) //set active
@@ -132,6 +138,7 @@ const AppProvider = ({ children }: Props) => {
       if (value) {
         cleanFilters()
       } else {
+        setCurrentPage(1)
         // student and staff logic
         const filterObj = { ...intialFilterState, [name]: true }
         setFilters(filterObj) //set active
@@ -148,7 +155,9 @@ const AppProvider = ({ children }: Props) => {
     activeFilter,
     setFilters,
     characters,
+    currentPage,
     setCharacters,
+    setCurrentPage,
     isSearchModalOpen: isOpenSearch,
     isSpellModalOpen: isOpenSpell,
     isLoadingCharacters,
