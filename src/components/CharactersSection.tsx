@@ -2,7 +2,7 @@
 
 import CharacterCard from './Character'
 import Title from './Title'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '@provider/app-context'
 import { Character, Filters } from 'types.d'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
@@ -10,12 +10,26 @@ import Filter from './Filter'
 import SearchResultModal from '@components/searchResult'
 import SpellsResultModal from '@components/spellResult'
 import Loading from './Loading'
+import Paginate from './pagination'
+import { PAGE_SIZE } from '@utils/constant'
 
 type Props = {
   characters: Character[]
 }
 
 const CharactersSection = ({ characters }: Props) => {
+  //start the current page as 1
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [siblingCount, setSiblingCount] = useState<number>(1)
+  // setting siblings count based on screen size
+  useEffect(() => {
+    if (window != undefined) {
+      if (window.innerWidth <= 640) {
+        setSiblingCount(0)
+      }
+    }
+  }, [])
+
   const appContext = useContext(AppContext)
   const activeFilter =
     appContext?.activeFilter ?? ({} as Record<Filters, boolean>)
@@ -31,6 +45,15 @@ const CharactersSection = ({ characters }: Props) => {
   const filtersKeys = Object.keys(activeFilter) as Filters[]
   const ref = appContext?.ref
 
+  // Pagination
+  // pagination through splitting of data
+  //return the data split to the required size
+  const currentPageData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PAGE_SIZE
+    const lastPageIndex = firstPageIndex + PAGE_SIZE
+    return charactersValue.slice(firstPageIndex, lastPageIndex)
+  }, [charactersValue, currentPage])
+
   // Load if not ready
   if (isLoading) {
     return (
@@ -41,7 +64,6 @@ const CharactersSection = ({ characters }: Props) => {
       </div>
     )
   }
-
   return (
     <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 min-[495px]:max-md:px-12 md:px-4 2xl:px-10'>
       <div ref={ref} className='flex flex-col pt-28'>
@@ -64,9 +86,10 @@ const CharactersSection = ({ characters }: Props) => {
           </div>
         </div>
         <div className='container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10'>
-          {charactersValue.map((character) => {
+          {currentPageData.map((character) => {
             return (
               <CharacterCard
+                isPageLoading={false}
                 id={character.id}
                 name={character.name}
                 DOB={character.dateOfBirth}
@@ -82,6 +105,14 @@ const CharactersSection = ({ characters }: Props) => {
         <SearchResultModal />
         {/* Spell modal */}
         <SpellsResultModal />
+        {/* Pagination */}
+        <Paginate
+          siblingCount={siblingCount}
+          currentPage={currentPage}
+          totalCount={charactersValue.length}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
       </div>
     </div>
   )
