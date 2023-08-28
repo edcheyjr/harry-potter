@@ -2,6 +2,8 @@ import React from 'react'
 import { Logo } from './Logo'
 import { SearchButton } from '@components/searchResult'
 import { SpellButton } from '@components/spellResult'
+import GithubIcon from './icons/Github'
+import Link from 'next/link'
 
 type Props = {}
 
@@ -15,6 +17,16 @@ const NavBar = (props: Props) => {
         <div className='flex items-center space-x-1'>
           <SearchButton />
           <SpellButton />
+          <Link
+            href={'https://github.com/edcheyjr/harry-potter'}
+            className='ml-2 rounded-full p-0.5 border-2 border-slate-400/60 hover:border-orange-500 hover:text-orange-500 transition ease-in-out duration-300 '
+          >
+            <GithubIcon
+              className='h-10 w-10 fill-current cursor-pointer '
+              title='github'
+              desc='if you want to contribute or give it a star'
+            />
+          </Link>
         </div>
       </div>
     </nav>
