@@ -8,6 +8,8 @@ export const APIUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}/api`
 
 export const FILTERS = 'filters'
 
+export const PAGE_SIZE = 12
+
 export const intialFilterState: FilterTypes = {
   staff: false,
   students: false,

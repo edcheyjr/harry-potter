@@ -15,6 +15,7 @@ type Props = {
   house: Houses
   imageSrc?: string
   hasHouse?: string
+  isPageLoading: boolean
 }
 const CharacterCard = ({
   DOB,
@@ -24,6 +25,7 @@ const CharacterCard = ({
   id,
   name,
   YOB,
+  isPageLoading,
 }: Props) => {
   const route = useRouter()
   const moveToCharacterPage = (e: MouseEvent<HTMLElement>) => {
@@ -40,7 +42,7 @@ const CharacterCard = ({
       aria-label={name || 'unknown'}
       className={`
       ${
-        id || imageSrc
+        !isPageLoading
           ? ''
           : 'bg-gradient-to-br from-orange-500/50 from-[8%] via-amber-500/50 via-[18%] to-red-500/50 to-[33%] animate-shining bg-two-one'
       } group bg-cover justify-self-stretch flex flex-col  justify-end rounded h-[30rem] min-[495px]:max-md:h-[36rem] md:h-[30rem] lg:h-96 w-auto transform transtion-all ease-in-out lg:hover:scale-110 duration-300 cursor-pointer border-[1.5px] border-gray-200/20 hover:border-orange-500`}

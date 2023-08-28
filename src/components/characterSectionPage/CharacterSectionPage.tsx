@@ -33,6 +33,7 @@ const CharacterSectionPage = ({ data }: Props) => {
   const [textColor, setTextColor] = useState<string>('text-red-400')
   const [bgColor, setBGColor] = useState<string>('bg-amber-300')
   const [borderColor, setBorderColor] = useState<string>('border-orange-500')
+  const [isOpened, setIsOpened] = useState<boolean>(false)
 
   // console.log('bgColor', bgColor)
 
@@ -106,11 +107,14 @@ const CharacterSectionPage = ({ data }: Props) => {
     )
 
   return (
-    <div className='w-full lg:flex justify-center pt-24 xl:pt-28'>
+    <div
+      className={`w-full lg:flex justify-center pt-24 xl:pt-28 ${
+        isOpened || 'mb-20'
+      }`}
+    >
       <section className='lg:w-[45%] xl:w-2/5 flex flex-col justify-evenly px-1 xl:px-8'>
         <div className='h-full w-full justify-center flex'>
           {/* FIXME when using src with next/Image possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to bg style*/}
-
           <article
             style={{
               backgroundImage: `url(${data?.image || DEFAULT_IMAGE})`,
@@ -239,7 +243,11 @@ const CharacterSectionPage = ({ data }: Props) => {
         {/* Divider */}
         <div className='w-full h-0 border-2 border-dotted border-white/40 mt-5 mb-2'></div>
         {/* Tables 1*/}
-        <Accordion title='More Details'>
+        <Accordion
+          isOpened={isOpened}
+          setIsOpened={setIsOpened}
+          title='More Details'
+        >
           {
             <Table
               head={{

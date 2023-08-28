@@ -26,7 +26,7 @@ export default function RootLayout({
           </header>
           <div className='h-full w-full'>{children}</div>
           {/* Footer */}
-          <footer className='bg-bg-dark pt-10'>
+          <footer className='bg-bg-dark py-5'>
             <Footer />
           </footer>
         </body>
