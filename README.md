@@ -19,10 +19,6 @@ Fandom website listing all the characters in the [Harry Potter Franchise](https:
 
 <!-- todo add screenshots and also link to the website -->
 
-# Project Name
-
-Welcome to the Project Name repository! This repository contains information about the home, character, and search functionalities of the project.
-
 ## Home Page
 
 The home page shows all the character with option to filter them based on houses , student or staff. It provides an overview of the project's features and options.
