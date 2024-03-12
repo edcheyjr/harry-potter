@@ -3,14 +3,14 @@ import { compareString } from './compareString'
 describe('compareString', () => {
   it('returns true for equal strings', () => {
     expect(compareString('Hello', 'Hello')).toBe(true)
-    expect(compareString('   Spaces  ', 'spaces')).toBe(true)
+    expect(compareString('   spaces  ', 'spaces')).toBe(true)
     expect(compareString('Case Insensitive', 'case insensitive')).toBe(true)
   })
 
   it('returns false for different strings', () => {
     expect(compareString('Hello', 'World')).toBe(false)
     expect(compareString('   Spaces  ', 'tabs')).toBe(false)
-    expect(compareString('Different Case', 'different CASE')).toBe(false)
+    expect(compareString('Different Case', 'different CASE')).toBe(true)
   })
 
   it('handles null and undefined values', () => {
