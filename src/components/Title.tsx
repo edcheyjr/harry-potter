@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColorPair } from '../../types'
+import { ColorPair } from '../types'
 import localFont from 'next/font/local'
 
 const harry = localFont({ src: '../../public/fonts/local/HarryP.ttf' })

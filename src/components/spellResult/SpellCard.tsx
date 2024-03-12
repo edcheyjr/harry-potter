@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spell } from 'types.d'
+import { Spell } from 'types.d.ts'
 
 type Props = {
   spell: Spell

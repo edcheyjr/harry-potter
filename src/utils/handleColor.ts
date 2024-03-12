@@ -1,4 +1,4 @@
-import { HouseColors } from 'types.d'
+import { HouseColors } from '../types'
 import { resolveHouseNames } from './resolveHouseNames'
 export function handleColor(
   house: string,

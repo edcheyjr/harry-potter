@@ -5,7 +5,7 @@ import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { Character } from 'types.d'
+import { Character } from '@/src/types.d'
 import { useContext } from 'react'
 import { AppContext } from '@provider/app-context'
 

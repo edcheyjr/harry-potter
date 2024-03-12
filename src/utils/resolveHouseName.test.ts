@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals'
 import { resolveHouseNames } from './resolveHouseNames'
-import { Houses } from 'types.d'
+import { Houses } from '../types.d'
 
 describe('resolveHouseNames function', () => {
   test('should return the correct house when a valid house name is provided', () => {

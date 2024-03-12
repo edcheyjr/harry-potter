@@ -1,4 +1,4 @@
-import { Houses } from 'types.d'
+import { Houses } from '../types.d'
 
 export function resolveHouseNames(house?: string): Houses {
   if (house) {
