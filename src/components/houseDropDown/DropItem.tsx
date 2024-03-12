@@ -1,5 +1,5 @@
 import React from 'react'
-import { Houses } from 'types.d'
+import { Houses } from '@/src/types.d'
 
 type Props = {
   house: Houses

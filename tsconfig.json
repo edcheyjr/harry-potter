@@ -27,13 +27,13 @@
       }
     ],
     "paths": {
+      "@/*": ["./*"],
       "@crests": ["./public/crests/*"],
       "@components/*": ["./src/components/*"],
       "@public/*": ["./public/*"],
       "@provider/*": ["./src/providers/*"],
       "@utils/*": ["./src/utils/*"],
       "@service/*": ["./src/service/*"],
-      "types.d": ["./types.d.ts"],
       "@mock/*": ["./src/mocks/*"],
       "package.json": ["./package.json"],
       "@logo.png": ["./public/hogwarts-logo.png"],
@@ -42,7 +42,7 @@
   },
   "include": [
     "jest-setup.ts",
-    "types.d.ts",
+    "src/types.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

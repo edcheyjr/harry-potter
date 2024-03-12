@@ -1,4 +1,4 @@
-import { Character, SearchParams, Houses, Spell } from 'types.d'
+import { Character, SearchParams, Houses, Spell } from '../types.d'
 import { APIUrl } from '@utils/constant'
 import customFetch from '@utils/customFetch'
 import { compareString } from '@utils/compareString'

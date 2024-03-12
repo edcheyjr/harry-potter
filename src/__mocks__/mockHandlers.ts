@@ -1,9 +1,9 @@
 // mocks/mockHandlers.ts
-import { rest } from 'msw'
+import { HttpResponse, Path, http } from 'msw'
 
 // TODO add all mock fetch handlers for all api request made
 export const handlers = [
-  rest.get(/.*/, async (req, res, ctx) => {
-    return res(ctx.json({ message: 'Mocked response' }))
+  http.get(/.*/, async function ({ request, params }) {
+    return HttpResponse.json({ message: 'Mocked response' })
   }),
 ]

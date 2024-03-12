@@ -1,5 +1,5 @@
+import { setupServer } from '../../node_modules/msw/node'
 import customFetch from './customFetch'
-import { setupServer } from 'msw/node'
 import { handlers } from '../__mocks__/mockHandlers'
 
 const server = setupServer(...handlers)
@@ -42,7 +42,7 @@ describe('customFetch', () => {
     })
 
     // Verify that fetch was called twice
-    expect(server.handlers[0].calls).toHaveLength(2)
+    expect(server.listen.length).toHaveLength(2)
 
     // Restore the original Date object
     Date.now = originalDateNow
@@ -55,7 +55,7 @@ describe('customFetch', () => {
       cacheMechanism: 'no-cache',
     })
 
-    expect(server.handlers[0].calls).toHaveLength(1)
+    expect(server.listen.length).toHaveLength(1)
 
     const newData = await customFetch({
       url: '/api/data',
@@ -63,6 +63,6 @@ describe('customFetch', () => {
       cacheMechanism: 'force-cache',
     })
 
-    expect(server.handlers[0].calls).toHaveLength(2)
+    expect(server.listen.length).toHaveLength(2)
   })
 })

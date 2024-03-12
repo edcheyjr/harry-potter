@@ -1,5 +1,5 @@
 import { fetchACharacter } from '@service/api'
-import { Character } from 'types.d'
+import { Character } from '../../../types'
 import CharacterSectionPage from '@components/characterSectionPage'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 type Props = {

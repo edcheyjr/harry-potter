@@ -2,7 +2,7 @@ import CharactersSection from '@components/CharactersSection'
 import bg from 'bg.jpg'
 import Hero from '@components/Hero'
 import { fetchAllCharacters } from '@service/api'
-import { Character, Filters, Houses } from 'types.d'
+import { Character, Filters, Houses } from '../types.d'
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 
 type Props = {
