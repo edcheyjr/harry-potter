@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { createContext } from 'react'
-import { AppContextType, Character, FilterTypes, Houses } from 'types.d'
+import { AppContextType, Character, FilterTypes, Houses } from '../types.d'
 
 type Props = {
   children: ReactNode
@@ -113,7 +113,7 @@ const AppProvider = ({ children }: Props) => {
         console.error('Wrong type passed, shoudl be Houses type')
         return
       }
-      // compare previous value and current assuming previous is not false[could be null] just used false for convinience
+      // compare previous value and current assuming previous is not false[could be null] just used false
       if (activeFilter.house && typeof value != 'boolean') {
         if (compareString(activeFilter.house, value)) {
           cleanFilters()

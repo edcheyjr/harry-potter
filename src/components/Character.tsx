@@ -2,7 +2,7 @@
 
 import React, { MouseEvent } from 'react'
 import Image from 'next/image'
-import { Houses } from 'types.d.ts'
+import { Houses } from '@/src/types.d'
 import { DEFAULT_IMAGE } from '@utils/constant'
 import { useRouter } from 'next/navigation'
 import { handleColor } from '@utils/handleColor'
