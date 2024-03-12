@@ -39,5 +39,3 @@ next-env.d.ts
 .env.local
 # Cypress example tests
 1-getting-started
-# 
-TODO.md
