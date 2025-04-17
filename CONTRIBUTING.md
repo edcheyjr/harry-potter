@@ -1,10 +1,11 @@
 ---
-title: Contributing to pottercast
+Contributing to pottercast
 ---
 
 ## Contributing to [Harry Potter App](https://pottercast.vercel.app/)
 
-Welcome to the contribution guide for [Your Project Name]! We appreciate your interest in making this project even better. Whether you're a developer, designer, tester, or a documentation enthusiast, there are plenty of ways to contribute.
+Welcome to the contribution guide for [Harry Potter App](https://pottercast.vercel.app/)
+We appreciate your interest in making this project even better. Whether you're a developer, designer, tester, or documentation enthusiast, there are plenty of ways to contribute.
 
 Before you get started, please take a moment to read and understand the guidelines outlined in this document. This will ensure a smooth and collaborative contribution process.
 
@@ -50,9 +51,9 @@ Follow the instructions in our [Development Setup](./README.md#Setup) guide to s
 
 Make your changes on a new branch created from the `main` branch. Please ensure your code follows our [code style guidelines](./CODE_STYLE.md).
 
-#### Testing
+#### Testing (Not a must now)
 
-Write tests to cover your changes and ensure that existing tests pass.
+Please write tests to cover your changes and make sure that existing tests pass.
 
 #### Submitting a Pull Request
 
@@ -60,7 +61,7 @@ When you're ready to submit your changes, push your branch to your fork and [cre
 
 ### Documentation
 
-Improvements to documentation are always appreciated. If you see a typo, unclear instructions, or something that needs better explanation, feel free to submit a pull request.
+I would say that improvements to documentation are always appreciated. If you see a typo, unclear instructions, or something that needs better explanation, feel free to submit a pull request.
 
 ## Getting Started
 
@@ -77,8 +78,8 @@ To start contributing to [Your Project Name], follow these steps:
 
 ## Code Style
 
-We follow coding convention for typescript and react
+We follow coding conventions for TypeScript and React
 
 ## Contact
 
-reach out at the provide contact at [my github](https://github.com/edcheyjr)
+reach out at the provided contact at [my github](https://github.com/edcheyjr)
