@@ -30,7 +30,7 @@ export async function fetchAllCharacters({
 }
 
 export async function fetchACharacter(id: string): Promise<Character[]> {
-    console.log('fetching character', id)
+    // console.log('fetching character', id)
 
     const response = await customFetch({ url: `${APIUrl}/character/${id}` })
     const data = await response.json()

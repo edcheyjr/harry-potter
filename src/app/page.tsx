@@ -24,8 +24,8 @@ export default async function Home({ params, searchParams }: Props) {
             secondFilterKey = searchResult[key] as Houses
         }
     })
-    console.log('firstFilter', firstFilterKey)
-    console.log('secondeFilter', secondFilterKey)
+    // console.log('firstFilter', firstFilterKey)
+    // console.log('secondeFilter', secondFilterKey)
 
     let characters: Character[] = []
     try {

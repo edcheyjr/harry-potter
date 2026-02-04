@@ -25,7 +25,7 @@ const SpellsResult = (props: Props) => {
     const filterSpells = spells.filter((spell) =>
         searchStrings(spell.name, input),
     )
-    console.log('filterSpells', filterSpells)
+    // console.log('filterSpells', filterSpells)
     useEffect(() => {
         //get spells from backend
         const handleSpell = async () => {

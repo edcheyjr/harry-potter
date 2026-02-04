@@ -25,7 +25,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     const appContext = useContext(AppContext)
 
     const handleFiltering = (house: Houses) => {
-        console.log('clicked dropdownItem')
+        // console.log('clicked dropdownItem')
         appContext?.filtering({ name: name, value: house })
         onClosePopover()
     }

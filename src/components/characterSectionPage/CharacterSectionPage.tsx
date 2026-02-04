@@ -101,9 +101,9 @@ const CharacterSectionPage = ({ data }: Props) => {
         }
     }, [appContext, bgColor, data, textColor])
 
-    console.log('bgColor', bgColor)
-    console.log('textColor', textColor)
-    console.log('borderColor', borderColor)
+    // console.log('bgColor', bgColor)
+    // console.log('textColor', textColor)
+    // console.log('borderColor', borderColor)
     if (!data)
         return (
             <NotFound
