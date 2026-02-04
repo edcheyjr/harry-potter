@@ -1,30 +1,30 @@
 import { fetchACharacter } from '@service/api'
-import { Character } from '../../../types'
+import { Character } from '../../../../types'
 import CharacterSectionPage from '@components/characterSectionPage'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
+import { Params } from 'next/dist/server/request/params'
 type Props = {
-  params: Params //example  character/1
-  searchParams: any //example chracter/1?house=asdasd
+    params: Params //example  character/1
+    searchParams: any //example chracter/1?house=asdasd
 }
 
 export default async function CharacterPage({ params, searchParams }: Props) {
-  let id = params?.id
-  console.log('id', id)
-  if (Array.isArray(id)) {
-    id = id[0]
-  }
+    let { id } = await params
+    console.log('id', id)
+    if (Array.isArray(id)) {
+        id = id[0]
+    }
 
-  let characters: Character[] = []
+    let characters: Character[] = []
 
-  try {
-    characters = (await fetchACharacter(id)) as Character[]
-  } catch (error) {
-    console.error('error', error)
-  }
+    try {
+        characters = (await fetchACharacter(id || '')) as Character[]
+    } catch (error) {
+        console.error('error', error)
+    }
 
-  return (
-    <main className='w-full h-full container mx-auto max-w-7xl px-4 md:px-10  min-[495px]:max-md:px-12  lg:px-4 2xl:px-10'>
-      <CharacterSectionPage data={characters[0]} />
-    </main>
-  )
+    return (
+        <main className='w-full h-full container mx-auto max-w-7xl px-4 md:px-10  min-[495px]:max-md:px-12  lg:px-4 2xl:px-10'>
+            <CharacterSectionPage data={characters[0]} />
+        </main>
+    )
 }
