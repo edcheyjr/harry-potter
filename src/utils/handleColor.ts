@@ -1,9 +1,9 @@
-import { HouseColors } from '@/types.d'
+import { HouseColors, House } from '@/types'
 import { resolveHouseNames } from './resolveHouseNames'
 export function handleColor(
-    house: string,
+    house: House,
     colorType: 'primary' | 'secondary',
-    colorFormat: 'text' | 'bg' | 'border'
+    colorFormat: 'text' | 'bg' | 'border',
 ): string {
     const validHouses = ['gryffindor', 'hufflepuff', 'ravenclaw', 'slytherin']
     const validColorTypes = ['primary', 'secondary']
