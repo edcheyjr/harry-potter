@@ -1,5 +1,0 @@
-ignoredBuiltDependencies:
-  - cypress
-  - msw
-  - sharp
-  - unrs-resolver
