@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { DEFAULT_IMAGE } from '@utils/constant'
 import NotFound from '@components/NotFound'
 import { handleColor } from '@utils/handleColor'
-import { Character, WandType } from '@/types.d'
+import { Character, WandType } from '@/types'
 import localFont from 'next/font/local'
 import { changeDateFormat } from '@utils/changeDateFormat'
 import Label from '../Label'
@@ -27,7 +27,11 @@ type Props = {
 const CharacterSectionPage = ({ data }: Props) => {
     const appContext = useContext(AppContext)
     const route = useRouter()
-    const [wand, setWand] = useState<WandType>({})
+    const [wand, setWand] = useState<WandType | undefined>({
+        wood: 'Unknown',
+        core: 'Unknown',
+        length: 'Unknown',
+    })
     const [personality, setPersonality] = useState<string[]>([])
     const [restOfData, setRestOfData] = useState<Record<string, ReactNode>>({})
     const [textColor, setTextColor] = useState<string>('text-red-400')
@@ -104,7 +108,7 @@ const CharacterSectionPage = ({ data }: Props) => {
         return (
             <NotFound
                 text="😱Oops, we don't know that character"
-                buttonChildren='Go Back'
+                buttonChildren="Go Back"
             />
         )
 
@@ -114,8 +118,8 @@ const CharacterSectionPage = ({ data }: Props) => {
                 isOpened || 'mb-20'
             }`}
         >
-            <section className='lg:w-[45%] xl:w-2/5 flex flex-col justify-evenly px-1 xl:px-8'>
-                <div className='h-full w-full justify-center flex'>
+            <section className="lg:w-[45%] xl:w-2/5 flex flex-col justify-evenly px-1 xl:px-8">
+                <div className="h-full w-full justify-center flex">
                     {/* FIXME when using src with next/Image possible error relating to this https://github.com/vercel/next.js/issues/52116 resolving to bg style*/}
                     <article
                         style={{
@@ -132,13 +136,13 @@ const CharacterSectionPage = ({ data }: Props) => {
                 </div>
             </section>
             {/* Character Details */}
-            <section className='relative lg:w-[55%] xl:w-3/5 px-3 xl:px-6'>
+            <section className="relative lg:w-[55%] xl:w-3/5 px-3 xl:px-6">
                 {/* Crest */}
-                <div className='absolute top-[2%] right-[2%] w-auto h-auto my-auto'>
+                <div className="absolute top-[2%] right-[2%] w-auto h-auto my-auto">
                     {data.house && (
                         <Image
                             src={require(`/public/crests/${data.house}.png`)}
-                            className='h-auto w-10 lg:w-20 rounded-md'
+                            className="h-auto w-10 lg:w-20 rounded-md"
                             title={data.house && data.house}
                             alt={data.house || 'no house'}
                         />
@@ -147,7 +151,7 @@ const CharacterSectionPage = ({ data }: Props) => {
 
                 {/* Descriptions */}
 
-                <div className='flex space-y-2 flex-col pt-3'>
+                <div className="flex space-y-2 flex-col pt-3">
                     {/* Name */}
                     <h2
                         className={`${harryFont.className} 
@@ -155,40 +159,40 @@ const CharacterSectionPage = ({ data }: Props) => {
                     >
                         {data.name}
                     </h2>
-                    <table className='w-full table-auto '>
+                    <table className="w-full table-auto ">
                         <tbody>
                             {/* Akas */}
                             {data.alternate_names.length > 0 && (
                                 <RenderDetailsRow
-                                    label={<Label text='A.k.a' />}
+                                    label={<Label text="A.k.a" />}
                                     value={data.alternate_names.map(
                                         (item, key) => (
                                             <div
                                                 key={key}
-                                                className='text-slate-400 text-sm min-[500px]:text-lg'
+                                                className="text-slate-400 text-sm min-[500px]:text-lg"
                                             >
-                                                <span className='font-medium capitalize'>
+                                                <span className="font-medium capitalize">
                                                     {item.trim()}
                                                 </span>
-                                                <span className='md:mx-2 font-semibold'>
+                                                <span className="md:mx-2 font-semibold">
                                                     {key !==
                                                         data.alternate_names
                                                             .length -
                                                             1 && '|'}
                                                 </span>
                                             </div>
-                                        )
+                                        ),
                                     )}
                                 />
                             )}
                             {/* Date Of Birth */}
                             {data?.dateOfBirth && (
                                 <RenderDetailsRow
-                                    label={<Label text='D.O.B' />}
+                                    label={<Label text="D.O.B" />}
                                     value={
-                                        <span className='font-medium capitalize text-slate-400'>
+                                        <span className="font-medium capitalize text-slate-400">
                                             {changeDateFormat(
-                                                data?.dateOfBirth
+                                                data?.dateOfBirth,
                                             ) || 'No DoB'}
                                         </span>
                                     }
@@ -198,9 +202,9 @@ const CharacterSectionPage = ({ data }: Props) => {
                             {/*Main Actor */}
                             {data?.actor && (
                                 <RenderDetailsRow
-                                    label={<Label text='Actor' />}
+                                    label={<Label text="Actor" />}
                                     value={
-                                        <span className='font-medium capitalize text-slate-400'>
+                                        <span className="font-medium capitalize text-slate-400">
                                             {data?.actor || 'No Actor'}
                                         </span>
                                     }
@@ -210,26 +214,27 @@ const CharacterSectionPage = ({ data }: Props) => {
                     </table>
                 </div>
                 {/* Divider */}
-                <div className='w-full h-0 border-2 border-dotted border-white/40 my-5'></div>
-                <table className='table-auto '>
-                    <tbody className=''>
+                <div className="w-full h-0 border-2 border-dotted border-white/40 my-5"></div>
+                <table className="table-auto ">
+                    <tbody className="">
                         {/* Wand Name */}
                         {wand && (
                             <RenderDetailsRow
-                                className='text-sm md:text-base '
-                                label={<Label text='Wand 🪄' />}
+                                className="text-sm md:text-base "
+                                label={<Label text="Wand 🪄" />}
                                 value={Object.keys(wand).map((key, index) => (
                                     <div
                                         key={index + key}
-                                        className='text-slate-400'
+                                        className="text-slate-400"
                                     >
-                                        <span className='font-medium text-red-400 capitalize '>
+                                        <span className="font-medium text-red-400 capitalize ">
                                             {key.trim()}:{' '}
                                         </span>
-                                        <span className='font-medium text-orange-300  capitalize '>
-                                            {wand[key]}
+                                        <span className="font-medium text-orange-300  capitalize ">
+                                            {wand[key as keyof WandType] ||
+                                                'Unknown'}
                                         </span>
-                                        <span className='mx-2 font-semibold'>
+                                        <span className="mx-2 font-semibold">
                                             {index !==
                                                 Object.keys(wand).length - 1 &&
                                                 ' '}
@@ -240,14 +245,14 @@ const CharacterSectionPage = ({ data }: Props) => {
                         )}
                         {/* Gender  Species  is Wizard*/}
                         <RenderDetailsRow
-                            className='text-sm md:text-base '
-                            label={<Label text='Personality' />}
+                            className="text-sm md:text-base "
+                            label={<Label text="Personality" />}
                             value={personality.map((item, key) => (
-                                <div key={key} className='text-slate-400'>
-                                    <span className='font-medium capitalize '>
+                                <div key={key} className="text-slate-400">
+                                    <span className="font-medium capitalize ">
                                         {item.trim()}
                                     </span>
-                                    <span className='mx-0.5 lg:mx-2 font-semibold'>
+                                    <span className="mx-0.5 lg:mx-2 font-semibold">
                                         {key !== personality.length - 1 && '|'}
                                     </span>
                                 </div>
@@ -255,18 +260,18 @@ const CharacterSectionPage = ({ data }: Props) => {
                         />
                     </tbody>
                 </table>
-                <div className='mt-8'>
+                <div className="mt-8">
                     <PrimaryButton onClick={() => route.back()}>
                         Go Back
                     </PrimaryButton>
                 </div>
                 {/* Divider */}
-                <div className='w-full h-0 border-2 border-dotted border-white/40 mt-5 mb-2'></div>
+                <div className="w-full h-0 border-2 border-dotted border-white/40 mt-5 mb-2"></div>
                 {/* Tables 1*/}
                 <Accordion
                     isOpened={isOpened}
                     setIsOpened={setIsOpened}
-                    title='More Details'
+                    title="More Details"
                 >
                     {
                         <Table

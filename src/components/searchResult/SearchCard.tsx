@@ -5,7 +5,7 @@ import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React from 'react'
-import { Character } from '@/types.d'
+import { Character } from '@/types'
 import { useContext } from 'react'
 import { AppContext } from '@provider/app-context'
 
@@ -26,29 +26,31 @@ const SearchCard = ({ character }: Props) => {
     return (
         <tr
             onClick={moveToCharacterPage}
-            className='cursor-pointer text-slate-400  bg-slate-300/5 hover:bg-slate-300/20 
-    border-b border-slate-600 hover:border-red-500 transition duration-300 ease-in-out group'
+            className="cursor-pointer text-slate-400  bg-slate-300/5 hover:bg-slate-300/20 
+    border-b border-slate-600 hover:border-red-500 transition duration-300 ease-in-out group"
         >
             {/* name */}
-            <td className='px-3 lg:px-6 py-3.5 font-medium'>
+            <td className="px-3 lg:px-6 py-3.5 font-medium">
                 {character.name}
             </td>
 
             {/* age */}
-            <td className='px-3 lg:px-6'>
+            <td className="px-3 lg:px-6">
                 {character.yearOfBirth
                     ? calculateAge(character.yearOfBirth)
                     : changeDateFormat(character.dateOfBirth || 'No DoB')}
             </td>
             {/* actor */}
-            <td className='px-3 lg:px-6'>{character.actor || ''}</td>
-            <td className='px-3 lg:px-6'>
+            <td className="px-3 lg:px-6">{character.actor || ''}</td>
+            <td className="px-3 lg:px-6">
                 {character.house ? (
                     <Image
-                        src={require(`/public/crests/${resolveHouseNames(
-                            character.house
-                        )}.png`)}
-                        className='h-auto w-8'
+                        src={require(
+                            `/public/crests/${resolveHouseNames(
+                                character.house,
+                            )}.png`,
+                        )}
+                        className="h-auto w-8"
                         title={character.house}
                         alt={character.house}
                     />

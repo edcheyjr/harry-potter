@@ -1,4 +1,4 @@
-import { FilterTypes, Filters, Houses } from '@/types.d'
+import { FilterTypes, Filters, Houses } from '@/types'
 
 export const COURTESY = 'HP-API.onrender.com'
 

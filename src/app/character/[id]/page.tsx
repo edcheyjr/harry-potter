@@ -3,8 +3,8 @@ import { Character } from '../../../../types'
 import CharacterSectionPage from '@components/characterSectionPage'
 import { Params } from 'next/dist/server/request/params'
 type Props = {
-    params: Params //example  character/1
-    searchParams: any //example chracter/1?house=asdasd
+    params: Promise<Params> //example  character/1
+    searchParams: Promise<any> //example chracter/1?house=asdasd
 }
 
 export default async function CharacterPage({ params, searchParams }: Props) {
@@ -23,7 +23,7 @@ export default async function CharacterPage({ params, searchParams }: Props) {
     }
 
     return (
-        <main className='w-full h-full container mx-auto max-w-7xl px-4 md:px-10  min-[495px]:max-md:px-12  lg:px-4 2xl:px-10'>
+        <main className="w-full h-full container mx-auto max-w-7xl px-4 md:px-10  min-[495px]:max-md:px-12  lg:px-4 2xl:px-10">
             <CharacterSectionPage data={characters[0]} />
         </main>
     )

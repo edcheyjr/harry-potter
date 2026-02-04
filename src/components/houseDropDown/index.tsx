@@ -2,7 +2,7 @@
 
 import { AppContext } from '@provider/app-context'
 import React, { useContext, MouseEvent } from 'react'
-import { Houses } from '@/types.d'
+import { Houses } from '@/types'
 import DropItem from './DropItem'
 
 interface DropdownProps {

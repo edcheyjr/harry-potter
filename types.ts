@@ -10,6 +10,8 @@ export enum Houses {
     RAVENCLAW = 'Ravenclaw',
     SLYTHERIN = 'Slytherin',
 }
+// get value from Houses enum as union type
+export type House = `${Houses}`
 export interface ColorPair {
     primary: string
     secondary: string
@@ -36,7 +38,7 @@ export interface Character {
     alternate_names: String[]
     species?: string
     gender?: string
-    house?: string
+    house?: House
     dateOfBirth?: string
     yearOfBirth?: number
     wizard: boolean
@@ -56,12 +58,12 @@ export interface Character {
 type WandKeys = 'wood' | 'core' | 'length'
 type WandValues = string | number
 
-type WandType = Record<WandKeys, WandValues>
+export type WandType = Record<WandKeys, WandValues>
 
 export type AppContextType = {
     ref: RefObject<HTMLDivElement | null>
-    house: Houses | null
-    setHouse: Dispatch<SetStateAction<Houses | null>>
+    house: House | null
+    setHouse: Dispatch<SetStateAction<House | null>>
     activeFilter: FilterTypes
     currentPage: number
     setFilters: Dispatch<SetStateAction<FilterTypes>>
@@ -82,7 +84,7 @@ export type AppContextType = {
         value,
     }: {
         name: string
-        value: boolean | Houses
+        value: boolean | House
     }) => void
 }
 export type Spell = {
@@ -93,11 +95,11 @@ export type Spell = {
 export type Filters = 'staff' | 'students' | 'house'
 export type SearchParams = {
     filter?: Filters
-    houseID?: Houses
+    houseID?: House
 }
 
-export interface FilterTypes extends Record<Filters, Houses | boolean> {
+export interface FilterTypes extends Record<Filters, House | boolean> {
     staff: boolean
     students: boolean
-    house: false | Houses
+    house: false | House
 }

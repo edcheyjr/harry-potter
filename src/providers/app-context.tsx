@@ -9,7 +9,7 @@ import {
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { createContext } from 'react'
-import { AppContextType, Character, FilterTypes, Houses } from '@/types.d'
+import { AppContextType, Character, FilterTypes, House } from '@/types'
 
 type Props = {
     children: ReactNode
@@ -20,7 +20,7 @@ const AppProvider = ({ children }: Props) => {
     const [isLoadingCharacters, setIsLoadingCharacters] =
         useState<boolean>(true)
     // house
-    const [house, setHouse] = useState<Houses | null>(null)
+    const [house, setHouse] = useState<House | null>(null)
     //TODO setcolorsthemes
     // sharing characterSection
     const characterSectionRef = useRef<HTMLDivElement | null>(null)
@@ -38,7 +38,7 @@ const AppProvider = ({ children }: Props) => {
     // open search modal
     const handleOpenSearch = () => {
         setIsOpenSearch(true)
-        // route.push('/') //TODO:Might be needed due to a bug but ruins user experience fix the bug of searching and filtering to behaviour
+        // route.push('/') //FIXME: Might be needed due to a bug but ruins user experience fix the bug of searching and filtering to behaviour
     }
 
     // close search modal
@@ -104,7 +104,7 @@ const AppProvider = ({ children }: Props) => {
         value,
     }: {
         name: string
-        value: boolean | Houses
+        value: boolean | House
     }) => {
         // console.log('name', name)
         // console.log('value', value)

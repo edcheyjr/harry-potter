@@ -4,7 +4,7 @@ import CharacterCard from './Character'
 import Title from './Title'
 import React, { useContext, useEffect, useMemo, useState } from 'react'
 import { AppContext } from '@provider/app-context'
-import { Character, Filters } from '@/types.d'
+import { Character, Filters } from '@/types'
 import { resolveHouseNames } from '@utils/resolveHouseNames'
 import Filter from './Filter'
 import SearchResultModal from '@components/searchResult'
@@ -61,7 +61,7 @@ const CharactersSection = ({ characters }: Props) => {
     // Load if not ready
     if (isLoading) {
         return (
-            <div className='h-screen container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10 pt-20 xl:py-32'>
+            <div className="h-screen container mx-auto max-w-7xl px-4 md:px-10 lg:px-4 2xl:px-10 pt-20 xl:py-32">
                 <div>
                     <Loading />
                 </div>
@@ -69,19 +69,19 @@ const CharactersSection = ({ characters }: Props) => {
         )
     }
     return (
-        <div className='pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 min-[495px]:max-md:px-12 md:px-4 2xl:px-10'>
-            <div ref={ref} className='flex flex-col pt-28'>
-                <div className='pb-10 w-auto flex flex-wrap justify-between items-center gap-4'>
+        <div className="pt-20 xl:pt-32 container mx-auto max-w-7xl px-4 min-[495px]:max-md:px-12 md:px-4 2xl:px-10">
+            <div ref={ref} className="flex flex-col pt-28">
+                <div className="pb-10 w-auto flex flex-wrap justify-between items-center gap-4">
                     <Title
-                        title='All characters'
+                        title="All characters"
                         // desc='Hogwarts teachers and students'
                     />
                     {/* filters */}
-                    <div className='flex items-center space-x-4'>
-                        <span className='text-slate-300 font-semibold text-sm uppercase bg-black rounded p-1'>
+                    <div className="flex items-center space-x-4">
+                        <span className="text-slate-300 font-semibold text-sm uppercase bg-black rounded p-1">
                             Filter By
                         </span>
-                        <div className='flex space-x-3'>
+                        <div className="flex space-x-3">
                             {/* TODO:remove house for now to return later as a filter with dropdown of the house list */}
                             {filtersKeys.map((key, index) => (
                                 <Filter
@@ -93,7 +93,7 @@ const CharactersSection = ({ characters }: Props) => {
                         </div>
                     </div>
                 </div>
-                <div className='container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10'>
+                <div className="container mx-auto max-w-7xl gap-10 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-stretch pb-10">
                     {currentPageData.map((character) => {
                         return (
                             <CharacterCard

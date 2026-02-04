@@ -1,5 +1,5 @@
 import React from 'react'
-import { ColorPair } from '@/types.d'
+import { ColorPair } from '@/types'
 import localFont from 'next/font/local'
 
 const harry = localFont({ src: '../../public/fonts/local/HarryP.ttf' })
@@ -12,8 +12,8 @@ type Props = {
 
 const Title = ({ title, desc }: Props) => {
     return (
-        <div className='flex items-center space-x-4'>
-            <div className='bg-bg-dark px-2.5 py-2 border-b-4 border-orange-400 rounded border-r-4 border-l border-t '>
+        <div className="flex items-center space-x-4">
+            <div className="bg-bg-dark px-2.5 py-2 border-b-4 border-orange-400 rounded border-r-4 border-l border-t ">
                 <h3
                     aria-label={title}
                     title={title}
@@ -22,7 +22,7 @@ const Title = ({ title, desc }: Props) => {
                     {title}
                 </h3>
             </div>
-            <p className='text-slate-500 text-base lg:text-lg first-letter:uppercase'>
+            <p className="text-slate-500 text-base lg:text-lg first-letter:uppercase">
                 {desc}
             </p>
         </div>

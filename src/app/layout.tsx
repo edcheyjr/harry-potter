@@ -14,24 +14,26 @@ export const metadata: Metadata = {
 } //metadata to improve SEO
 
 export default function RootLayout({
-  children,
+    children,
 }: {
-  children: React.ReactNode
+    children: React.ReactNode
 }) {
-  return (
-    <html lang='en'>
-      <AppProvider>
-        <body className={`${ysabeau.className} h-full min-h-screen w-full `}>
-          <header className=''>
-            <NavBar />
-          </header>
-          <div className='h-full w-full'>{children}</div>
-          {/* Footer */}
-          <footer className='bg-bg-dark py-5'>
-            <Footer />
-          </footer>
-        </body>
-      </AppProvider>
-    </html>
-  )
+    return (
+        <html lang="en">
+            <AppProvider>
+                <body
+                    className={`${ysabeau.className} h-full min-h-screen w-full `}
+                >
+                    <header className="">
+                        <NavBar />
+                    </header>
+                    <div className="h-full w-full">{children}</div>
+                    {/* Footer */}
+                    <footer className="bg-bg-dark py-5">
+                        <Footer />
+                    </footer>
+                </body>
+            </AppProvider>
+        </html>
+    )
 }

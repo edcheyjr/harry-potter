@@ -2,7 +2,7 @@
 
 import React, { MouseEvent } from 'react'
 import Image from 'next/image'
-import { Houses } from '@/types.d'
+import { Houses } from '@/types'
 import { DEFAULT_IMAGE } from '@utils/constant'
 import { useRouter } from 'next/navigation'
 import { handleColor } from '@utils/handleColor'
@@ -50,23 +50,23 @@ const CharacterCard = ({
                 backgroundImage: `url(${imageSrc || DEFAULT_IMAGE})`,
             }}
         >
-            <div className='w-full flex bg-bg-dark/10 backdrop-blur-md px-5 py-2 justify-between items-center'>
-                <div className='flex flex-col space-y-1'>
+            <div className="w-full flex bg-bg-dark/10 backdrop-blur-md px-5 py-2 justify-between items-center">
+                <div className="flex flex-col space-y-1">
                     <h6
                         className={`text-lg font-bold text-slate-300 capitalize text-ellipsis group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br ${'group-hover:from-red-500 group-hover:to-amber-500 group-hover:via-orange-500 '}]`}
                     >
                         {name || 'unknown'}
                     </h6>
-                    <p className='text-lg text-slate-500 font-medium text-ellipsis'>
+                    <p className="text-lg text-slate-500 font-medium text-ellipsis">
                         {DOB || YOB || 'No DoB'}
                     </p>
                 </div>
                 {/* crest */}
                 {hasHouse && (
-                    <div className='w-auto h-auto my-auto'>
+                    <div className="w-auto h-auto my-auto">
                         <Image
                             src={require(`/public/crests/${house}.png`)}
-                            className='h-auto w-9'
+                            className="h-auto w-9"
                             title={house}
                             alt={hasHouse ? house : 'no house'}
                         />

@@ -3,14 +3,14 @@
 import { AppContext } from '@provider/app-context'
 import { createPopper } from '@popperjs/core'
 import { useRouter } from 'next/navigation'
-import React, { useEffect, useContext, useRef, useState } from 'react'
-import { Filters, Houses } from '@/types.d'
+import { useEffect, useContext, useRef, useState } from 'react'
+import { Filters, House, Houses } from '@/types'
 import Dropdown from './houseDropDown'
 import { FILTERS } from '@utils/constant'
 import { compareString } from '@utils/compareString'
 
 type Props = {
-    value: boolean | Houses
+    value: boolean | House
     name: Filters
 }
 
@@ -38,7 +38,6 @@ const Filter = ({ value, name }: Props) => {
         appContext?.filtering({ name, value })
     }
     useEffect(() => {
-        // TODO move this and some other shared logic in app context to a hoook
         if (value) {
             if (compareString(name, 'house')) {
                 route.push(`?${FILTERS}=${name}&${name}=${value}`) // baseUrl/?filters=house&house=Slytherin
